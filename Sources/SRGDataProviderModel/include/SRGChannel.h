@@ -8,7 +8,6 @@
 #import "SRGImageMetadata.h"
 #import "SRGMetadata.h"
 #import "SRGModel.h"
-#import "SRGPresenter.h"
 #import "SRGProgram.h"
 #import "SRGTypes.h"
 
@@ -33,11 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  Information about the next program to be on air.
  */
 @property (nonatomic, readonly, nullable) SRGProgram *nextProgram;
-
-/**
- *  The presenter currently on air, if any.
- */
-@property (nonatomic, readonly, nullable) SRGPresenter *presenter;
 
 @end
 

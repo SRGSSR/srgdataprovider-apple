@@ -16,7 +16,6 @@
 @property (nonatomic) NSURL *timetableURL;
 @property (nonatomic) SRGProgram *currentProgram;
 @property (nonatomic) SRGProgram *nextProgram;
-@property (nonatomic) SRGPresenter *presenter;
 
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *URN;
@@ -45,7 +44,6 @@
         s_mapping = @{ @keypath(SRGChannel.new, timetableURL) : @"timeTableUrl",
                        @keypath(SRGChannel.new, currentProgram) : @"now",
                        @keypath(SRGChannel.new, nextProgram) : @"next",
-                       @keypath(SRGChannel.new, presenter) : @"presenter",
                        
                        @keypath(SRGChannel.new, uid) : @"id",
                        @keypath(SRGChannel.new, URN) : @"urn",
@@ -78,11 +76,6 @@
 + (NSValueTransformer *)nextProgramJSONTransformer
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGProgram.class];
-}
-
-+ (NSValueTransformer *)presenterJSONTransformer
-{
-    return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGPresenter.class];
 }
 
 + (NSValueTransformer *)transmissionJSONTransformer

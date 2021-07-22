@@ -33,7 +33,6 @@
 #import "SRGModel.h"
 #import "SRGModule.h"
 #import "SRGModuleIdentifierMetadata.h"
-#import "SRGPresenter.h"
 #import "SRGProgram.h"
 #import "SRGProgramComposition.h"
 #import "SRGRelatedContent.h"
