@@ -58,7 +58,7 @@
                        @keypath(SRGProgram.new, endDate) : @"endTime",
                        @keypath(SRGProgram.new, URL) : @"url",
                        @keypath(SRGProgram.new, show) : @"show",
-                       @keypath(SRGProgram.new, subprograms) : @"subPogramList",
+                       @keypath(SRGProgram.new, subprograms) : @"subProgramList",
                        @keypath(SRGProgram.new, mediaURN) : @"mediaUrn",
                        @keypath(SRGProgram.new, genre) : @"genre",
                        @keypath(SRGProgram.new, seasonNumber) : @"seasonNumber",
