@@ -12,6 +12,8 @@
 @import libextobjc;
 
 SRGImageType const SRGImageTypeShowBanner = @"banner";
+SRGImageType const SRGImageTypeShowPoster = @"poster";
+SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 
 @interface SRGShow ()
 
@@ -23,6 +25,8 @@ SRGImageType const SRGImageTypeShowBanner = @"banner";
 @property (nonatomic) NSURL *podcastSpotifyURL;
 @property (nonatomic, copy) NSString *primaryChannelUid;
 @property (nonatomic) NSURL *bannerImageURL;
+@property (nonatomic) NSURL *posterImageURL;
+@property (nonatomic) NSURL *podcastImageURL;
 @property (nonatomic) NSNumber *numberOfEpisodes;
 
 @property (nonatomic, copy) NSString *title;
@@ -59,6 +63,8 @@ SRGImageType const SRGImageTypeShowBanner = @"banner";
                        @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
                        @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
                        @keypath(SRGShow.new, bannerImageURL) : @"bannerImageUrl",
+                       @keypath(SRGShow.new, posterImageURL) : @"posterImageUrl",
+                       @keypath(SRGShow.new, podcastImageURL) : @"podcastImageUrl",
                        
                        @keypath(SRGShow.new, title) : @"title",
                        @keypath(SRGShow.new, lead) : @"lead",
@@ -119,6 +125,16 @@ SRGImageType const SRGImageTypeShowBanner = @"banner";
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
++ (NSValueTransformer *)posterImageURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)podcastImageURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
 + (NSValueTransformer *)transmissionJSONTransformer
 {
     return SRGTransmissionJSONTransformer();
@@ -140,6 +156,12 @@ SRGImageType const SRGImageTypeShowBanner = @"banner";
 {
     if ([type isEqualToString:SRGImageTypeShowBanner]) {
         return [self.bannerImageURL srg_URLForDimension:dimension withValue:value type:type];
+    }
+    else if ([type isEqualToString:SRGImageTypeShowPoster]) {
+        return [self.posterImageURL srg_URLForDimension:dimension withValue:value type:type];
+    }
+    else if ([type isEqualToString:SRGImageTypeShowPodcast]) {
+        return [self.podcastImageURL srg_URLForDimension:dimension withValue:value type:type];
     }
     else {
         return [self.imageURL srg_URLForDimension:dimension withValue:value type:type];
