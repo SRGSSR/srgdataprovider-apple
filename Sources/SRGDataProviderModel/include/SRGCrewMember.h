@@ -4,25 +4,29 @@
 //  License information is available from the LICENSE file.
 //
 
-#import "SRGImageMetadata.h"
 #import "SRGModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  Show presenter information.
+ *  Crew members (cast and staff).
  */
-@interface SRGPresenter : SRGModel <SRGImageMetadata>
+@interface SRGCrewMember : SRGModel
 
 /**
- *  The name of the presenter.
+ *  Person name.
  */
 @property (nonatomic, readonly, copy) NSString *name;
 
 /**
- *  The presenter webpage URL.
+ *  Role.
  */
-@property (nonatomic, readonly, nullable) NSURL *URL;
+@property (nonatomic, readonly, copy, nullable) NSString *role;
+
+/**
+ *  Character name.
+ */
+@property (nonatomic, readonly, copy, nullable) NSString *characterName;
 
 @end
 
