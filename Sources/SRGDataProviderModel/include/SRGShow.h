@@ -16,7 +16,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 // Supported alternative image types
-OBJC_EXPORT SRGImageType const SRGImageTypeShowBanner;          // Show banner image.
+OBJC_EXPORT SRGImageType const SRGImageTypeShowBanner;          // Show banner image (3:1).
+OBJC_EXPORT SRGImageType const SRGImageTypeShowPoster;          // Show poster image (2:3).
+OBJC_EXPORT SRGImageType const SRGImageTypeShowPodcast;         // Show podcast logo image (1:1).
 
 /**
  *  Show information.

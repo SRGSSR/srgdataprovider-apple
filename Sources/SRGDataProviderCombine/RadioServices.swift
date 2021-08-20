@@ -73,7 +73,7 @@ public extension SRGDataProvider {
      *
      *  - Parameter contentProviders: The content providers to return radio livestreams for.
      */
-    func radioLivestreams(for vendor: SRGVendor, contentProviders: SRGContentProviders) -> AnyPublisher<[SRGMedia], Error> {
+    func radioLivestreams(for vendor: SRGVendor, contentProviders: SRGContentProviders = .default) -> AnyPublisher<[SRGMedia], Error> {
         let request = requestRadioLivestreams(for: vendor, contentProviders: contentProviders)
         return objectsPublisher(for: request, rootKey: "mediaList", type: SRGMedia.self)
     }

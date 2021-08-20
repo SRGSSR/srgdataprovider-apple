@@ -8,7 +8,7 @@
 
 @implementation NSURL (SRGDataProvider)
 
-- (NSURL *)srg_URLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value type:(SRGImageType)type
+- (NSURL *)srg_URLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value
 {
     if (self.fileURL || value == 0.f) {
         return self;
