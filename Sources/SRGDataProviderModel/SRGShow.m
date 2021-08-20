@@ -155,16 +155,16 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 - (NSURL *)imageURLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value type:(SRGImageType)type
 {
     if ([type isEqualToString:SRGImageTypeShowBanner]) {
-        return [self.bannerImageURL srg_URLForDimension:dimension withValue:value type:type];
+        return [self.bannerImageURL srg_URLForDimension:dimension withValue:value];
     }
     else if ([type isEqualToString:SRGImageTypeShowPoster]) {
-        return [self.posterImageURL srg_URLForDimension:dimension withValue:value type:type];
+        return [self.posterImageURL srg_URLForDimension:dimension withValue:value];
     }
     else if ([type isEqualToString:SRGImageTypeShowPodcast]) {
-        return [self.podcastImageURL srg_URLForDimension:dimension withValue:value type:type];
+        return [self.podcastImageURL srg_URLForDimension:dimension withValue:value];
     }
     else {
-        return [self.imageURL srg_URLForDimension:dimension withValue:value type:type];
+        return [self.imageURL srg_URLForDimension:dimension withValue:value];
     }
 }
 
