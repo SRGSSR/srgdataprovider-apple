@@ -10,7 +10,7 @@ let package = Package(
     name: "SRGDataProvider",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v9),
+        .iOS(.v11),
         .tvOS(.v12),
         .watchOS(.v5)
     ],
