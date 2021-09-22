@@ -4,8 +4,6 @@
 //  License information is available from the LICENSE file.
 //
 
-#if canImport(Combine)  // TODO: Can be removed once iOS 11 is the minimum target declared in the package manifest.
-
 import Combine
 
 @_implementationOnly import SRGDataProviderRequests
@@ -51,6 +49,16 @@ public extension SRGDataProvider {
         return paginatedObjectTriggeredPublisher(at: Page(request: request, size: pageSize), type: SRGProgramComposition.self, paginatedBy: signal)
             .map { ($0.channel, $0.programs ?? []) }
             .eraseToAnyPublisher()
+    }
+    
+    /**
+     *  Programs for all TV channels on a specific day.
+     *
+     *  - Parameter day: The day. If `nil` today is used.
+     */
+    func tvPrograms(for vendor: SRGVendor, day: SRGDay? = nil) -> AnyPublisher<[SRGProgramComposition], Error> {
+        let request = requestTVPrograms(for: vendor, day: day)
+        return objectsPublisher(for: request, rootKey: "programGuide", type: SRGProgramComposition.self)
     }
     
     /**
@@ -147,7 +155,7 @@ public extension SRGDataProvider {
     /**
      *  Episodes available for a given day.
      *
-     *  - Parameter day: The day. If `nil`, today is used.
+     *  - Parameter day: The day. If `nil` today is used.
      */
     func tvEpisodes(for vendor: SRGVendor, day: SRGDay? = nil, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
         let request = requestTVEpisodes(for: vendor, day: day)
@@ -201,5 +209,3 @@ public extension SRGDataProvider {
             .eraseToAnyPublisher()
     }
 }
-
-#endif

@@ -3,14 +3,14 @@
 import PackageDescription
 
 struct ProjectSettings {
-    static let marketingVersion: String = "11.0.0"
+    static let marketingVersion: String = "12.0.0"
 }
 
 let package = Package(
     name: "SRGDataProvider",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v9),
+        .iOS(.v11),
         .tvOS(.v12),
         .watchOS(.v5)
     ],

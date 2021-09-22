@@ -4,8 +4,6 @@
 //  License information is available from the LICENSE file.
 //
 
-#if canImport(Combine)  // TODO: Can be removed once iOS 11 is the minimum target declared in the package manifest.
-
 import Combine
 
 @_implementationOnly import SRGDataProviderRequests
@@ -73,7 +71,7 @@ public extension SRGDataProvider {
      *
      *  - Parameter contentProviders: The content providers to return radio livestreams for.
      */
-    func radioLivestreams(for vendor: SRGVendor, contentProviders: SRGContentProviders) -> AnyPublisher<[SRGMedia], Error> {
+    func radioLivestreams(for vendor: SRGVendor, contentProviders: SRGContentProviders = .default) -> AnyPublisher<[SRGMedia], Error> {
         let request = requestRadioLivestreams(for: vendor, contentProviders: contentProviders)
         return objectsPublisher(for: request, rootKey: "mediaList", type: SRGMedia.self)
     }
@@ -111,7 +109,7 @@ public extension SRGDataProvider {
     /**
      *  Episodes available for a given day, for the specific channel.
      *
-     *  - Parameter day: The day. If `nil`, today is used.
+     *  - Parameter day: The day. If `nil` today is used.
      */
     func radioEpisodes(for vendor: SRGVendor, channelUid: String, day: SRGDay? = nil, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
         let request = requestRadioEpisodes(for: vendor, channelUid: channelUid, day: day)
@@ -204,5 +202,3 @@ public extension SRGDataProvider {
             .eraseToAnyPublisher()
     }
 }
-
-#endif

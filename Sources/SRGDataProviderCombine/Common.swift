@@ -4,8 +4,6 @@
 //  License information is available from the LICENSE file.
 //
 
-#if canImport(Combine)  // TODO: Can be removed once iOS 11 is the minimum target declared in the package manifest.
-
 import Combine
 import SRGDataProvider
 import SRGDataProviderModel
@@ -225,5 +223,3 @@ extension SRGDataProvider {
             .eraseToAnyPublisher()
     }
 }
-
-#endif
