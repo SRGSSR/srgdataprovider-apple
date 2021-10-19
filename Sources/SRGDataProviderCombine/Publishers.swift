@@ -13,7 +13,7 @@ public extension Publisher {
     /**
      *  Make the upstream publisher wait until a second signal publisher emits some value.
      */
-    func wait<S>(untilOutputFrom signal: S) -> AnyPublisher<Self.Output, Self.Failure> where S: Publisher, S.Failure == Never {
+    func wait<S>(untilOutputFrom signal: S) -> AnyPublisher<Output, Failure> where S: Publisher, S.Failure == Never {
         return self
             .prepend(
                 Empty(completeImmediately: false)
@@ -26,7 +26,21 @@ public extension Publisher {
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publishers {
     /**
-     *  Make the upstream publisher execute once and repeat when a second signal publisher emits some value.
+     *  Make the upstream publisher publish each time a second signal publisher emits some value.
+     */
+    static func Publish<S, P>(onOutputFrom signal: S, _ publisher: @escaping () -> P) -> AnyPublisher<P.Output, P.Failure> where S: Publisher, P: Publisher, S.Failure == Never {
+        return signal
+            .map { _ in }
+            .setFailureType(to: P.Failure.self)          // TODO: Remove when iOS 14 is the minimum deployment target
+            .map { _ in
+                return publisher()
+            }
+            .switchToLatest()
+            .eraseToAnyPublisher()
+    }
+    
+    /**
+     *  Make the upstream publisher execute once and repeat each time a second signal publisher emits some value.
      */
     static func PublishAndRepeat<S, P>(onOutputFrom signal: S, _ publisher: @escaping () -> P) -> AnyPublisher<P.Output, P.Failure> where S: Publisher, P: Publisher, S.Failure == Never {
         // Use `prepend(_:)` to trigger an initial update
