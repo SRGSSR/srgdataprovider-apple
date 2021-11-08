@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  *    - Segments might be repeated several times when cut by another segment.
  *    - Positions are fixed to match the cleaned up list.
  */
-OBJC_EXTERN NSArray<__kindof SRGSegment *> *SRGSanitizedSegments(NSArray<SRGSegment *> * _Nullable segments);
+OBJC_EXPORT NSArray<__kindof SRGSegment *> *SRGSanitizedSegments(NSArray<SRGSegment *> * _Nullable segments);
 
 @interface SRGSegment (Private)
 
