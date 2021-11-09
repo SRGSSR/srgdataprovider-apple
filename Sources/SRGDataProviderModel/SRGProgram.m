@@ -137,7 +137,7 @@
 static NSArray<SRGProgram *> *SRGSanitizedProgramsAndSubprograms(NSArray<SRGProgram *> *programs, SRGProgram *nextParentProgram)
 {
     if (! programs) {
-        return @[];
+        return nil;
     }
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@keypath(SRGProgram.new, startDate) ascending:YES];
