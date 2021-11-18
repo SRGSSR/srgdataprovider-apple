@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGProgram : SRGModel <SRGImageMetadata, SRGMetadata>
 
 /**
+ *  Subtitle describing the program further.
+ */
+@property (nonatomic, readonly, copy, nullable) NSString *subtitle;
+
+/**
  *  The date at which the content starts or started.
  */
 @property (nonatomic, readonly) NSDate *startDate;

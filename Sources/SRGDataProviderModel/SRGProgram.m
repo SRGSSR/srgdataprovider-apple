@@ -13,6 +13,7 @@
 
 @interface SRGProgram ()
 
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
 @property (nonatomic) NSURL *URL;
@@ -54,7 +55,8 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGProgram.new, startDate) : @"startTime",
+        s_mapping = @{ @keypath(SRGProgram.new, subtitle) : @"subtitle",
+                       @keypath(SRGProgram.new, startDate) : @"startTime",
                        @keypath(SRGProgram.new, endDate) : @"endTime",
                        @keypath(SRGProgram.new, URL) : @"url",
                        @keypath(SRGProgram.new, show) : @"show",
