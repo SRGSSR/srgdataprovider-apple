@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion This function combines several information from `SRGMediaMetadata` to determine whether a media is effectively
  *              blocked or not at the given date.
  */
-OBJC_EXTERN SRGBlockingReason SRGBlockingReasonForMediaMetadata(id<SRGMediaExtendedMetadata> mediaMetadata, NSDate *date);
+OBJC_EXPORT SRGBlockingReason SRGBlockingReasonForMediaMetadata(id<SRGMediaExtendedMetadata> mediaMetadata, NSDate *date);
 
 /**
  *  Return the time availability associated with the media at the specified date.
@@ -34,6 +34,6 @@ OBJC_EXTERN SRGBlockingReason SRGBlockingReasonForMediaMetadata(id<SRGMediaExten
  *  @discussion Time availability is only intended for informative purposes. To decide whether a media should be playable
  *              client-side, use `SRGBlockingReasonForMediaMetadata`.
  */
-OBJC_EXTERN SRGTimeAvailability SRGTimeAvailabilityForMediaMetadata(id<SRGMediaExtendedMetadata> mediaMetadata, NSDate *date);
+OBJC_EXPORT SRGTimeAvailability SRGTimeAvailabilityForMediaMetadata(id<SRGMediaExtendedMetadata> mediaMetadata, NSDate *date);
 
 NS_ASSUME_NONNULL_END
