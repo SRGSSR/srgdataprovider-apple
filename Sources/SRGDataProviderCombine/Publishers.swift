@@ -14,12 +14,11 @@ public extension Publisher {
      *  Make the upstream publisher wait until a second signal publisher emits some value.
      */
     func wait<S>(untilOutputFrom signal: S) -> AnyPublisher<Output, Failure> where S: Publisher, S.Failure == Never {
-        return self
-            .prepend(
-                Empty(completeImmediately: false)
-                    .prefix(untilOutputFrom: signal)
-            )
-            .eraseToAnyPublisher()
+        return prepend(
+            Empty(completeImmediately: false)
+                .prefix(untilOutputFrom: signal)
+        )
+        .eraseToAnyPublisher()
     }
 }
 
@@ -70,33 +69,28 @@ public extension Publishers {
      */
     static func AccumulateLatestMany<S, Output, Failure>(_ publishers: S) -> AnyPublisher<[Output], Failure> where S: Swift.Sequence, S.Element == AnyPublisher<Output, Failure> {
         let publishersArray = Array(publishers)
-        
-        // Recursively split in two until we can process groups of 2 or 3 items
-        if publishersArray.count == 0 {
+        switch publishersArray.count {
+        case 0:
             return Just([])
                 .setFailureType(to: Failure.self)
                 .eraseToAnyPublisher()
-        }
-        else if publishersArray.count == 1 {
+        case 1:
             return publishersArray[0]
                 .map { [$0] }
                 .eraseToAnyPublisher()
-        }
-        else if publishersArray.count == 2 {
+        case 2:
             return Publishers.CombineLatest(publishersArray[0], publishersArray[1])
                 .map { t1, t2 in
                     return [t1, t2]
                 }
                 .eraseToAnyPublisher()
-        }
-        else if publishersArray.count == 3 {
+        case 3:
             return Publishers.CombineLatest3(publishersArray[0], publishersArray[1], publishersArray[2])
                 .map { t1, t2, t3 in
                     return [t1, t2, t3]
                 }
                 .eraseToAnyPublisher()
-        }
-        else {
+        default:
             let half = publishersArray.count / 2
             return Publishers.CombineLatest(
                 AccumulateLatestMany(Array(publishersArray[0..<half])),
