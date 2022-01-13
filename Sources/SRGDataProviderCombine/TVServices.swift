@@ -52,12 +52,16 @@ public extension SRGDataProvider {
     }
     
     /**
-     *  Programs for all TV channels on a specific day.
+     *  Programs for TV channels on a specific day.
      *
+     *  - Parameter provider: The provider for which programs are requested. Non-standard providers might not be supported.
+     *  - Parameter channelUid: The unique identifier of the channel to return programs for. If `nil` all channels available
+     *    for the specified provider are returned.
      *  - Parameter day: The day. If `nil` today is used.
+     *  - Parameter minimal: If set to `YES` only minimal program information is returned (fast and lightweight).
      */
-    func tvPrograms(for vendor: SRGVendor, day: SRGDay? = nil) -> AnyPublisher<[SRGProgramComposition], Error> {
-        let request = requestTVPrograms(for: vendor, day: day)
+    func tvPrograms(for vendor: SRGVendor, provider: SRGProgramProvider = .SRG, channelUid: String? = nil, day: SRGDay? = nil, minimal: Bool = false) -> AnyPublisher<[SRGProgramComposition], Error> {
+        let request = requestTVPrograms(for: vendor, provider: provider, channelUid: channelUid, day: day, minimal: minimal)
         return objectsPublisher(for: request, rootKey: "programGuide", type: SRGProgramComposition.self)
     }
     

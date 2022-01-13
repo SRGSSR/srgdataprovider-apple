@@ -671,6 +671,20 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGMediaFilter) {
 };
 
 /**
+ *  Program providers.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGProgramProvider) {
+    /**
+     *  SRG SSR channels (default).
+     */
+    SRGProgramProviderSRG = 0,
+    /**
+     *  Third-party channels.
+     */
+    SRGProgramProviderThirdParty
+};
+
+/**
  *  Search match behavior.
  */
 typedef NS_OPTIONS(NSUInteger, SRGSearchMatchingOptions) {
