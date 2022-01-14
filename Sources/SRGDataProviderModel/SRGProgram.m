@@ -13,6 +13,8 @@
 
 @interface SRGProgram ()
 
+@property (nonatomic, copy) NSString *uid;      // Not parsed from JSON but privately introduced to ensure uniqueness
+
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
@@ -47,6 +49,16 @@
 @end
 
 @implementation SRGProgram
+
+#pragma mark Object lifecycle
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error
+{
+    if (self = [super initWithDictionary:dictionaryValue error:error]) {
+        self.uid = NSUUID.UUID.UUIDString;
+    }
+    return self;
+}
 
 #pragma mark MTLJSONSerializing protocol
 
@@ -132,6 +144,23 @@
 - (NSURL *)imageURLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value type:(SRGImageType)type
 {
     return [self.imageURL srg_URLForDimension:dimension withValue:value];
+}
+
+#pragma mark Equality
+
+- (BOOL)isEqual:(id)object
+{
+    if (! [object isKindOfClass:self.class]) {
+        return NO;
+    }
+    
+    SRGProgram *otherProgram = object;
+    return [self.uid isEqual:otherProgram.uid];
+}
+
+- (NSUInteger)hash
+{
+    return self.uid.hash;
 }
 
 @end
