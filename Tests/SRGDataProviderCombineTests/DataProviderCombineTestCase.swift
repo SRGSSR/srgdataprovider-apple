@@ -53,7 +53,7 @@ final class DataProviderCombineTestCase: XCTestCase {
     func testNestedRequests() {
         let requestExpectation = expectation(description: "Request finished")
         
-        dataProvider.tvTopics(for: .RTS)
+        dataProvider.tvTopics(for: .SRF)
             .tryMap { topics -> SRGTopic in
                 if let firstTopic = topics.first {
                     return firstTopic
