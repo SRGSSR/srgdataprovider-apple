@@ -7,6 +7,7 @@
 #import "SRGProgramComposition.h"
 
 #import "SRGProgram+Private.h"
+#import "SRGJSONTransformers.h"
 
 @import libextobjc;
 
@@ -31,6 +32,21 @@
     });
     return s_mapping;
 }
+
+#pragma mark Object lifecycle
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error
+{
+    if (self = [super initWithDictionary:dictionaryValue error:error]) {
+        [self.programs enumerateObjectsUsingBlock:^(SRGProgram * _Nonnull program, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *startDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.startDate];
+            NSString *endDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.endDate];
+            program.uid = [NSString stringWithFormat:@"%@-%@-%@-%@", self.channel.URN, program.title, startDateString, endDateString];
+        }];
+    }
+    return self;
+}
+
 
 #pragma mark Transformers
 

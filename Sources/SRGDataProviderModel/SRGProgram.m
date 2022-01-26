@@ -50,16 +50,6 @@
 
 @implementation SRGProgram
 
-#pragma mark Object lifecycle
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error
-{
-    if (self = [super initWithDictionary:dictionaryValue error:error]) {
-        self.uid = NSUUID.UUID.UUIDString;
-    }
-    return self;
-}
-
 #pragma mark MTLJSONSerializing protocol
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey
