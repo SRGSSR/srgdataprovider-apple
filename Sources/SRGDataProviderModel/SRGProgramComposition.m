@@ -9,6 +9,17 @@
 #import "SRGProgram+Private.h"
 #import "SRGJSONTransformers.h"
 
+static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChannel *channel)
+{
+    NSString *startDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.startDate];
+    NSString *endDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.endDate];
+    program.uid = [NSString stringWithFormat:@"%@-%@-%@-%@", channel.URN, program.title, startDateString, endDateString];
+    
+    [program.subprograms enumerateObjectsUsingBlock:^(SRGProgram * _Nonnull subprogram, NSUInteger idx, BOOL * _Nonnull stop) {
+        SRGProgramCompositionAssignUidToProgram(subprogram, channel);
+    }];
+}
+
 @import libextobjc;
 
 @interface SRGProgramComposition ()
@@ -39,14 +50,11 @@
 {
     if (self = [super initWithDictionary:dictionaryValue error:error]) {
         [self.programs enumerateObjectsUsingBlock:^(SRGProgram * _Nonnull program, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *startDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.startDate];
-            NSString *endDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.endDate];
-            program.uid = [NSString stringWithFormat:@"%@-%@-%@-%@", self.channel.URN, program.title, startDateString, endDateString];
+            SRGProgramCompositionAssignUidToProgram(program, _channel);
         }];
     }
     return self;
 }
-
 
 #pragma mark Transformers
 
