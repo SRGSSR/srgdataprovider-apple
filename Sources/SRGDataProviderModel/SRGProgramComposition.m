@@ -13,7 +13,7 @@ static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChan
 {
     NSString *startDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.startDate];
     NSString *endDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.endDate];
-    program.uid = [NSString stringWithFormat:@"%@-%@-%@-%@", channel.URN, program.title, startDateString, endDateString];
+    program.uid = [NSString stringWithFormat:@"%@-%@-%@-%@-%@", channel.URN, program.title, program.subtitle, startDateString, endDateString];
     
     [program.subprograms enumerateObjectsUsingBlock:^(SRGProgram * _Nonnull subprogram, NSUInteger idx, BOOL * _Nonnull stop) {
         SRGProgramCompositionAssignUidToProgram(subprogram, channel);
