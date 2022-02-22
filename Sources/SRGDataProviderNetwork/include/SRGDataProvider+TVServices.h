@@ -52,12 +52,19 @@ NS_ASSUME_NONNULL_BEGIN
                                withCompletionBlock:(SRGPaginatedProgramCompositionCompletionBlock)completionBlock;
 
 /**
- *  Programs for all TV channels on a specific day.
+ *  Programs for TV channels on a specific day.
  *
- *  @param day The day. If `nil` today is used.
+ *  @param provider   The provider for which programs are requested. Non-standard providers might not be supported.
+ *  @param channelUid The unique identifier of the channel to return programs for. If `nil` all channels available
+ *                    for the specified provider are returned.
+ *  @param day        The day. If `nil` today is used.
+ *  @param minimal    If set to `YES` only minimal program information is returned (fast and lightweight).
  */
 - (SRGRequest *)tvProgramsForVendor:(SRGVendor)vendor
+                           provider:(SRGProgramProvider)provider
+                         channelUid:(nullable NSString *)channelUid
                                 day:(nullable SRGDay *)day
+                            minimal:(BOOL)minimal
                 withCompletionBlock:(SRGProgramCompositionListCompletionBlock)completionBlock;
 
 /**
