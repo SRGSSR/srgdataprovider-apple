@@ -1,5 +1,5 @@
 /* A youth protection message displayed to the user if the media has the yellow protection color. */
-"Parental advisory" = "Elterliche Begleitung empfohlen";
+"Parental advisory" = "Begleitung durch Erwachsene empfohlen";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The commercial content was skipped." = "Werbung darf nicht angezeigt werden und wird übersprungen.";
@@ -44,7 +44,7 @@
 "This media is not available." = "Dieser Inhalt ist nicht verfügbar.";
 
 /* A youth protection message displayed to the user if the media has the red protection color. */
-"This program contains disturbing content and might not be suitable to some audiences" = "Die nachfolgende Sendung ist für Zuschauer unter 16 Jahren nicht geeignet.";
+"This program contains disturbing content and might not be suitable to some audiences" = "Dieses Programm kann verstörend wirken und ist für Kinder nicht geeignet";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "To protect children, this media is only available between 11PM and 5AM." = "Aus Gründen des Jugendschutzes steht dieser Inhalt nur zwischen 23:00 und 05:00 Uhr zur Verfügung.";
