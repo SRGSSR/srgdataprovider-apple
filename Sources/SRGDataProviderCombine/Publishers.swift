@@ -24,7 +24,7 @@ public extension Publisher {
     /**
      * Publish the first upstream value, then apply usual debouncing for subsequent values.
      */
-    func debounceAfterFirst<S>(for dueTime: S.SchedulerTimeType.Stride, scheduler: S, options: S.SchedulerOptions? = nil) -> AnyPublisher<Output, Failure> where S : Scheduler {
+    func debounceAfterFirst<S>(for dueTime: S.SchedulerTimeType.Stride, scheduler: S, options: S.SchedulerOptions? = nil) -> AnyPublisher<Output, Failure> where S: Scheduler {
         // Borrowed from https://stackoverflow.com/a/30145789/760435
         return Publishers.Concatenate(
             prefix: first(),

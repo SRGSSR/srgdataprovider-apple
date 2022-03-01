@@ -43,21 +43,21 @@ let package = Package(
             resources: [
                 .process("Resources")
             ],
-            cSettings:[
+            cSettings: [
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
             ]
         ),
         .target(
             name: "SRGDataProviderRequests",
             dependencies: ["SRGDataProvider", "SRGDataProviderModel"],
-            cSettings:[
+            cSettings: [
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
             ]
         ),
         .target(
             name: "SRGDataProviderNetwork",
             dependencies: ["SRGDataProviderRequests", "SRGNetwork"],
-            cSettings:[
+            cSettings: [
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
             ]
         ),

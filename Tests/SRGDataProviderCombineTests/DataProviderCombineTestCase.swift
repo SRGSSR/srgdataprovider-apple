@@ -25,7 +25,7 @@ final class DataProviderCombineTestCase: XCTestCase {
         let requestExpectation = expectation(description: "Request finished")
         
         dataProvider.radioCurrentSong(for: .RTS, channelUid: "a9e7621504c6959e35c3ecbe7f6bed0446cdf8da")
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { _ in
                 requestExpectation.fulfill()
             }, receiveValue: { song in
                 print("\(song)")
