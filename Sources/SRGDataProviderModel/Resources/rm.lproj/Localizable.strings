@@ -1,5 +1,5 @@
 /* A youth protection message displayed to the user if the media has the yellow protection color. */
-"Parental advisory" = "Recumandà consentiment da geniturs";
+"Parental advisory" = "Recumandà accumpagnament da maiorens";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The commercial content was skipped." = "Il cuntegn commercial è vegnì eliminà.";
@@ -44,7 +44,7 @@
 "This media is not available." = "Quest medium n'è betg disponibel.";
 
 /* A youth protection message displayed to the user if the media has the red protection color. */
-"This program contains disturbing content and might not be suitable to some audiences" = "Quest programm cuntegna scenas che pudessan irritar persunas sensiblas";
+"This program contains disturbing content and might not be suitable to some audiences" = "Po cuntegnair scenas irritantas";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "To protect children, this media is only available between 11PM and 5AM." = "Per proteger uffants, è quest medium disponibel mo tranter las 23.00 e las 05.00.";

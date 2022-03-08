@@ -1,5 +1,5 @@
 /* A short youth protection message stated to the user if the media has the red protection color. */
-"Desensitized public" = "Per un pubblico adulto";
+"Desensitized public" = "Pubblico adulto";
 
 /* A short youth protection message stated to the user if the media has the yellow protection color. */
-"Parental advisory" = "Supervisione di un adulto raccomandata";
+"Parental advisory" = "Supervisione di un adulto";
