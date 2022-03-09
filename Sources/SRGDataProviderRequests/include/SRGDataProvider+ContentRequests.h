@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
                                     published:(BOOL)published
                                        atDate:(nullable NSDate *)date;
 - (NSURLRequest *)requestContentPageForVendor:(SRGVendor)vendor
-                                    mediaType:(SRGMediaType)mediaType
+                                  productName:(NSString *)productName
                                     published:(BOOL)published
                                        atDate:(nullable NSDate *)date;
 - (NSURLRequest *)requestContentPageForVendor:(SRGVendor)vendor
