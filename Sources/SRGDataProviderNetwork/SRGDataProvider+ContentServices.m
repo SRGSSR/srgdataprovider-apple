@@ -23,12 +23,21 @@
 }
 
 - (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
-                           mediaType:(SRGMediaType)mediaType
+                             product:(SRGProduct)product
                            published:(BOOL)published
                               atDate:(NSDate *)date
                  withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock
 {
-    NSURLRequest *URLRequest = [self requestContentPageForVendor:vendor mediaType:mediaType published:published atDate:date];
+    return [self contentPageForVendor:vendor productName:product published:published atDate:date withCompletionBlock:completionBlock];
+}
+
+- (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
+                         productName:(NSString *)productName
+                           published:(BOOL)published
+                              atDate:(NSDate *)date
+                 withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock
+{
+    NSURLRequest *URLRequest = [self requestContentPageForVendor:vendor productName:productName published:published atDate:date];
     return [self fetchObjectWithURLRequest:URLRequest modelClass:SRGContentPage.class completionBlock:completionBlock];
 }
 

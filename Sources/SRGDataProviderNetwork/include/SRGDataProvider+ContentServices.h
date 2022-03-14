@@ -30,14 +30,29 @@ NS_ASSUME_NONNULL_BEGIN
                  withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock;
 
 /**
- *  Retrieve the default content page for medias of the specified type.
+ *  Retrieve the content page for a product.
  *
  *  @param published Set this parameter to `YES` to look only for published pages.
+ *  @param product   The product to retrieve the content page for.
  *  @param date      The page content might change over time. Use `nil` to retrieve the page as it looks now, or
  *                   at a specific date.
  */
 - (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
-                           mediaType:(SRGMediaType)mediaType
+                             product:(SRGProduct)product
+                           published:(BOOL)published
+                              atDate:(nullable NSDate *)date
+                 withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock;
+
+/**
+ *  Retrieve the content page for a product.
+ *
+ *  @param published   Set this parameter to `YES` to look only for published pages.
+ *  @param productName The name of the product to retrieve the content page for.
+ *  @param date        The page content might change over time. Use `nil` to retrieve the page as it looks now, or
+ *                     at a specific date.
+ */
+- (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
+                         productName:(NSString *)productName
                            published:(BOOL)published
                               atDate:(nullable NSDate *)date
                  withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock;

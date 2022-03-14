@@ -15,4 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 OBJC_EXPORT NSArray<SRGProgram *> * _Nullable SRGSanitizedPrograms(NSArray<SRGProgram *> * _Nullable programs);
 
+@interface SRGProgram (Private)
+
+/**
+ *  Internally used to associate a unique stable identifier.
+ */
+@property (nonatomic, copy) NSString *uid;
+
+@end
+
 NS_ASSUME_NONNULL_END

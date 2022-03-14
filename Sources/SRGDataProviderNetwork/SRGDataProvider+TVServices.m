@@ -44,10 +44,14 @@
 }
 
 - (SRGRequest *)tvProgramsForVendor:(SRGVendor)vendor
+                           provider:(SRGProgramProvider)provider
+                         channelUid:(NSString *)channelUid
                                 day:(SRGDay *)day
-                withCompletionBlock:(SRGProgramCompositionListCompletionBlock)completionBlock
+                            minimal:(BOOL)minimal
+                withCompletionBlock:(SRGProgramCompositionListCompletionBlock)completionBlock;
+
 {
-    NSURLRequest *URLRequest = [self requestTVProgramsForVendor:vendor day:day];
+    NSURLRequest *URLRequest = [self requestTVProgramsForVendor:vendor provider:provider channelUid:channelUid day:day minimal:minimal];
     return [self listObjectsWithURLRequest:URLRequest modelClass:SRGProgramComposition.class rootKey:@"programGuide" completionBlock:completionBlock];
 }
 

@@ -29,18 +29,11 @@
 }
 
 - (NSURLRequest *)requestContentPageForVendor:(SRGVendor)vendor
-                                    mediaType:(SRGMediaType)mediaType
+                                  productName:(NSString *)productName
                                     published:(BOOL)published
                                        atDate:(NSDate *)date
 {
-    static dispatch_once_t s_onceToken;
-    static NSDictionary<NSNumber *, NSString *> *s_mediaTypes;
-    dispatch_once(&s_onceToken, ^{
-        s_mediaTypes = @{ @(SRGMediaTypeVideo) : @"video",
-                          @(SRGMediaTypeAudio) : @"audio" };
-    });
-    
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/page/byLandingPage/%@", SRGPathComponentForVendor(vendor), s_mediaTypes[@(mediaType)]];
+    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/page/landingPage/byProduct/%@", SRGPathComponentForVendor(vendor), productName];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {

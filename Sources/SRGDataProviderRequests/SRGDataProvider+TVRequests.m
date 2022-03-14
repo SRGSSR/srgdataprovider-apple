@@ -46,14 +46,36 @@
 }
 
 - (NSURLRequest *)requestTVProgramsForVendor:(SRGVendor)vendor
+                                    provider:(SRGProgramProvider)provider
+                                  channelUid:(NSString *)channelUid
                                          day:(SRGDay *)day
+                                     minimal:(BOOL)minimal
 {
     if (! day) {
         day = SRGDay.today;
     }
     
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/programGuide/tv/byDate/%@", SRGPathComponentForVendor(vendor), day.string];
-    return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
+    NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
+    if (channelUid) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"channelId" value:channelUid]];
+    }
+    if (minimal) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"reduced" value:@"true"]];
+    }
+    
+    NSString *resourcePath = nil;
+    switch (provider) {
+        case SRGProgramProviderSRG: {
+            resourcePath = [NSString stringWithFormat:@"2.0/%@/programGuide/tv/byDate/%@", SRGPathComponentForVendor(vendor), day.string];
+            break;
+        }
+            
+        case SRGProgramProviderThirdParty: {
+            resourcePath = [NSString stringWithFormat:@"2.0/%@/programGuideNonSrg/tv/byDate/%@", SRGPathComponentForVendor(vendor), day.string];
+            break;
+        }
+    }
+    return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }
 
 - (NSURLRequest *)requestTVLivestreamsForVendor:(SRGVendor)vendor

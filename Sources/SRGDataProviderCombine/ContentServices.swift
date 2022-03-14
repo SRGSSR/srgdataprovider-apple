@@ -26,14 +26,27 @@ public extension SRGDataProvider {
     }
     
     /**
-     *  Retrieve the default content page for medias of the specified type.
+     *  Retrieve the default content page for a product.
      *
      *  - Parameter published: Set this parameter to `true` to look only for published pages.
+     *  - Parameter product: The product to retrieve the content page for.
      *  - Parameter date: The page content might change over time. Use `nil` to retrieve the page as it looks now, or
      *                    at a specific date.
      */
-    func contentPage(for vendor: SRGVendor, mediaType: SRGMediaType, published: Bool = true, at date: Date? = nil) -> AnyPublisher<SRGContentPage, Error> {
-        let request = requestContentPage(for: vendor, mediaType: mediaType, published: published, at: date)
+    func contentPage(for vendor: SRGVendor, product: SRGProduct, published: Bool = true, at date: Date? = nil) -> AnyPublisher<SRGContentPage, Error> {
+        return contentPage(for: vendor, productName: product.rawValue, published: published, at: date)
+    }
+    
+    /**
+     *  Retrieve the default content page for a product.
+     *
+     *  - Parameter published: Set this parameter to `true` to look only for published pages.
+     *  - Parameter productName: The name of the product to retrieve the content page for.
+     *  - Parameter date: The page content might change over time. Use `nil` to retrieve the page as it looks now, or
+     *                    at a specific date.
+     */
+    func contentPage(for vendor: SRGVendor, productName: String, published: Bool = true, at date: Date? = nil) -> AnyPublisher<SRGContentPage, Error> {
+        let request = requestContentPage(for: vendor, productName: productName, published: published, at: date)
         return objectPublisher(for: request, type: SRGContentPage.self)
     }
     

@@ -24,7 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
                                           fromDate:(nullable NSDate *)fromDate
                                             toDate:(nullable NSDate *)toDate;
 - (NSURLRequest *)requestTVProgramsForVendor:(SRGVendor)vendor
-                                         day:(nullable SRGDay *)day;
+                                    provider:(SRGProgramProvider)provider
+                                  channelUid:(nullable NSString *)channelUid
+                                         day:(nullable SRGDay *)day
+                                     minimal:(BOOL)minimal;
 - (NSURLRequest *)requestTVLivestreamsForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVScheduledLivestreamsForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVEditorialMediasForVendor:(SRGVendor)vendor;

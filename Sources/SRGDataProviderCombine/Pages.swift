@@ -19,7 +19,7 @@ extension SRGDataProvider {
      */
     static func clampedSize(size: UInt) -> UInt {
         if size > SRGDataProviderMaximumPageSize && size != SRGDataProviderUnlimitedPageSize {
-            return SRGDataProviderMaximumPageSize;
+            return SRGDataProviderMaximumPageSize
         }
         else {
             return size

@@ -160,7 +160,8 @@ These services return content configured by editors through the Play Application
 | Request | Pagination | Unlimited page size |
 |:-- |:--:|:--:|
 | Page | ❌ | N/A |
-| Page for a media type | ❌ | N/A |
+| Page for a product | ❌ | N/A |
+| Page for a product name | ❌ | N/A |
 | Page for a topic | ❌ | N/A |
 | Section | ❌ | N/A |
 | Medias for a section | ✅ | ❌ |

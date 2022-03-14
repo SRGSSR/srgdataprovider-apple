@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  @name Native service types.
+ *  @name Integer service types.
  */
 
 /**
@@ -671,6 +671,20 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGMediaFilter) {
 };
 
 /**
+ *  Program providers.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGProgramProvider) {
+    /**
+     *  SRG SSR channels (default).
+     */
+    SRGProgramProviderSRG = 0,
+    /**
+     *  Third-party channels.
+     */
+    SRGProgramProviderThirdParty
+};
+
+/**
  *  Search match behavior.
  */
 typedef NS_OPTIONS(NSUInteger, SRGSearchMatchingOptions) {
@@ -751,6 +765,21 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGTimeAvailability) {
      */
     SRGTimeAvailabilityNotAvailableAnymore
 };
+
+/**
+ *  @name String service types.
+ */
+
+/**
+ *  @name Known products.
+ */
+typedef NSString * SRGProduct NS_TYPED_ENUM;
+
+OBJC_EXPORT SRGProduct const SRGProductPlayVideo;
+OBJC_EXPORT SRGProduct const SRGProductPlayAudio;
+OBJC_EXPORT SRGProduct const SRGProductNewsApp;
+OBJC_EXPORT SRGProduct const SRGProductNewsVideo;
+OBJC_EXPORT SRGProduct const SRGProductNewsAudio;
 
 /**
  *  @name Constants

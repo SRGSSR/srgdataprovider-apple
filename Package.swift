@@ -3,7 +3,7 @@
 import PackageDescription
 
 struct ProjectSettings {
-    static let marketingVersion: String = "12.2.0"
+    static let marketingVersion: String = "13.0.0"
 }
 
 let package = Package(
@@ -43,21 +43,21 @@ let package = Package(
             resources: [
                 .process("Resources")
             ],
-            cSettings:[
+            cSettings: [
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
             ]
         ),
         .target(
             name: "SRGDataProviderRequests",
             dependencies: ["SRGDataProvider", "SRGDataProviderModel"],
-            cSettings:[
+            cSettings: [
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
             ]
         ),
         .target(
             name: "SRGDataProviderNetwork",
             dependencies: ["SRGDataProviderRequests", "SRGNetwork"],
-            cSettings:[
+            cSettings: [
                 .define("NS_BLOCK_ASSERTIONS", to: "1", .when(configuration: .release))
             ]
         ),
