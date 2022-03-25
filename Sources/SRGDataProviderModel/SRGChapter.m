@@ -22,6 +22,8 @@
 @property (nonatomic) CGFloat aspectRatio;
 @property (nonatomic) NSDate *resourceReferenceDate;
 
+@property (nonatomic) SRGSpriteSheet *spriteSheet;
+
 @end
 
 @implementation SRGChapter
@@ -43,7 +45,8 @@
                                              @keypath(SRGChapter.new, postTrailerEndDate) : @"postTrailerStop",
                                              
                                              @keypath(SRGChapter.new, aspectRatio) : @"aspectRatio",
-                                             @keypath(SRGChapter.new, resourceReferenceDate) : @"dvrReferenceDate" }];
+                                             @keypath(SRGChapter.new, resourceReferenceDate) : @"dvrReferenceDate",
+                                             @keypath(SRGChapter.new, spriteSheet) : @"spriteSheet" }];
         s_mapping = mapping.copy;
     });
     return s_mapping;
@@ -107,6 +110,11 @@
 + (NSValueTransformer *)resourceReferenceDateJSONTransformer
 {
     return SRGISO8601DateJSONTransformer();
+}
+
++ (NSValueTransformer *)spriteSheetJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGSpriteSheet.class];
 }
 
 @end

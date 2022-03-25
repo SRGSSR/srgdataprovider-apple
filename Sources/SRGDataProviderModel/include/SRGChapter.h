@@ -7,6 +7,7 @@
 #import "SRGResource.h"
 #import "SRGScheduledLivestreamMetadata.h"
 #import "SRGSegment.h"
+#import "SRGSpriteSheet.h"
 #import "SRGSubdivision.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -53,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  position relative to the stream (e.g. a segment mark in or mark out) to a date.
  */
 @property (nonatomic, readonly, nullable) NSDate *resourceReferenceDate;
+
+/**
+ *  The sprite sheet associated with the chapter, if any.
+ */
+@property (nonatomic, readonly, nullable) SRGSpriteSheet *spriteSheet;
 
 @end
 
