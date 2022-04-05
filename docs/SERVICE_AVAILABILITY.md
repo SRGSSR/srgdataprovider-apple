@@ -102,7 +102,7 @@ Regional livestreams only exist for SRF, otherwise only main livestreams are ava
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Recent songs | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
+| Recent songs | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ (return songs for the current day) |
 | Current song on air | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | N/A |
 
 ## Live center services
