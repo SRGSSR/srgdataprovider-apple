@@ -50,6 +50,7 @@
 #import "SRGSocialCount.h"
 #import "SRGSocialCountOverview.h"
 #import "SRGSong.h"
+#import "SRGSpriteSheet.h"
 #import "SRGSubdivision.h"
 #import "SRGSubtitle.h"
 #import "SRGSubtopic.h"
