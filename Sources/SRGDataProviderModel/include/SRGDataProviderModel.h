@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "NSCalendar+SRGDataProvider.h"
 #import "SRGAlbum.h"
 #import "SRGArtist.h"
 #import "SRGBaseTopic.h"
