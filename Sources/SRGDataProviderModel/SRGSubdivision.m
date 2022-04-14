@@ -194,6 +194,11 @@
 
 #pragma mark SRGImage protocol
 
+- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
+{
+    return [self.imageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+}
+
 - (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
 {
     return [self.imageURL srg_URLForWidth:width];

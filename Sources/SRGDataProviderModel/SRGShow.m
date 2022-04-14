@@ -152,6 +152,22 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 
 #pragma mark SRGImage protocol
 
+- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
+{
+    if ([type isEqualToString:SRGImageTypeShowBanner]) {
+        return [self.bannerImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+    }
+    else if ([type isEqualToString:SRGImageTypeShowPoster]) {
+        return [self.posterImageURL srg_URLForWidth:SRGPosterImageWidthForSize(size)];
+    }
+    else if ([type isEqualToString:SRGImageTypeShowPodcast]) {
+        return [self.podcastImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+    }
+    else {
+        return [self.imageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+    }
+}
+
 - (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
 {
     if ([type isEqualToString:SRGImageTypeShowBanner]) {

@@ -149,6 +149,19 @@ SRGImageType const SRGImageTypeModuleLogo = @"logo";
 
 #pragma mark SRGImage protocol
 
+- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
+{
+    if ([type isEqualToString:SRGImageTypeModuleBackground]) {
+        return [self.backgroundImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+    }
+    else if ([type isEqualToString:SRGImageTypeModuleLogo]) {
+        return [self.logoImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+    }
+    else {
+        return [self.keyVisualImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
+    }
+}
+
 - (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
 {
     if ([type isEqualToString:SRGImageTypeModuleBackground]) {

@@ -18,12 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSURL (SRGDataProvider)
 
 /**
- *  For a given URL, return the full URL for the specified width.
+ *  Augment the receiver URL for retrieval of an image with the specified width.
  *
- *  @param width The desired image width.
- *
- *  @discussion The device scale is NOT automatically taken into account. Be sure that the required size in pixels
- *              matches the scale of your device.
+ *  @discussion Does not take the device screen scale into account.
  */
 - (NSURL *)srg_URLForWidth:(SRGImageWidth)width;
 

@@ -639,20 +639,33 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
 };
 
 /**
+ *  Semantic image sizes.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageSize) {
+    SRGImageSizeSmall = 0,
+    SRGImageSizeMedium,
+    SRGImageSizeLarge
+};
+
+/**
  *  Image widths for image retrieval.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageWidth) {
     SRGImageWidth160 = 160,
-    SRGImageWidthMinimum = SRGImageWidth160,
     SRGImageWidth240 = 240,
     SRGImageWidth320 = 320,
     SRGImageWidth480 = 480,
     SRGImageWidth640 = 640,
     SRGImageWidth960 = 960,
     SRGImageWidth1280 = 1280,
-    SRGImageWidth1920 = 1920,
-    SRGImageWidthMaximum = SRGImageWidth1920
+    SRGImageWidth1920 = 1920
 };
+
+/**
+ *  Return the image width corresponding to a given semantic size.
+ */
+OBJC_EXPORT SRGImageWidth SRGDefaultImageWidthForSize(SRGImageSize size);
+OBJC_EXPORT SRGImageWidth SRGPosterImageWidthForSize(SRGImageSize size);
 
 /**
  *  Filter for requesting medias.
