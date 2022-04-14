@@ -22,19 +22,17 @@ OBJC_EXPORT SRGImageType const SRGImageTypeDefault;          // Default image.
 @protocol SRGImage <NSObject>
 
 /**
- *  Return the URL for an image with the specified type and width / height. The non-specified dimension is automatically
- *  determined by the intrinsic image aspect ratio, which cannot be altered.
+ *  Return the URL for an image with the specified type and width.
  *
- *  @param dimension The dimension (horizontal or vertical).
- *  @param value     The value along the specified dimensions, in pixels.
- *  @param type      The type of the image. The list of admissible values, if any, is publicly made available through dedicated
- *                   constants declared by classes conforming to `SRGImageMetadata`. For a default image, use `SRGImageTypeDefault`.
- *                   If an invalid type is specified, the default image is used.
+ *  @param width The desired image width.
+ *  @param type  The type of the image. The list of admissible values, if any, is publicly made available through dedicated
+ *               constants declared by classes conforming to `SRGImageMetadata`. For a default image, use `SRGImageTypeDefault`.
+ *               If an invalid type is specified, the default image is used.
  *
  *  @discussion The device scale is NOT automatically taken into account. Be sure that the required size in pixels
  *              matches the scale of your device.
  */
-- (nullable NSURL *)imageURLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value type:(SRGImageType)type;
+- (nullable NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type;
 
 @end
 

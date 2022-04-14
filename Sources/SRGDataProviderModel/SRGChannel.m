@@ -95,9 +95,9 @@
 
 #pragma mark SRGImageMetadata protocol
 
-- (NSURL *)imageURLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value type:(SRGImageType)type
+- (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
 {
-    return [self.imageURL srg_URLForDimension:dimension withValue:value];
+    return [self.imageURL srg_URLForWidth:width];
 }
 
 #pragma mark Equality

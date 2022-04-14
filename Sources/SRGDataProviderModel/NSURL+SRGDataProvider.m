@@ -8,18 +8,15 @@
 
 @implementation NSURL (SRGDataProvider)
 
-- (NSURL *)srg_URLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value
+- (NSURL *)srg_URLForWidth:(SRGImageWidth)width
 {
-    if (self.fileURL || value == 0.f) {
+    if (self.fileURL) {
         return self;
     }
     
-    NSString *dimensionString = (dimension == SRGImageDimensionWidth) ? @"width" : @"height";
-    NSString *sizeComponent = [NSString stringWithFormat:@"scale/%@/%@", dimensionString, @(value)];
-    
+    NSString *sizeComponent = [NSString stringWithFormat:@"scale/width/%@", @(width)];
     NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:self resolvingAgainstBaseURL:NO];
     URLComponents.path = [URLComponents.path stringByAppendingPathComponent:sizeComponent];
-    
     return URLComponents.URL;
 }
 

@@ -639,17 +639,19 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
 };
 
 /**
- *  Image dimensions for image retrieval.
+ *  Image widths for image retrieval.
  */
-typedef NS_CLOSED_ENUM(NSInteger, SRGImageDimension) {
-    /**
-     *  Width.
-     */
-    SRGImageDimensionWidth = 0,
-    /**
-     *  Height.
-     */
-    SRGImageDimensionHeight
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageWidth) {
+    SRGImageWidth160 = 160,
+    SRGImageWidthMinimum = SRGImageWidth160,
+    SRGImageWidth240 = 240,
+    SRGImageWidth320 = 320,
+    SRGImageWidth480 = 480,
+    SRGImageWidth640 = 640,
+    SRGImageWidth960 = 960,
+    SRGImageWidth1280 = 1280,
+    SRGImageWidth1920 = 1920,
+    SRGImageWidthMaximum = SRGImageWidth1920
 };
 
 /**
