@@ -12,7 +12,7 @@
 
 - (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/video/scheduledLivestreams/livecenter", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/scheduledLivestreams/livecenter", SRGPathComponentForVendor(vendor)];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 

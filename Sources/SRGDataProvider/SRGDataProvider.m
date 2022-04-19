@@ -12,17 +12,17 @@ static SRGDataProvider *s_currentDataProvider;
 
 NSURL *SRGIntegrationLayerProductionServiceURL(void)
 {
-    return [NSURL URLWithString:@"https://il.srgssr.ch/integrationlayer"];
+    return [NSURL URLWithString:@"https://il.srgssr.ch"];
 }
 
 NSURL *SRGIntegrationLayerStagingServiceURL(void)
 {
-    return [NSURL URLWithString:@"https://il-stage.srgssr.ch/integrationlayer"];
+    return [NSURL URLWithString:@"https://il-stage.srgssr.ch"];
 }
 
 NSURL *SRGIntegrationLayerTestServiceURL(void)
 {
-    return [NSURL URLWithString:@"https://il-test.srgssr.ch/integrationlayer"];
+    return [NSURL URLWithString:@"https://il-test.srgssr.ch"];
 }
 
 @interface SRGDataProvider ()

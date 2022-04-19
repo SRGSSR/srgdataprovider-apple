@@ -25,9 +25,11 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGEpisodeComposition.new, channel) : @"channel",
-                       @keypath(SRGEpisodeComposition.new, show) : @"show",
-                       @keypath(SRGEpisodeComposition.new, episodes) : @"episodeList" };
+        s_mapping = @{
+            @keypath(SRGEpisodeComposition.new, channel) : @"channel",
+            @keypath(SRGEpisodeComposition.new, show) : @"show",
+            @keypath(SRGEpisodeComposition.new, episodes) : @"episodeList"
+        };
     });
     return s_mapping;
 }

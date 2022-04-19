@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMetadata.h"
 #import "SRGModel.h"
@@ -15,14 +16,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// Supported alternative image types
-OBJC_EXPORT SRGImageType const SRGImageTypeModuleBackground;          // Module background image.
-OBJC_EXPORT SRGImageType const SRGImageTypeModuleLogo;                // Module logo image.
-
 /**
  *  Module (collection of medias grouped for a special occasion, like an event).
  */
-@interface SRGModule : SRGModel <SRGImage, SRGMetadata, SRGModuleIdentifierMetadata>
+@interface SRGModule : SRGModel <SRGMetadata, SRGModuleIdentifierMetadata>
 
 /**
  *  The start date at which the module should be made available.
@@ -33,6 +30,21 @@ OBJC_EXPORT SRGImageType const SRGImageTypeModuleLogo;                // Module 
  *  The start date at which the module should not be made available anymore.
  */
 @property (nonatomic, readonly) NSDate *endDate;
+
+/**
+ *  The associated background image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *backgroundImage;
+
+/**
+ *  The associated logo image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *logoImage;
+
+/**
+ *  The associated key visual image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *keyVisualImage;
 
 /**
  *  The search engine optimization name.

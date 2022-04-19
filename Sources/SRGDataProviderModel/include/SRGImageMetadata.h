@@ -11,46 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// Supported image types
-typedef NSString * SRGImageType NS_TYPED_ENUM;
-
-OBJC_EXPORT SRGImageType const SRGImageTypeDefault;          // Default image.
-
 /**
- *  Common protocol for model objects having an image.
+ *  Common protocol for model objects having associated image metadata.
  */
-@protocol SRGImage <NSObject>
-
-/**
- *  Return the URL for an image with the specified semantic size and type.
- *
- *  @param size The desired image size.
- *  @param type The type of the image. The list of admissible values, if any, is publicly made available through dedicated
- *              constants declared by classes conforming to `SRGImageMetadata`. For a default image, use `SRGImageTypeDefault`.
- *              If an invalid type is specified, the default image is used.
- *
- *  @discussion Takes the device screen scale into account.
- */
-- (nullable NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type;
-
-/**
- *  Return the URL for an image with the specified type and width.
- *
- *  @param width The desired image width.
- *  @param type  The type of the image. The list of admissible values, if any, is publicly made available through dedicated
- *               constants declared by classes conforming to `SRGImageMetadata`. For a default image, use `SRGImageTypeDefault`.
- *               If an invalid type is specified, the default image is used.
- *
- *  @discussion Does not take the device screen scale into account.
- */
-- (nullable NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type;
-
-@end
-
-/**
- *  Common protocol for model objects having an image and associated information.
- */
-@protocol SRGImageMetadata <SRGImage>
+@protocol SRGImageMetadata <NSObject>
 
 /**
  *  The image title.

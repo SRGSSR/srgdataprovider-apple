@@ -6,13 +6,15 @@
 
 #import "SRGAlbum.h"
 
+#import "SRGJSONTransformers.h"
+
 @import libextobjc;
 
 @interface SRGAlbum ()
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic) NSURL *smallCoverImageURL;
-@property (nonatomic) NSURL *largeCoverImageURL;
+@property (nonatomic) SRGImage *smallCoverImage;
+@property (nonatomic) SRGImage *largeCoverImage;
 
 @end
 
@@ -25,23 +27,25 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGAlbum.new, name) : @"name",
-                       @keypath(SRGAlbum.new, smallCoverImageURL) : @"coverUrlSmall",
-                       @keypath(SRGAlbum.new, largeCoverImageURL) : @"coverUrlLarge" };
+        s_mapping = @{
+            @keypath(SRGAlbum.new, name) : @"name",
+            @keypath(SRGAlbum.new, smallCoverImage) : @"coverUrlSmall",
+            @keypath(SRGAlbum.new, largeCoverImage) : @"coverUrlLarge"
+        };
     });
     return s_mapping;
 }
 
 #pragma mark Transformers
 
-+ (NSValueTransformer *)smallCoverImageURLJSONTransformer
++ (NSValueTransformer *)smallCoverImageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
-+ (NSValueTransformer *)largeCoverImageURLJSONTransformer
++ (NSValueTransformer *)largeCoverImageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
 @end

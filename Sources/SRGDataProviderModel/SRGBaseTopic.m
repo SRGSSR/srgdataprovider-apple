@@ -13,6 +13,8 @@
 
 @interface SRGBaseTopic ()
 
+@property (nonatomic) SRGImage *image;
+
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *lead;
 @property (nonatomic, copy) NSString *summary;
@@ -22,7 +24,6 @@
 @property (nonatomic) SRGTransmission transmission;
 @property (nonatomic) SRGVendor vendor;
 
-@property (nonatomic) NSURL *imageURL;
 @property (nonatomic, copy) NSString *imageTitle;
 @property (nonatomic, copy) NSString *imageCopyright;
 
@@ -37,23 +38,31 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGBaseTopic.new, title) : @"title",
-                       @keypath(SRGBaseTopic.new, lead) : @"lead",
-                       @keypath(SRGBaseTopic.new, summary) : @"description",
-                       
-                       @keypath(SRGBaseTopic.new, uid) : @"id",
-                       @keypath(SRGBaseTopic.new, URN) : @"urn",
-                       @keypath(SRGBaseTopic.new, transmission) : @"transmission",
-                       @keypath(SRGBaseTopic.new, vendor) : @"vendor",
-                       
-                       @keypath(SRGBaseTopic.new, imageURL) : @"imageUrl",
-                       @keypath(SRGBaseTopic.new, imageTitle) : @"imageTitle",
-                       @keypath(SRGBaseTopic.new, imageCopyright) : @"imageCopyright" };
+        s_mapping = @{
+            @keypath(SRGBaseTopic.new, image) : @"imageUrl",
+            
+            @keypath(SRGBaseTopic.new, title) : @"title",
+            @keypath(SRGBaseTopic.new, lead) : @"lead",
+            @keypath(SRGBaseTopic.new, summary) : @"description",
+            
+            @keypath(SRGBaseTopic.new, uid) : @"id",
+            @keypath(SRGBaseTopic.new, URN) : @"urn",
+            @keypath(SRGBaseTopic.new, transmission) : @"transmission",
+            @keypath(SRGBaseTopic.new, vendor) : @"vendor",
+            
+            @keypath(SRGBaseTopic.new, imageTitle) : @"imageTitle",
+            @keypath(SRGBaseTopic.new, imageCopyright) : @"imageCopyright"
+        };
     });
     return s_mapping;
 }
 
 #pragma mark Transformers
+
++ (NSValueTransformer *)imageJSONTransformer
+{
+    return SRGImageTransformer(SRGImageVariantDefault);
+}
 
 + (NSValueTransformer *)transmissionJSONTransformer
 {
@@ -63,23 +72,6 @@
 + (NSValueTransformer *)vendorJSONTransformer
 {
     return SRGVendorJSONTransformer();
-}
-
-+ (NSValueTransformer *)imageURLJSONTransformer
-{
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-#pragma mark SRGImageMetadata protocol
-
-- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
-{
-    return [self.imageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-}
-
-- (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
-{
-    return [self.imageURL srg_URLForWidth:width];
 }
 
 #pragma mark Equality

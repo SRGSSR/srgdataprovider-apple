@@ -33,12 +33,14 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGShowStatisticsOverview.new, searchResultsViewCount) : @"searchResultClicked",
-                       
-                       @keypath(SRGShowStatisticsOverview.new, uid) : @"id",
-                       @keypath(SRGShowStatisticsOverview.new, URN) : @"urn",
-                       @keypath(SRGShowStatisticsOverview.new, transmission) : @"transmission",
-                       @keypath(SRGShowStatisticsOverview.new, vendor) : @"vendor" };
+        s_mapping = @{
+            @keypath(SRGShowStatisticsOverview.new, searchResultsViewCount) : @"searchResultClicked",
+            
+            @keypath(SRGShowStatisticsOverview.new, uid) : @"id",
+            @keypath(SRGShowStatisticsOverview.new, URN) : @"urn",
+            @keypath(SRGShowStatisticsOverview.new, transmission) : @"transmission",
+            @keypath(SRGShowStatisticsOverview.new, vendor) : @"vendor"
+        };
     });
     return s_mapping;
 }

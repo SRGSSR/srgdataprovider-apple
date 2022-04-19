@@ -11,10 +11,6 @@
 
 @import libextobjc;
 
-SRGImageType const SRGImageTypeShowBanner = @"banner";
-SRGImageType const SRGImageTypeShowPoster = @"poster";
-SRGImageType const SRGImageTypeShowPodcast = @"podcast";
-
 @interface SRGShow ()
 
 @property (nonatomic) NSURL *homepageURL;
@@ -24,16 +20,16 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 @property (nonatomic) NSURL *podcastDeezerURL;
 @property (nonatomic) NSURL *podcastSpotifyURL;
 @property (nonatomic, copy) NSString *primaryChannelUid;
-@property (nonatomic) NSURL *bannerImageURL;
-@property (nonatomic) NSURL *posterImageURL;
-@property (nonatomic) NSURL *podcastImageURL;
+@property (nonatomic) SRGImage *image;
+@property (nonatomic) SRGImage *bannerImage;
+@property (nonatomic) SRGImage *posterImage;
+@property (nonatomic) SRGImage *podcastImage;
 @property (nonatomic) NSNumber *numberOfEpisodes;
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *lead;
 @property (nonatomic, copy) NSString *summary;
 
-@property (nonatomic) NSURL *imageURL;
 @property (nonatomic, copy) NSString *imageTitle;
 @property (nonatomic, copy) NSString *imageCopyright;
 
@@ -54,31 +50,33 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGShow.new, homepageURL) : @"homepageUrl",
-                       @keypath(SRGShow.new, podcastSubscriptionURL) : @"podcastSubscriptionUrl",
-                       @keypath(SRGShow.new, podcastStandardDefinitionURL) : @"podcastFeedSdUrl",
-                       @keypath(SRGShow.new, podcastHighDefinitionURL) : @"podcastFeedHdUrl",
-                       @keypath(SRGShow.new, podcastDeezerURL) : @"podcastDeezerUrl",
-                       @keypath(SRGShow.new, podcastSpotifyURL) : @"podcastSpotifyUrl",
-                       @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
-                       @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
-                       @keypath(SRGShow.new, bannerImageURL) : @"bannerImageUrl",
-                       @keypath(SRGShow.new, posterImageURL) : @"posterImageUrl",
-                       @keypath(SRGShow.new, podcastImageURL) : @"podcastImageUrl",
-                       
-                       @keypath(SRGShow.new, title) : @"title",
-                       @keypath(SRGShow.new, lead) : @"lead",
-                       @keypath(SRGShow.new, summary) : @"description",
-                       
-                       @keypath(SRGShow.new, imageURL) : @"imageUrl",
-                       @keypath(SRGShow.new, imageTitle) : @"imageTitle",
-                       @keypath(SRGShow.new, imageCopyright) : @"imageCopyright",
-                       
-                       @keypath(SRGShow.new, uid) : @"id",
-                       @keypath(SRGShow.new, URN) : @"urn",
-                       @keypath(SRGShow.new, transmission) : @"transmission",
-                       @keypath(SRGShow.new, vendor) : @"vendor",
-                       @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation" };
+        s_mapping = @{
+            @keypath(SRGShow.new, homepageURL) : @"homepageUrl",
+            @keypath(SRGShow.new, podcastSubscriptionURL) : @"podcastSubscriptionUrl",
+            @keypath(SRGShow.new, podcastStandardDefinitionURL) : @"podcastFeedSdUrl",
+            @keypath(SRGShow.new, podcastHighDefinitionURL) : @"podcastFeedHdUrl",
+            @keypath(SRGShow.new, podcastDeezerURL) : @"podcastDeezerUrl",
+            @keypath(SRGShow.new, podcastSpotifyURL) : @"podcastSpotifyUrl",
+            @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
+            @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
+            @keypath(SRGShow.new, image) : @"imageUrl",
+            @keypath(SRGShow.new, bannerImage) : @"bannerImageUrl",
+            @keypath(SRGShow.new, posterImage) : @"posterImageUrl",
+            @keypath(SRGShow.new, podcastImage) : @"podcastImageUrl",
+            
+            @keypath(SRGShow.new, title) : @"title",
+            @keypath(SRGShow.new, lead) : @"lead",
+            @keypath(SRGShow.new, summary) : @"description",
+            
+            @keypath(SRGShow.new, imageTitle) : @"imageTitle",
+            @keypath(SRGShow.new, imageCopyright) : @"imageCopyright",
+            
+            @keypath(SRGShow.new, uid) : @"id",
+            @keypath(SRGShow.new, URN) : @"urn",
+            @keypath(SRGShow.new, transmission) : @"transmission",
+            @keypath(SRGShow.new, vendor) : @"vendor",
+            @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation"
+        };
     });
     return s_mapping;
 }
@@ -115,24 +113,24 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)imageURLJSONTransformer
++ (NSValueTransformer *)imageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
-+ (NSValueTransformer *)bannerImageURLJSONTransformer
++ (NSValueTransformer *)bannerImageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
-+ (NSValueTransformer *)posterImageURLJSONTransformer
++ (NSValueTransformer *)posterImageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantPoster);
 }
 
-+ (NSValueTransformer *)podcastImageURLJSONTransformer
++ (NSValueTransformer *)podcastImageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
 + (NSValueTransformer *)transmissionJSONTransformer
@@ -148,40 +146,6 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 + (NSValueTransformer *)broadcastInformationJSONTransformer
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGBroadcastInformation.class];
-}
-
-#pragma mark SRGImage protocol
-
-- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
-{
-    if ([type isEqualToString:SRGImageTypeShowBanner]) {
-        return [self.bannerImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-    }
-    else if ([type isEqualToString:SRGImageTypeShowPoster]) {
-        return [self.posterImageURL srg_URLForWidth:SRGPosterImageWidthForSize(size)];
-    }
-    else if ([type isEqualToString:SRGImageTypeShowPodcast]) {
-        return [self.podcastImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-    }
-    else {
-        return [self.imageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-    }
-}
-
-- (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
-{
-    if ([type isEqualToString:SRGImageTypeShowBanner]) {
-        return [self.bannerImageURL srg_URLForWidth:width];
-    }
-    else if ([type isEqualToString:SRGImageTypeShowPoster]) {
-        return [self.posterImageURL srg_URLForWidth:width];
-    }
-    else if ([type isEqualToString:SRGImageTypeShowPodcast]) {
-        return [self.podcastImageURL srg_URLForWidth:width];
-    }
-    else {
-        return [self.imageURL srg_URLForWidth:width];
-    }
 }
 
 #pragma mark Equality

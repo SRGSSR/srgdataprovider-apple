@@ -27,9 +27,11 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGDRM.new, type) : @"type",
-                       @keypath(SRGDRM.new, licenseURL) : @"licenseUrl",
-                       @keypath(SRGDRM.new, certificateURL) : @"certificateUrl" };
+        s_mapping = @{
+            @keypath(SRGDRM.new, type) : @"type",
+            @keypath(SRGDRM.new, licenseURL) : @"licenseUrl",
+            @keypath(SRGDRM.new, certificateURL) : @"certificateUrl"
+        };
     });
     return s_mapping;
 }

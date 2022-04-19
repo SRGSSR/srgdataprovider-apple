@@ -38,8 +38,10 @@ static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChan
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGProgramComposition.new, channel) : @"channel",
-                       @keypath(SRGProgramComposition.new, programs) : @"programList" };
+        s_mapping = @{
+            @keypath(SRGProgramComposition.new, channel) : @"channel",
+            @keypath(SRGProgramComposition.new, programs) : @"programList"
+        };
     });
     return s_mapping;
 }
@@ -68,14 +70,14 @@ static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChan
     static NSValueTransformer *s_transformer;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSArray *JSONArray, BOOL *success, NSError *__autoreleasing *error) {
+        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSArray *JSONArray, BOOL *pSuccess, NSError *__autoreleasing *error) {
             NSArray<SRGProgram *> *programs = [MTLJSONAdapter modelsOfClass:SRGProgram.class fromJSONArray:JSONArray error:error];
             if (! programs) {
                 return nil;
             }
             
             return SRGSanitizedPrograms(programs);
-        } reverseBlock:^id(NSArray *objects, BOOL *success, NSError *__autoreleasing *error) {
+        } reverseBlock:^id(NSArray *objects, BOOL *pSuccess, NSError *__autoreleasing *error) {
             return [MTLJSONAdapter JSONArrayFromModels:objects error:error];
         }];
     });

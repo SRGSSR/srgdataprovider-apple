@@ -102,7 +102,7 @@ static NSURL *ServiceTestURL(void)
     
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Ready to play"];
 
-    SRGDataProvider *dataProvider2 = [[SRGDataProvider alloc] initWithServiceURL:[NSURL URLWithString:@"https://play-mmf.herokuapp.com/integrationlayer"]];
+    SRGDataProvider *dataProvider2 = [[SRGDataProvider alloc] initWithServiceURL:[NSURL URLWithString:@"https://play-mmf.herokuapp.com"]];
     [[dataProvider2 mediaCompositionForURN:@"urn:rts:video:_rts19h30_2" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         XCTAssertEqual(mainChapter.resources.count, 1);

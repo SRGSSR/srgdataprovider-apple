@@ -27,8 +27,10 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
-        [mapping addEntriesFromDictionary:@{ @keypath(SRGSubtitle.new, format) : @"format",
-                                             @keypath(SRGSubtitle.new, URL) : @"url" }];
+        [mapping addEntriesFromDictionary:@{
+            @keypath(SRGSubtitle.new, format) : @"format",
+            @keypath(SRGSubtitle.new, URL) : @"url"
+        }];
         s_mapping = mapping.copy;
     });
     return s_mapping;

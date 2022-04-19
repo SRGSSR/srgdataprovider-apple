@@ -12,23 +12,19 @@
 
 @import libextobjc;
 
-SRGImageType const SRGImageTypeModuleBackground = @"background";
-SRGImageType const SRGImageTypeModuleKeyVisual = @"key_visual";
-SRGImageType const SRGImageTypeModuleLogo = @"logo";
-
 @interface SRGModule ()
 
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
 @property (nonatomic, copy) NSString *seoName;
-@property (nonatomic) NSURL *backgroundImageURL;
+@property (nonatomic) SRGImage *backgroundImage;
+@property (nonatomic) SRGImage *logoImage;
+@property (nonatomic) SRGImage *keyVisualImage;
 @property (nonatomic) UIColor *headerBackgroundColor;
 @property (nonatomic) UIColor *headerTextColor;
 @property (nonatomic) UIColor *backgroundColor;
 @property (nonatomic) UIColor *textColor;
 @property (nonatomic) UIColor *linkColor;
-@property (nonatomic) NSURL *logoImageURL;
-@property (nonatomic) NSURL *keyVisualImageURL;
 @property (nonatomic, copy) NSString *websiteTitle;
 @property (nonatomic) NSURL *websiteURL;
 @property (nonatomic) NSArray<SRGSection *> *sections;
@@ -53,29 +49,31 @@ SRGImageType const SRGImageTypeModuleLogo = @"logo";
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGModule.new, startDate) : @"publishStartTimestamp",
-                       @keypath(SRGModule.new, endDate) : @"publishEndTimestamp",
-                       @keypath(SRGModule.new, seoName) : @"seoName",
-                       @keypath(SRGModule.new, backgroundImageURL) : @"bgImageUrl",
-                       @keypath(SRGModule.new, headerBackgroundColor) : @"headerBackgroundColor",
-                       @keypath(SRGModule.new, headerTextColor) : @"headerTitleColor",
-                       @keypath(SRGModule.new, backgroundColor) : @"bgColor",
-                       @keypath(SRGModule.new, textColor) : @"textColor",
-                       @keypath(SRGModule.new, linkColor) : @"linkColor",
-                       @keypath(SRGModule.new, logoImageURL) : @"logoImageUrl",
-                       @keypath(SRGModule.new, keyVisualImageURL) : @"keyVisualImageUrl",
-                       @keypath(SRGModule.new, websiteTitle) : @"microSiteTitle",
-                       @keypath(SRGModule.new, websiteURL) : @"microSiteUrl",
-                       @keypath(SRGModule.new, sections) : @"sectionList",
-                       
-                       @keypath(SRGModule.new, title) : @"title",
-                       @keypath(SRGModule.new, lead) : @"lead",
-                       @keypath(SRGModule.new, summary) : @"description",
-                       
-                       @keypath(SRGModule.new, uid) : @"id",
-                       @keypath(SRGModule.new, URN) : @"urn",
-                       @keypath(SRGModule.new, moduleType) : @"moduleConfigType",
-                       @keypath(SRGModule.new, vendor) : @"vendor" };
+        s_mapping = @{
+            @keypath(SRGModule.new, startDate) : @"publishStartTimestamp",
+            @keypath(SRGModule.new, endDate) : @"publishEndTimestamp",
+            @keypath(SRGModule.new, seoName) : @"seoName",
+            @keypath(SRGModule.new, backgroundImage) : @"bgImageUrl",
+            @keypath(SRGModule.new, logoImage) : @"logoImageUrl",
+            @keypath(SRGModule.new, keyVisualImage) : @"keyVisualImageUrl",
+            @keypath(SRGModule.new, headerBackgroundColor) : @"headerBackgroundColor",
+            @keypath(SRGModule.new, headerTextColor) : @"headerTitleColor",
+            @keypath(SRGModule.new, backgroundColor) : @"bgColor",
+            @keypath(SRGModule.new, textColor) : @"textColor",
+            @keypath(SRGModule.new, linkColor) : @"linkColor",
+            @keypath(SRGModule.new, websiteTitle) : @"microSiteTitle",
+            @keypath(SRGModule.new, websiteURL) : @"microSiteUrl",
+            @keypath(SRGModule.new, sections) : @"sectionList",
+            
+            @keypath(SRGModule.new, title) : @"title",
+            @keypath(SRGModule.new, lead) : @"lead",
+            @keypath(SRGModule.new, summary) : @"description",
+            
+            @keypath(SRGModule.new, uid) : @"id",
+            @keypath(SRGModule.new, URN) : @"urn",
+            @keypath(SRGModule.new, moduleType) : @"moduleConfigType",
+            @keypath(SRGModule.new, vendor) : @"vendor"
+        };
     });
     return s_mapping;
 }
@@ -92,9 +90,19 @@ SRGImageType const SRGImageTypeModuleLogo = @"logo";
     return SRGISO8601DateJSONTransformer();
 }
 
-+ (NSValueTransformer *)backgroundImageURLJSONTransformer
++ (NSValueTransformer *)backgroundImageJSONTransformer
 {
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+    return SRGImageTransformer(SRGImageVariantDefault);
+}
+
++ (NSValueTransformer *)logoImageJSONTransformer
+{
+    return SRGImageTransformer(SRGImageVariantDefault);
+}
+
++ (NSValueTransformer *)keyVisualImageJSONTransformer
+{
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
 + (NSValueTransformer *)headerBackgroundColorJSONTransformer
@@ -122,16 +130,6 @@ SRGImageType const SRGImageTypeModuleLogo = @"logo";
     return SRGHexColorJSONTransformer();
 }
 
-+ (NSValueTransformer *)logoImageURLJSONTransformer
-{
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-+ (NSValueTransformer *)keyVisualImageURLJSONTransformer
-{
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
 + (NSValueTransformer *)sectionsJSONTransformer
 {
     return [MTLJSONAdapter arrayTransformerWithModelClass:SRGSection.class];
@@ -145,34 +143,6 @@ SRGImageType const SRGImageTypeModuleLogo = @"logo";
 + (NSValueTransformer *)vendorJSONTransformer
 {
     return SRGVendorJSONTransformer();
-}
-
-#pragma mark SRGImage protocol
-
-- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
-{
-    if ([type isEqualToString:SRGImageTypeModuleBackground]) {
-        return [self.backgroundImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-    }
-    else if ([type isEqualToString:SRGImageTypeModuleLogo]) {
-        return [self.logoImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-    }
-    else {
-        return [self.keyVisualImageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-    }
-}
-
-- (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
-{
-    if ([type isEqualToString:SRGImageTypeModuleBackground]) {
-        return [self.backgroundImageURL srg_URLForWidth:width];
-    }
-    else if ([type isEqualToString:SRGImageTypeModuleLogo]) {
-        return [self.logoImageURL srg_URLForWidth:width];
-    }
-    else {
-        return [self.keyVisualImageURL srg_URLForWidth:width];
-    }
 }
 
 #pragma mark Equality

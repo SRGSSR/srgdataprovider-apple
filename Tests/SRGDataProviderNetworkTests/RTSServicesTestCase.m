@@ -1078,7 +1078,7 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [media imageURLForWidth:SRGImageWidth320 type:SRGImageTypeDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scaling:SRGImageScalingDefault];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         
@@ -1096,7 +1096,7 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [media imageURLForWidth:SRGImageWidth320 type:SRGImageTypeDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scaling:SRGImageScalingDefault];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         

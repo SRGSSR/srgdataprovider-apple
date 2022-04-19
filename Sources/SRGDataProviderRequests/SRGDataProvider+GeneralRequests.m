@@ -12,7 +12,7 @@
 
 - (NSURLRequest *)requestServiceMessageForVendor:(SRGVendor)vendor
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/general/information", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/general/information", SRGPathComponentForVendor(vendor)];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 

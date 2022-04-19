@@ -15,10 +15,10 @@
 {
     NSString *resourcePath = nil;
     if (userId) {
-        resourcePath = [NSString stringWithFormat:@"2.0/mediaList/recommendedByUserId/byUrn/%@/%@", URN, userId];
+        resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/recommendedByUserId/byUrn/%@/%@", URN, userId];
     }
     else {
-        resourcePath = [NSString stringWithFormat:@"2.0/mediaList/recommended/byUrn/%@", URN];
+        resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/recommended/byUrn/%@", URN];
     }
     
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];

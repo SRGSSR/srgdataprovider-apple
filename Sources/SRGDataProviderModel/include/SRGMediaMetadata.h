@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMediaIdentifierMetadata.h"
 #import "SRGMetadata.h"
@@ -29,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The source which provided the media.
  */
 @property (nonatomic, readonly) SRGSource source;
+
+/**
+ *  The associated image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *image;
 
 /**
  *  The media date.

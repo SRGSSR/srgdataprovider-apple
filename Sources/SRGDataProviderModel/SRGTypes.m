@@ -24,7 +24,7 @@ static SRGDeviceScale SRGCurrentDeviceScale(void)
     return (UIScreen.mainScreen.scale > 1.f) ? SRGDeviceScaleRetina : SRGDeviceScaleNormal;
 }
 
-SRGImageWidth SRGDefaultImageWidthForSize(SRGImageSize size)
+static SRGImageWidth SRGDefaultImageWidthForSize(SRGImageSize size)
 {
     static NSDictionary<SRGDeviceScale, NSDictionary<NSNumber *, NSNumber *> *> *s_widths;
     static dispatch_once_t s_onceToken;
@@ -77,7 +77,7 @@ SRGImageWidth SRGDefaultImageWidthForSize(SRGImageSize size)
     return s_widths[SRGCurrentDeviceScale()][@(size)].integerValue;
 }
 
-SRGImageWidth SRGPosterImageWidthForSize(SRGImageSize size)
+static SRGImageWidth SRGPosterImageWidthForSize(SRGImageSize size)
 {
     static NSDictionary<SRGDeviceScale, NSDictionary<NSNumber *, NSNumber *> *> *s_widths;
     static dispatch_once_t s_onceToken;
@@ -113,3 +113,17 @@ SRGImageWidth SRGPosterImageWidthForSize(SRGImageSize size)
     return s_widths[SRGCurrentDeviceScale()][@(size)].integerValue;
 }
 
+SRGImageWidth SRGRecommendedImageWidth(SRGImageSize size, SRGImageVariant variant)
+{
+    switch (variant) {
+        case SRGImageVariantPoster: {
+            return SRGPosterImageWidthForSize(size);
+            break;
+        }
+            
+        default: {
+            return SRGDefaultImageWidthForSize(size);
+            break;
+        }
+    }
+}

@@ -4,7 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
-@import Foundation;
+#import "SRGTypes.h"
 
 /**
  *  Standard transformers for use with Mantle.
@@ -18,6 +18,7 @@ OBJC_EXPORT NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGContentTypeJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGDRMTypeJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGHexColorJSONTransformer(void);
+OBJC_EXPORT NSValueTransformer *SRGImageTransformer(SRGImageVariant variant);
 OBJC_EXPORT NSValueTransformer *SRGISO8601DateJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGLocaleJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGMediaContainerJSONTransformer(void);

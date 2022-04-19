@@ -29,13 +29,15 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGSpriteSheet.new, URN) : @"urn",
-                       @keypath(SRGSpriteSheet.new, URL) : @"url",
-                       @keypath(SRGSpriteSheet.new, rows) : @"rows",
-                       @keypath(SRGSpriteSheet.new, columns) : @"columns",
-                       @keypath(SRGSpriteSheet.new, thumbnailWidth) : @"thumbnailWidth",
-                       @keypath(SRGSpriteSheet.new, thumbnailHeight) : @"thumbnailHeight",
-                       @keypath(SRGSpriteSheet.new, interval) : @"interval" };
+        s_mapping = @{
+            @keypath(SRGSpriteSheet.new, URN) : @"urn",
+            @keypath(SRGSpriteSheet.new, URL) : @"url",
+            @keypath(SRGSpriteSheet.new, rows) : @"rows",
+            @keypath(SRGSpriteSheet.new, columns) : @"columns",
+            @keypath(SRGSpriteSheet.new, thumbnailWidth) : @"thumbnailWidth",
+            @keypath(SRGSpriteSheet.new, thumbnailHeight) : @"thumbnailHeight",
+            @keypath(SRGSpriteSheet.new, interval) : @"interval"
+        };
     });
     return s_mapping;
 }

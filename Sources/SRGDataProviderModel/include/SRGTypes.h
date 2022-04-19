@@ -639,12 +639,32 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
 };
 
 /**
+ *  Image scalings.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageScaling) {
+    SRGImageScalingPreserveAspectRatio = 0,
+    SRGImageScalingDefault = SRGImageScalingPreserveAspectRatio,
+    SRGImageScalingAspectFitSixteenToNine,
+    SRGImageScalingAspectFillSixteenToNine,
+    SRGImageScalingAspectFitBlackSquare,
+    SRGImageScalingAspectFitTransparentSquare
+};
+
+/**
  *  Semantic image sizes.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageSize) {
     SRGImageSizeSmall = 0,
     SRGImageSizeMedium,
     SRGImageSizeLarge
+};
+
+/**
+ *  Semantic image variant.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageVariant) {
+    SRGImageVariantDefault = 0,
+    SRGImageVariantPoster
 };
 
 /**
@@ -662,10 +682,9 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGImageWidth) {
 };
 
 /**
- *  Return the image width corresponding to a given semantic size.
+ *  Return the recommended image width corresponding to a given semantic size and variant.
  */
-OBJC_EXPORT SRGImageWidth SRGDefaultImageWidthForSize(SRGImageSize size);
-OBJC_EXPORT SRGImageWidth SRGPosterImageWidthForSize(SRGImageSize size);
+OBJC_EXPORT SRGImageWidth SRGRecommendedImageWidth(SRGImageSize size, SRGImageVariant variant);
 
 /**
  *  Filter for requesting medias.

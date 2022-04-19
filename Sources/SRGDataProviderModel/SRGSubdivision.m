@@ -30,12 +30,12 @@
 @property (nonatomic) SRGMediaType mediaType;
 @property (nonatomic) SRGVendor vendor;
 
-@property (nonatomic) NSURL *imageURL;
 @property (nonatomic, copy) NSString *imageTitle;
 @property (nonatomic, copy) NSString *imageCopyright;
 
 @property (nonatomic) SRGContentType contentType;
 @property (nonatomic) SRGSource source;
+@property (nonatomic) SRGImage *image;
 @property (nonatomic) NSDate *date;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic) SRGBlockingReason originalBlockingReason;
@@ -60,40 +60,42 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGSubdivision.new, fullLengthURN) : @"fullLengthUrn",
-                       @keypath(SRGSubdivision.new, hidden) : @"displayable",
-                       @keypath(SRGSubdivision.new, event) : @"eventData",
-                       @keypath(SRGSubdivision.new, analyticsLabels) : @"analyticsMetadata",
-                       @keypath(SRGSubdivision.new, comScoreAnalyticsLabels) : @"analyticsData",
-                       @keypath(SRGSubdivision.new, subtitles) : @"subtitleList",
-                       
-                       @keypath(SRGSubdivision.new, title) : @"title",
-                       @keypath(SRGSubdivision.new, lead) : @"lead",
-                       @keypath(SRGSubdivision.new, summary) : @"description",
-                       
-                       @keypath(SRGSubdivision.new, uid) : @"id",
-                       @keypath(SRGSubdivision.new, URN) : @"urn",
-                       @keypath(SRGSubdivision.new, mediaType) : @"mediaType",
-                       @keypath(SRGSubdivision.new, vendor) : @"vendor",
-                       
-                       @keypath(SRGSubdivision.new, imageURL) : @"imageUrl",
-                       @keypath(SRGSubdivision.new, imageTitle) : @"imageTitle",
-                       @keypath(SRGSubdivision.new, imageCopyright) : @"imageCopyright",
-                       
-                       @keypath(SRGSubdivision.new, contentType) : @"type",
-                       @keypath(SRGSubdivision.new, source) : @"assignedBy",
-                       @keypath(SRGSubdivision.new, date) : @"date",
-                       @keypath(SRGSubdivision.new, duration) : @"duration",
-                       @keypath(SRGSubdivision.new, originalBlockingReason) : @"blockReason",
-                       @keypath(SRGSubdivision.new, playableAbroad) : @"playableAbroad",
-                       @keypath(SRGSubdivision.new, youthProtectionColor) : @"youthProtectionColor",
-                       @keypath(SRGSubdivision.new, podcastStandardDefinitionURL) : @"podcastSdUrl",
-                       @keypath(SRGSubdivision.new, podcastHighDefinitionURL) : @"podcastHdUrl",
-                       @keypath(SRGSubdivision.new, startDate) : @"validFrom",
-                       @keypath(SRGSubdivision.new, endDate) : @"validTo",
-                       @keypath(SRGSubdivision.new, accessibilityTitle) : @"mediaDescription",
-                       @keypath(SRGSubdivision.new, relatedContents) : @"relatedContentList",
-                       @keypath(SRGSubdivision.new, socialCounts) : @"socialCountList" };
+        s_mapping = @{
+            @keypath(SRGSubdivision.new, fullLengthURN) : @"fullLengthUrn",
+            @keypath(SRGSubdivision.new, hidden) : @"displayable",
+            @keypath(SRGSubdivision.new, event) : @"eventData",
+            @keypath(SRGSubdivision.new, analyticsLabels) : @"analyticsMetadata",
+            @keypath(SRGSubdivision.new, comScoreAnalyticsLabels) : @"analyticsData",
+            @keypath(SRGSubdivision.new, subtitles) : @"subtitleList",
+            
+            @keypath(SRGSubdivision.new, title) : @"title",
+            @keypath(SRGSubdivision.new, lead) : @"lead",
+            @keypath(SRGSubdivision.new, summary) : @"description",
+            
+            @keypath(SRGSubdivision.new, uid) : @"id",
+            @keypath(SRGSubdivision.new, URN) : @"urn",
+            @keypath(SRGSubdivision.new, mediaType) : @"mediaType",
+            @keypath(SRGSubdivision.new, vendor) : @"vendor",
+            
+            @keypath(SRGSubdivision.new, imageTitle) : @"imageTitle",
+            @keypath(SRGSubdivision.new, imageCopyright) : @"imageCopyright",
+            
+            @keypath(SRGSubdivision.new, contentType) : @"type",
+            @keypath(SRGSubdivision.new, source) : @"assignedBy",
+            @keypath(SRGSubdivision.new, image) : @"imageUrl",
+            @keypath(SRGSubdivision.new, date) : @"date",
+            @keypath(SRGSubdivision.new, duration) : @"duration",
+            @keypath(SRGSubdivision.new, originalBlockingReason) : @"blockReason",
+            @keypath(SRGSubdivision.new, playableAbroad) : @"playableAbroad",
+            @keypath(SRGSubdivision.new, youthProtectionColor) : @"youthProtectionColor",
+            @keypath(SRGSubdivision.new, podcastStandardDefinitionURL) : @"podcastSdUrl",
+            @keypath(SRGSubdivision.new, podcastHighDefinitionURL) : @"podcastHdUrl",
+            @keypath(SRGSubdivision.new, startDate) : @"validFrom",
+            @keypath(SRGSubdivision.new, endDate) : @"validTo",
+            @keypath(SRGSubdivision.new, accessibilityTitle) : @"mediaDescription",
+            @keypath(SRGSubdivision.new, relatedContents) : @"relatedContentList",
+            @keypath(SRGSubdivision.new, socialCounts) : @"socialCountList"
+        };
     });
     return s_mapping;
 }
@@ -127,11 +129,6 @@
     return SRGVendorJSONTransformer();
 }
 
-+ (NSValueTransformer *)imageURLJSONTransformer
-{
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
 + (NSValueTransformer *)contentTypeJSONTransformer
 {
     return SRGContentTypeJSONTransformer();
@@ -140,6 +137,11 @@
 + (NSValueTransformer *)sourceJSONTransformer
 {
     return SRGSourceJSONTransformer();
+}
+
++ (NSValueTransformer *)imageJSONTransformer
+{
+    return SRGImageTransformer(SRGImageVariantDefault);
 }
 
 + (NSValueTransformer *)dateJSONTransformer
@@ -190,18 +192,6 @@
 + (NSValueTransformer *)socialCountsJSONTransformer
 {
     return [MTLJSONAdapter arrayTransformerWithModelClass:SRGSocialCount.class];
-}
-
-#pragma mark SRGImage protocol
-
-- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
-{
-    return [self.imageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-}
-
-- (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
-{
-    return [self.imageURL srg_URLForWidth:width];
 }
 
 #pragma mark Equality

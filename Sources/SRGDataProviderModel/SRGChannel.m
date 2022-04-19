@@ -13,6 +13,7 @@
 
 @interface SRGChannel ()
 
+@property (nonatomic) SRGImage *image;
 @property (nonatomic) NSURL *timetableURL;
 @property (nonatomic) SRGProgram *currentProgram;
 @property (nonatomic) SRGProgram *nextProgram;
@@ -26,7 +27,6 @@
 @property (nonatomic, copy) NSString *lead;
 @property (nonatomic, copy) NSString *summary;
 
-@property (nonatomic) NSURL *imageURL;
 @property (nonatomic, copy) NSString *imageTitle;
 @property (nonatomic, copy) NSString *imageCopyright;
 
@@ -41,27 +41,34 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGChannel.new, timetableURL) : @"timeTableUrl",
-                       @keypath(SRGChannel.new, currentProgram) : @"now",
-                       @keypath(SRGChannel.new, nextProgram) : @"next",
-                       
-                       @keypath(SRGChannel.new, uid) : @"id",
-                       @keypath(SRGChannel.new, URN) : @"urn",
-                       @keypath(SRGChannel.new, transmission) : @"transmission",
-                       @keypath(SRGChannel.new, vendor) : @"vendor",
-                       
-                       @keypath(SRGChannel.new, title) : @"title",
-                       @keypath(SRGChannel.new, lead) : @"lead",
-                       @keypath(SRGChannel.new, summary) : @"description",
-                       
-                       @keypath(SRGChannel.new, imageURL) : @"imageUrl",
-                       @keypath(SRGChannel.new, imageTitle) : @"imageTitle",
-                       @keypath(SRGChannel.new, imageCopyright) : @"imageCopyright" };
+        s_mapping = @{
+            @keypath(SRGChannel.new, image) : @"imageUrl",
+            @keypath(SRGChannel.new, timetableURL) : @"timeTableUrl",
+            @keypath(SRGChannel.new, currentProgram) : @"now",
+            @keypath(SRGChannel.new, nextProgram) : @"next",
+            
+            @keypath(SRGChannel.new, uid) : @"id",
+            @keypath(SRGChannel.new, URN) : @"urn",
+            @keypath(SRGChannel.new, transmission) : @"transmission",
+            @keypath(SRGChannel.new, vendor) : @"vendor",
+            
+            @keypath(SRGChannel.new, title) : @"title",
+            @keypath(SRGChannel.new, lead) : @"lead",
+            @keypath(SRGChannel.new, summary) : @"description",
+            
+            @keypath(SRGChannel.new, imageTitle) : @"imageTitle",
+            @keypath(SRGChannel.new, imageCopyright) : @"imageCopyright"
+        };
     });
     return s_mapping;
 }
 
 #pragma mark Transformers
+
++ (NSValueTransformer *)imageJSONTransformer
+{
+    return SRGImageTransformer(SRGImageVariantDefault);
+}
 
 + (NSValueTransformer *)timetableURLJSONTransformer
 {
@@ -86,23 +93,6 @@
 + (NSValueTransformer *)vendorJSONTransformer
 {
     return SRGVendorJSONTransformer();
-}
-
-+ (NSValueTransformer *)imageURLJSONTransformer
-{
-    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-#pragma mark SRGImageMetadata protocol
-
-- (NSURL *)imageURLForSize:(SRGImageSize)size type:(SRGImageType)type
-{
-    return [self.imageURL srg_URLForWidth:SRGDefaultImageWidthForSize(size)];
-}
-
-- (NSURL *)imageURLForWidth:(SRGImageWidth)width type:(SRGImageType)type
-{
-    return [self.imageURL srg_URLForWidth:width];
 }
 
 #pragma mark Equality
