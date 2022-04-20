@@ -14,28 +14,37 @@
 
 - (NSURL *)requestURLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling
 {
-    if (! image) {
+    return [self requestURLForImageURL:image.URL withWidth:width scaling:scaling];
+}
+
+- (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling
+{
+    return [self requestURLForImage:image withWidth:SRGRecommendedImageWidth(size, image.variant) scaling:scaling];
+}
+
+- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling
+{
+    if (! imageURL) {
         return nil;
     }
     
     switch (scaling) {
         case SRGImageScalingAspectFitSixteenToNine: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-pillarbox" imageURL:image.URL width:width];
+            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-pillarbox" imageURL:imageURL width:width];
             break;
         }
         
         case SRGImageScalingAspectFitBlackSquare: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one" imageURL:image.URL width:width];
+            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one" imageURL:imageURL width:width];
             break;
         }
         
         case SRGImageScalingAspectFitTransparentSquare: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one-transparent-background" imageURL:image.URL width:width];
+            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one-transparent-background" imageURL:imageURL width:width];
             break;
         }
             
         case SRGImageScalingPreserveAspectRatio: {
-            NSURL *imageURL = image.URL;
 #warning Temporary workaround for SWI which currently does not support the modern image scaling service, see https://jira.srg.beecollaboration.com/browse/PLAY-5139
             if (! [imageURL.host isEqualToString:@"www.swissinfo.ch"]) {
                 return [self imageServiceURLForImageURL:imageURL width:width];
@@ -47,15 +56,10 @@
         }
             
         default: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-sixteen-to-nine" imageURL:image.URL width:width];
+            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-sixteen-to-nine" imageURL:imageURL width:width];
             break;
         }
     }
-}
-
-- (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling
-{
-    return [self requestURLForImage:image withWidth:SRGRecommendedImageWidth(size, image.variant) scaling:scaling];
 }
 
 #pragma mark Modern image scaling
