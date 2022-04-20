@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGImage : NSObject
 
 /**
+ *  Initializer.
+ */
+- (instancetype)initWithURL:(NSURL *)URL variant:(SRGImageVariant)variant;
+
+/**
  *  The image variant.
  */
 @property (nonatomic, readonly) SRGImageVariant variant;

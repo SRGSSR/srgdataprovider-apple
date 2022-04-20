@@ -21,18 +21,4 @@ public extension SRGDataProvider {
     func url(for image: SRGImage?, size: SRGImageSize, scaling: SRGImageScaling = .default) -> URL? {
         return requestURL(for: image, with: size, scaling: scaling)
     }
-    
-    /**
-     *  Return the request URL created from an image URL for a given width and scaled by applying the specified behavior.
-     */
-    func url(for imageUrl: URL?, width: SRGImageWidth, scaling: SRGImageScaling = .default) -> URL? {
-        return requestURL(forImageURL: imageUrl, with: width, scaling: scaling)
-    }
-    
-    /**
-     *  Return the request URL for an image URL for a given semantic size / variant and scaled by applying the specified behavior.
-     */
-    func url(for imageUrl: URL?, size: SRGImageSize, variant: SRGImageVariant = .default, scaling: SRGImageScaling = .default) -> URL? {
-        return requestURL(forImageURL: imageUrl, with: size, variant: variant, scaling: scaling)
-    }
 }
