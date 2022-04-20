@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSURL *)URLForImageURL:(nullable NSURL *)imageURL withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling;
 
+/**
+ *  Return the request URL for an image URL for a given semantic size / variant and scaled by applying the specified behavior.
+ */
+- (nullable NSURL *)URLForImageURL:(nullable NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant scaling:(SRGImageScaling)scaling;
+
 @end
 
 NS_ASSUME_NONNULL_END

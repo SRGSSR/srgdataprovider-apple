@@ -27,4 +27,9 @@
     return [self requestURLForImageURL:imageURL withWidth:width scaling:scaling];
 }
 
+- (NSURL *)URLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant scaling:(SRGImageScaling)scaling
+{
+    return [self requestURLForImageURL:imageURL withSize:size variant:variant scaling:scaling];
+}
+
 @end

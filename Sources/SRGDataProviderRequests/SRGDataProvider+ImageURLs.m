@@ -19,7 +19,7 @@
 
 - (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling
 {
-    return [self requestURLForImage:image withWidth:SRGRecommendedImageWidth(size, image.variant) scaling:scaling];
+    return [self requestURLForImageURL:image.URL withSize:size variant:image.variant scaling:scaling];
 }
 
 - (NSURL *)requestURLForImageURL:(NSURL *)imageURL withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling
@@ -60,6 +60,11 @@
             break;
         }
     }
+}
+
+- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant scaling:(SRGImageScaling)scaling
+{
+    return [self requestURLForImageURL:imageURL withWidth:SRGRecommendedImageWidth(size, variant) scaling:scaling];
 }
 
 #pragma mark Modern image scaling
