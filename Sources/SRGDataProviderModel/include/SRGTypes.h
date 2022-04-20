@@ -642,12 +642,12 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
  *  Image scalings.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageScaling) {
-    SRGImageScalingPreserveAspectRatio = 0,
-    SRGImageScalingDefault = SRGImageScalingPreserveAspectRatio,
+    SRGImageScalingAspectFillSixteenToNine = 0,
+    SRGImageScalingDefault = SRGImageScalingAspectFillSixteenToNine,
     SRGImageScalingAspectFitSixteenToNine,
-    SRGImageScalingAspectFillSixteenToNine,
     SRGImageScalingAspectFitBlackSquare,
-    SRGImageScalingAspectFitTransparentSquare
+    SRGImageScalingAspectFitTransparentSquare,
+    SRGImageScalingPreserveAspectRatio
 };
 
 /**

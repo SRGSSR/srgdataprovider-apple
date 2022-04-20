@@ -24,11 +24,6 @@
             break;
         }
         
-        case SRGImageScalingAspectFillSixteenToNine: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-sixteen-to-nine" imageURL:image.URL width:width];
-            break;
-        }
-        
         case SRGImageScalingAspectFitBlackSquare: {
             return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one" imageURL:image.URL width:width];
             break;
@@ -39,7 +34,7 @@
             break;
         }
             
-        default: {
+        case SRGImageScalingPreserveAspectRatio: {
             NSURL *imageURL = image.URL;
 #warning Temporary workaround for SWI which currently does not support the modern image scaling service, see https://jira.srg.beecollaboration.com/browse/PLAY-5139
             if (! [imageURL.host isEqualToString:@"www.swissinfo.ch"]) {
@@ -48,6 +43,11 @@
             else {
                 return [self scaledImageURL:imageURL width:width];
             }
+            break;
+        }
+            
+        default: {
+            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-sixteen-to-nine" imageURL:image.URL width:width];
             break;
         }
     }
