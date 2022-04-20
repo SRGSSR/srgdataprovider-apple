@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface SRGImage : NSObject
 
+/**
+ *  The image variant.
+ */
+@property (nonatomic, readonly) SRGImageVariant variant;
+
 @end
 
 NS_ASSUME_NONNULL_END
