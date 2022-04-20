@@ -108,7 +108,7 @@
 
 + (NSValueTransformer *)imageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)URLJSONTransformer

@@ -40,12 +40,12 @@
 
 + (NSValueTransformer *)smallCoverImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)largeCoverImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 @end

@@ -115,22 +115,22 @@
 
 + (NSValueTransformer *)imageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)bannerImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)posterImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantPoster);
+    return SRGPosterImageTransformer();
 }
 
 + (NSValueTransformer *)podcastImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)transmissionJSONTransformer

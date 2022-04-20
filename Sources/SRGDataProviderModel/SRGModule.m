@@ -92,17 +92,17 @@
 
 + (NSValueTransformer *)backgroundImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)logoImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)keyVisualImageJSONTransformer
 {
-    return SRGImageTransformer(SRGImageVariantDefault);
+    return SRGDefaultImageTransformer();
 }
 
 + (NSValueTransformer *)headerBackgroundColorJSONTransformer
