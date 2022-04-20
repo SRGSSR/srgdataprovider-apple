@@ -127,3 +127,20 @@ SRGImageWidth SRGRecommendedImageWidth(SRGImageSize size, SRGImageVariant varian
         }
     }
 }
+
+CGSize SRGRecommendedImageCGSize(SRGImageSize size, SRGImageVariant variant)
+{
+    switch (variant) {
+        case SRGImageVariantPoster: {
+            CGFloat width = SRGPosterImageWidthForSize(size);
+            return CGSizeMake(width, width * 3.f / 2.f);
+            break;
+        }
+            
+        default: {
+            CGFloat width = SRGDefaultImageWidthForSize(size);
+            return CGSizeMake(width, width * 9.f / 16.f);
+            break;
+        }
+    }
+}

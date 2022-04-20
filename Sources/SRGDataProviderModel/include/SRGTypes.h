@@ -687,6 +687,11 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGImageWidth) {
 OBJC_EXPORT SRGImageWidth SRGRecommendedImageWidth(SRGImageSize size, SRGImageVariant variant);
 
 /**
+ *  Return the recommended image `CGSize` corresponding to a given semantic size and variant.
+ */
+OBJC_EXPORT CGSize SRGRecommendedImageCGSize(SRGImageSize size, SRGImageVariant variant);
+
+/**
  *  Filter for requesting medias.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGMediaFilter) {
