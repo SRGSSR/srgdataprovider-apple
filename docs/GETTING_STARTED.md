@@ -181,6 +181,26 @@ SRGRequest *request = [SRGDataProvider.currentDataProvider tvLivestreamsForVendo
 
 Please carefully read the [SRG Network getting started guide](https://github.com/SRGSSR/srgnetwork-apple/blob/master/docs/GETTING_STARTED.md), which provides extensive information about request management and grouping via queues.
 
+## Images
+
+Images are returned as opaque `SRGImage` for which `SRGDataProvider` offers instance methods to generate corresponding URLs through which proper URLs can be generated, in Objective-C:
+
+```objective-c
+- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling;
+- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling;
+```
+
+and in Swift:
+
+```swift
+func url(for image: SRGImage?, width: SRGImageWidth, scaling: SRGImageScaling = .default) -> URL?
+func url(for image: SRGImage?, size: SRGImageSize, scaling: SRGImageScaling = .default) -> URL? 
+```
+
+The image API allows you to either generate images based on a finite set of widths (arbitrary widths are not supported) or on a set of semantic sizes (small, medium, large) which have been adjusted for standard iOS and tvOS devices, including their screen pixel densities.
+
+Should these semantic sizes not match your needs you are free to either request images based on some desired widths or to define your own set of semantic sizes.
+
 ## Service availability
 
 Request availability depends on the business unit. Refer to the provided [service compatibility matrix](SERVICE_AVAILABILITY.md) for reference. This matrix also provides information about page constraints for services supporting pagination.
