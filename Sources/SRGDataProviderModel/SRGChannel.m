@@ -14,6 +14,7 @@
 @interface SRGChannel ()
 
 @property (nonatomic) SRGImage *image;
+@property (nonatomic) SRGImage *rawImage;
 @property (nonatomic) NSURL *timetableURL;
 @property (nonatomic) SRGProgram *currentProgram;
 @property (nonatomic) SRGProgram *nextProgram;
@@ -43,6 +44,7 @@
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
             @keypath(SRGChannel.new, image) : @"imageUrl",
+            @keypath(SRGChannel.new, rawImage) : @"imageUrlRaw",
             @keypath(SRGChannel.new, timetableURL) : @"timeTableUrl",
             @keypath(SRGChannel.new, currentProgram) : @"now",
             @keypath(SRGChannel.new, nextProgram) : @"next",
@@ -66,6 +68,11 @@
 #pragma mark Transformers
 
 + (NSValueTransformer *)imageJSONTransformer
+{
+    return SRGDefaultImageTransformer();
+}
+
++ (NSValueTransformer *)rawImageJSONTransformer
 {
     return SRGDefaultImageTransformer();
 }

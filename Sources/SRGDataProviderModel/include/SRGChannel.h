@@ -25,6 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) SRGImage *image;
 
 /**
+ *  The associated raw vector image.
+ */
+@property (nonatomic, readonly) SRGImage *rawImage;
+
+/**
  *  The URL at which the schedule can be retrieved.
  */
 @property (nonatomic, readonly, nullable) NSURL *timetableURL;
