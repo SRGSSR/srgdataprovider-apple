@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+@import SRGDataProviderModel;
 @import SRGDataProviderNetwork;
 @import XCTest;
 
@@ -138,6 +139,66 @@ static NSString * const kVideoURN = @"urn:srf:video:24b1f659-052e-4847-a523-a626
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 320.);
+        
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testSmallSizeImage
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider mediaWithURN:kVideoURN completionBlock:^(SRGMedia * _Nullable media, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(media);
+        XCTAssertNil(error);
+        
+        CGSize expectedSize = SRGRecommendedImageCGSize(SRGImageSizeSmall, SRGImageVariantDefault);
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeSmall scaling:SRGImageScalingDefault];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        XCTAssertEqual(image.size.width, expectedSize.width);
+        XCTAssertEqual(image.size.height, expectedSize.height);
+        
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testMediumSizeImage
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider mediaWithURN:kVideoURN completionBlock:^(SRGMedia * _Nullable media, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(media);
+        XCTAssertNil(error);
+        
+        CGSize expectedSize = SRGRecommendedImageCGSize(SRGImageSizeMedium, SRGImageVariantDefault);
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeMedium scaling:SRGImageScalingDefault];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        XCTAssertEqual(image.size.width, expectedSize.width);
+        XCTAssertEqual(image.size.height, expectedSize.height);
+        
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testLargeSizeImage
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider mediaWithURN:kVideoURN completionBlock:^(SRGMedia * _Nullable media, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(media);
+        XCTAssertNil(error);
+        
+        CGSize expectedSize = SRGRecommendedImageCGSize(SRGImageSizeLarge, SRGImageVariantDefault);
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeLarge scaling:SRGImageScalingDefault];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        XCTAssertEqual(image.size.width, expectedSize.width);
+        XCTAssertEqual(image.size.height, expectedSize.height);
         
         [expectation fulfill];
     }] resume];
