@@ -28,6 +28,10 @@
         return nil;
     }
     
+    if (imageURL.fileURL) {
+        return imageURL;
+    }
+    
     switch (scaling) {
         case SRGImageScalingAspectFitSixteenToNine: {
             return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-pillarbox" imageURL:imageURL width:width];
