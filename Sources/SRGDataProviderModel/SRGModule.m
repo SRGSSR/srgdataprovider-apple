@@ -17,9 +17,9 @@
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
 @property (nonatomic, copy) NSString *seoName;
-@property (nonatomic) SRGImage *backgroundImage;
-@property (nonatomic) SRGImage *logoImage;
-@property (nonatomic) SRGImage *keyVisualImage;
+@property (nonatomic) NSURL *backgroundImageURL;
+@property (nonatomic) NSURL *logoImageURL;
+@property (nonatomic) NSURL *keyVisualImageURL;
 @property (nonatomic) UIColor *headerBackgroundColor;
 @property (nonatomic) UIColor *headerTextColor;
 @property (nonatomic) UIColor *backgroundColor;
@@ -53,9 +53,9 @@
             @keypath(SRGModule.new, startDate) : @"publishStartTimestamp",
             @keypath(SRGModule.new, endDate) : @"publishEndTimestamp",
             @keypath(SRGModule.new, seoName) : @"seoName",
-            @keypath(SRGModule.new, backgroundImage) : @"bgImageUrl",
-            @keypath(SRGModule.new, logoImage) : @"logoImageUrl",
-            @keypath(SRGModule.new, keyVisualImage) : @"keyVisualImageUrl",
+            @keypath(SRGModule.new, backgroundImageURL) : @"bgImageUrl",
+            @keypath(SRGModule.new, logoImageURL) : @"logoImageUrl",
+            @keypath(SRGModule.new, keyVisualImageURL) : @"keyVisualImageUrl",
             @keypath(SRGModule.new, headerBackgroundColor) : @"headerBackgroundColor",
             @keypath(SRGModule.new, headerTextColor) : @"headerTitleColor",
             @keypath(SRGModule.new, backgroundColor) : @"bgColor",
@@ -78,6 +78,23 @@
     return s_mapping;
 }
 
+#pragma mark Getters and setters
+
+- (SRGImage *)backgroundImage
+{
+    return [SRGImage imageWithURL:self.backgroundImageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGImage *)logoImage
+{
+    return [SRGImage imageWithURL:self.logoImageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGImage *)keyVisualImage
+{
+    return [SRGImage imageWithURL:self.keyVisualImageURL variant:SRGImageVariantDefault];
+}
+
 #pragma mark Transformers
 
 + (NSValueTransformer *)startDateJSONTransformer
@@ -90,19 +107,19 @@
     return SRGISO8601DateJSONTransformer();
 }
 
-+ (NSValueTransformer *)backgroundImageJSONTransformer
++ (NSValueTransformer *)backgroundImageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)logoImageJSONTransformer
++ (NSValueTransformer *)logoImageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)keyVisualImageJSONTransformer
++ (NSValueTransformer *)keyVisualImageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)headerBackgroundColorJSONTransformer

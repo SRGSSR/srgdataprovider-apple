@@ -13,8 +13,8 @@
 
 @interface SRGChannel ()
 
-@property (nonatomic) SRGImage *image;
-@property (nonatomic) SRGImage *rawImage;
+@property (nonatomic) NSURL *imageURL;
+@property (nonatomic) NSURL *rawImageURL;
 @property (nonatomic) NSURL *timetableURL;
 @property (nonatomic) SRGProgram *currentProgram;
 @property (nonatomic) SRGProgram *nextProgram;
@@ -43,8 +43,8 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
-            @keypath(SRGChannel.new, image) : @"imageUrl",
-            @keypath(SRGChannel.new, rawImage) : @"imageUrlRaw",
+            @keypath(SRGChannel.new, imageURL) : @"imageUrl",
+            @keypath(SRGChannel.new, rawImageURL) : @"imageUrlRaw",
             @keypath(SRGChannel.new, timetableURL) : @"timeTableUrl",
             @keypath(SRGChannel.new, currentProgram) : @"now",
             @keypath(SRGChannel.new, nextProgram) : @"next",
@@ -65,16 +65,28 @@
     return s_mapping;
 }
 
-#pragma mark Transformers
+#pragma mark Getters and setters
 
-+ (NSValueTransformer *)imageJSONTransformer
+- (SRGImage *)image
 {
-    return SRGDefaultImageTransformer();
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
 }
 
-+ (NSValueTransformer *)rawImageJSONTransformer
+- (SRGImage *)rawImage
 {
-    return SRGDefaultImageTransformer();
+    return [SRGImage imageWithURL:self.rawImageURL variant:SRGImageVariantDefault];
+}
+
+#pragma mark Transformers
+
++ (NSValueTransformer *)imageURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)rawImageURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)timetableURLJSONTransformer

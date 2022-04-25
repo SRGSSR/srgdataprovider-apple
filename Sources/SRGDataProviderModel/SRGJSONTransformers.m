@@ -6,8 +6,6 @@
 
 #import "SRGJSONTransformers.h"
 
-#import "SRGImage+Private.h"
-
 @import Mantle;
 @import UIKit;
 
@@ -142,28 +140,6 @@ NSValueTransformer *SRGContentTypeJSONTransformer(void)
     return s_transformer;
 }
 
-NSValueTransformer *SRGDefaultImageTransformer(void)
-{
-    static NSValueTransformer *s_transformer;
-    static dispatch_once_t s_onceToken;
-    dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *URLString, BOOL *pSuccess, NSError *__autoreleasing *error) {
-            NSURL *URL = [NSURL URLWithString:URLString];
-            if (! URL) {
-                if (pSuccess) {
-                    *pSuccess = NO;
-                }
-                return nil;
-            }
-            
-            return [[SRGImage alloc] initWithURL:URL variant:SRGImageVariantDefault];
-        } reverseBlock:^id(SRGImage *image, BOOL *pSuccess, NSError *__autoreleasing *error) {
-            return image.URL.absoluteString;
-        }];
-    });
-    return s_transformer;
-}
-
 NSValueTransformer *SRGDRMTypeJSONTransformer(void)
 {
     static NSValueTransformer *s_transformer;
@@ -279,28 +255,6 @@ NSValueTransformer *SRGModuleTypeJSONTransformer(void)
         s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"EVENT" : @(SRGModuleTypeEvent) }
                                                                          defaultValue:@(SRGModuleTypeNone)
                                                                   reverseDefaultValue:nil];
-    });
-    return s_transformer;
-}
-
-NSValueTransformer *SRGPosterImageTransformer(void)
-{
-    static NSValueTransformer *s_transformer;
-    static dispatch_once_t s_onceToken;
-    dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *URLString, BOOL *pSuccess, NSError *__autoreleasing *error) {
-            NSURL *URL = [NSURL URLWithString:URLString];
-            if (! URL) {
-                if (pSuccess) {
-                    *pSuccess = NO;
-                }
-                return nil;
-            }
-            
-            return [[SRGImage alloc] initWithURL:URL variant:SRGImageVariantPoster];
-        } reverseBlock:^id(SRGImage *image, BOOL *pSuccess, NSError *__autoreleasing *error) {
-            return image.URL.absoluteString;
-        }];
     });
     return s_transformer;
 }

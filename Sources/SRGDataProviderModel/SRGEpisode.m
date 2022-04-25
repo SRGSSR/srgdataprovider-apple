@@ -16,7 +16,7 @@
 
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic) NSDate *date;
-@property (nonatomic) SRGImage *image;
+@property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSArray<SRGMedia *> *medias;
 @property (nonatomic) SRGSocialCount *socialCount;
 
@@ -41,7 +41,7 @@
         s_mapping = @{
             @keypath(SRGEpisode.new, uid) : @"id",
             @keypath(SRGEpisode.new, date) : @"publishedDate",
-            @keypath(SRGEpisode.new, image) : @"imageUrl",
+            @keypath(SRGEpisode.new, imageURL) : @"imageUrl",
             @keypath(SRGEpisode.new, fullLengthURN) : @"fullLengthUrn",
             @keypath(SRGEpisode.new, medias) : @"mediaList",
             @keypath(SRGEpisode.new, socialCount) : @"socialCount",
@@ -57,6 +57,13 @@
     return s_mapping;
 }
 
+#pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
+
 #pragma mark Transformers
 
 + (NSValueTransformer *)dateJSONTransformer
@@ -64,9 +71,9 @@
     return SRGISO8601DateJSONTransformer();
 }
 
-+ (NSValueTransformer *)imageJSONTransformer
++ (NSValueTransformer *)imageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)mediasJSONTransformer

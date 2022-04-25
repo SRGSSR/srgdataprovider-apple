@@ -36,7 +36,7 @@
 
 @property (nonatomic) SRGContentType contentType;
 @property (nonatomic) SRGSource source;
-@property (nonatomic) SRGImage *image;
+@property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSDate *date;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic) SRGBlockingReason originalBlockingReason;
@@ -89,7 +89,7 @@
             @keypath(SRGMedia.new, originalBlockingReason) : @"blockReason",
             @keypath(SRGMedia.new, playableAbroad) : @"playableAbroad",
             @keypath(SRGMedia.new, youthProtectionColor) : @"youthProtectionColor",
-            @keypath(SRGMedia.new, image) : @"imageUrl",
+            @keypath(SRGMedia.new, imageURL) : @"imageUrl",
             @keypath(SRGMedia.new, podcastStandardDefinitionURL) : @"podcastSdUrl",
             @keypath(SRGMedia.new, podcastHighDefinitionURL) : @"podcastHdUrl",
             @keypath(SRGMedia.new, startDate) : @"validFrom",
@@ -103,6 +103,11 @@
 }
 
 #pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
 
 - (SRGBlockingReason)blockingReasonAtDate:(NSDate *)date
 {
@@ -166,9 +171,9 @@
     return SRGSourceJSONTransformer();
 }
 
-+ (NSValueTransformer *)imageJSONTransformer
++ (NSValueTransformer *)imageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)dateJSONTransformer

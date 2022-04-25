@@ -15,11 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) NSURL *URL;
 
-/**
- *  The variant which the image must be scaled for.
- */
-@property (nonatomic, readonly) SRGImageVariant variant;
-
 @end
 
 NS_ASSUME_NONNULL_END

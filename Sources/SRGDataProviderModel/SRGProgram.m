@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
-@property (nonatomic) SRGImage *image;
+@property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSURL *URL;
 @property (nonatomic) SRGShow *show;
 @property (nonatomic) NSArray<SRGProgram *> *subprograms;
@@ -61,7 +61,7 @@
             @keypath(SRGProgram.new, subtitle) : @"subtitle",
             @keypath(SRGProgram.new, startDate) : @"startTime",
             @keypath(SRGProgram.new, endDate) : @"endTime",
-            @keypath(SRGProgram.new, image) : @"imageUrl",
+            @keypath(SRGProgram.new, imageURL) : @"imageUrl",
             @keypath(SRGProgram.new, URL) : @"url",
             @keypath(SRGProgram.new, show) : @"show",
             @keypath(SRGProgram.new, subprograms) : @"subProgramList",
@@ -94,6 +94,13 @@
     return s_mapping;
 }
 
+#pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
+
 #pragma mark Transformers
 
 + (NSValueTransformer *)startDateJSONTransformer
@@ -106,9 +113,9 @@
     return SRGISO8601DateJSONTransformer();
 }
 
-+ (NSValueTransformer *)imageJSONTransformer
++ (NSValueTransformer *)imageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)URLJSONTransformer

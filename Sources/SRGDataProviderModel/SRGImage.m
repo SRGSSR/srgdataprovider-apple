@@ -15,10 +15,21 @@
 
 @implementation SRGImage
 
+#pragma mark Class methods
+
++ (SRGImage *)imageWithURL:(NSURL *)URL variant:(SRGImageVariant)variant
+{
+    return [[self.class alloc] initWithURL:URL variant:variant];
+}
+
 #pragma mark Object lifecycle
 
 - (instancetype)initWithURL:(NSURL *)URL variant:(SRGImageVariant)variant
 {
+    if (! URL) {
+        return nil;
+    }
+    
     if (self = [super init]) {
         self.URL = URL;
         self.variant = variant;

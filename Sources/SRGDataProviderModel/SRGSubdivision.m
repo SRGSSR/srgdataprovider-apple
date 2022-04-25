@@ -35,7 +35,7 @@
 
 @property (nonatomic) SRGContentType contentType;
 @property (nonatomic) SRGSource source;
-@property (nonatomic) SRGImage *image;
+@property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSDate *date;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic) SRGBlockingReason originalBlockingReason;
@@ -82,7 +82,7 @@
             
             @keypath(SRGSubdivision.new, contentType) : @"type",
             @keypath(SRGSubdivision.new, source) : @"assignedBy",
-            @keypath(SRGSubdivision.new, image) : @"imageUrl",
+            @keypath(SRGSubdivision.new, imageURL) : @"imageUrl",
             @keypath(SRGSubdivision.new, date) : @"date",
             @keypath(SRGSubdivision.new, duration) : @"duration",
             @keypath(SRGSubdivision.new, originalBlockingReason) : @"blockReason",
@@ -101,6 +101,11 @@
 }
 
 #pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
 
 - (SRGBlockingReason)blockingReasonAtDate:(NSDate *)date
 {
@@ -139,9 +144,9 @@
     return SRGSourceJSONTransformer();
 }
 
-+ (NSValueTransformer *)imageJSONTransformer
++ (NSValueTransformer *)imageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)dateJSONTransformer

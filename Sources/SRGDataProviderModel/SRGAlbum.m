@@ -13,8 +13,8 @@
 @interface SRGAlbum ()
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic) SRGImage *smallCoverImage;
-@property (nonatomic) SRGImage *largeCoverImage;
+@property (nonatomic) NSURL *smallCoverImageURL;
+@property (nonatomic) NSURL *largeCoverImageURL;
 
 @end
 
@@ -29,23 +29,35 @@
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
             @keypath(SRGAlbum.new, name) : @"name",
-            @keypath(SRGAlbum.new, smallCoverImage) : @"coverUrlSmall",
-            @keypath(SRGAlbum.new, largeCoverImage) : @"coverUrlLarge"
+            @keypath(SRGAlbum.new, smallCoverImageURL) : @"coverUrlSmall",
+            @keypath(SRGAlbum.new, largeCoverImageURL) : @"coverUrlLarge"
         };
     });
     return s_mapping;
 }
 
-#pragma mark Transformers
+#pragma mark Getters and setters
 
-+ (NSValueTransformer *)smallCoverImageJSONTransformer
+- (SRGImage *)smallCoverImage
 {
-    return SRGDefaultImageTransformer();
+    return [SRGImage imageWithURL:self.smallCoverImageURL variant:SRGImageVariantDefault];
 }
 
-+ (NSValueTransformer *)largeCoverImageJSONTransformer
+- (SRGImage *)largeCoverImage
 {
-    return SRGDefaultImageTransformer();
+    return [SRGImage imageWithURL:self.largeCoverImageURL variant:SRGImageVariantDefault];
+}
+
+#pragma mark Transformers
+
++ (NSValueTransformer *)smallCoverImageURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)largeCoverImageURLJSONTransformer
+{
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 @end

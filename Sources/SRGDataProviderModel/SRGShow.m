@@ -20,10 +20,10 @@
 @property (nonatomic) NSURL *podcastDeezerURL;
 @property (nonatomic) NSURL *podcastSpotifyURL;
 @property (nonatomic, copy) NSString *primaryChannelUid;
-@property (nonatomic) SRGImage *image;
-@property (nonatomic) SRGImage *bannerImage;
-@property (nonatomic) SRGImage *posterImage;
-@property (nonatomic) SRGImage *podcastImage;
+@property (nonatomic) NSURL *imageURL;
+@property (nonatomic) NSURL *bannerImageURL;
+@property (nonatomic) NSURL *posterImageURL;
+@property (nonatomic) NSURL *podcastImageURL;
 @property (nonatomic) NSNumber *numberOfEpisodes;
 
 @property (nonatomic, copy) NSString *title;
@@ -59,10 +59,10 @@
             @keypath(SRGShow.new, podcastSpotifyURL) : @"podcastSpotifyUrl",
             @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
             @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
-            @keypath(SRGShow.new, image) : @"imageUrl",
-            @keypath(SRGShow.new, bannerImage) : @"bannerImageUrl",
-            @keypath(SRGShow.new, posterImage) : @"posterImageUrl",
-            @keypath(SRGShow.new, podcastImage) : @"podcastImageUrl",
+            @keypath(SRGShow.new, imageURL) : @"imageUrl",
+            @keypath(SRGShow.new, bannerImageURL) : @"bannerImageUrl",
+            @keypath(SRGShow.new, posterImageURL) : @"posterImageUrl",
+            @keypath(SRGShow.new, podcastImageURL) : @"podcastImageUrl",
             
             @keypath(SRGShow.new, title) : @"title",
             @keypath(SRGShow.new, lead) : @"lead",
@@ -79,6 +79,28 @@
         };
     });
     return s_mapping;
+}
+
+#pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGImage *)bannerImage
+{
+    return [SRGImage imageWithURL:self.bannerImageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGImage *)posterImage
+{
+    return [SRGImage imageWithURL:self.posterImageURL variant:SRGImageVariantPoster];
+}
+
+- (SRGImage *)podcastImage
+{
+    return [SRGImage imageWithURL:self.podcastImageURL variant:SRGImageVariantDefault];
 }
 
 #pragma mark Transformers
@@ -113,24 +135,24 @@
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)imageJSONTransformer
++ (NSValueTransformer *)imageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)bannerImageJSONTransformer
++ (NSValueTransformer *)bannerImageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)posterImageJSONTransformer
++ (NSValueTransformer *)posterImageURLJSONTransformer
 {
-    return SRGPosterImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
-+ (NSValueTransformer *)podcastImageJSONTransformer
++ (NSValueTransformer *)podcastImageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)transmissionJSONTransformer

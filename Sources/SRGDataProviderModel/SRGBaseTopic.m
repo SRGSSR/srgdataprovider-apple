@@ -13,7 +13,7 @@
 
 @interface SRGBaseTopic ()
 
-@property (nonatomic) SRGImage *image;
+@property (nonatomic) NSURL *imageURL;
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *lead;
@@ -39,7 +39,7 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
-            @keypath(SRGBaseTopic.new, image) : @"imageUrl",
+            @keypath(SRGBaseTopic.new, imageURL) : @"imageUrl",
             
             @keypath(SRGBaseTopic.new, title) : @"title",
             @keypath(SRGBaseTopic.new, lead) : @"lead",
@@ -57,11 +57,18 @@
     return s_mapping;
 }
 
+#pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
+
 #pragma mark Transformers
 
-+ (NSValueTransformer *)imageJSONTransformer
++ (NSValueTransformer *)imageURLJSONTransformer
 {
-    return SRGDefaultImageTransformer();
+    return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
 + (NSValueTransformer *)transmissionJSONTransformer
