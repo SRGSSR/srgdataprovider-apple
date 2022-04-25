@@ -50,7 +50,9 @@
         }
             
         default: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-sixteen-to-nine" imageURL:imageURL width:width];
+            // We do not use `integrationlayer/2.0/image-scale-sixteen-to-nine` here since it delivers PNGs, too costly
+            // in comparison to resource paths scaling delivering JPEG.
+            return [self scaledImageURL:imageURL width:width];
             break;
         }
     }
