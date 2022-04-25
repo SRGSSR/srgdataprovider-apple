@@ -7,7 +7,6 @@
 #import "SRGChannel.h"
 
 #import "SRGJSONTransformers.h"
-#import "NSURL+SRGDataProvider.h"
 
 @import libextobjc;
 

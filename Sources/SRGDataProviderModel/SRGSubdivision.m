@@ -7,7 +7,6 @@
 #import "SRGSubdivision.h"
 
 #import "SRGJSONTransformers.h"
-#import "NSURL+SRGDataProvider.h"
 #import "SRGMediaExtendedMetadata.h"
 
 @import libextobjc;

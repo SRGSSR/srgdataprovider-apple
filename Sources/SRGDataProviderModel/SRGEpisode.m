@@ -6,7 +6,6 @@
 
 #import "SRGEpisode.h"
 
-#import "NSURL+SRGDataProvider.h"
 #import "SRGJSONTransformers.h"
 #import "SRGMedia.h"
 

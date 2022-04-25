@@ -6,7 +6,6 @@
 
 #import "SRGBaseTopic.h"
 
-#import "NSURL+SRGDataProvider.h"
 #import "SRGJSONTransformers.h"
 
 @import libextobjc;
