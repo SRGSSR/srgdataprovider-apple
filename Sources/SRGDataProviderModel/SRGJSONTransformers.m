@@ -6,6 +6,8 @@
 
 #import "SRGJSONTransformers.h"
 
+#import "SRGTypes.h"
+
 @import Mantle;
 @import UIKit;
 

@@ -4,7 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
-#import "SRGTypes.h"
+@import Foundation;
 
 /**
  *  Standard transformers for use with Mantle.

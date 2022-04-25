@@ -4,9 +4,6 @@
 //  License information is available from the LICENSE file.
 //
 
-#import "SRGTypes.h"
-
-@import CoreGraphics;
 @import Foundation;
 
 NS_ASSUME_NONNULL_BEGIN
