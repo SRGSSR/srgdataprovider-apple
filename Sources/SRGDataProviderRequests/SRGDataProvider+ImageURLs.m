@@ -45,13 +45,7 @@
         }
             
         case SRGImageScalingPreserveAspectRatio: {
-#warning Temporary workaround for SWI which currently does not support the modern image scaling service, see https://jira.srg.beecollaboration.com/browse/PLAY-5139
-            if (! [imageURL.host isEqualToString:@"www.swissinfo.ch"]) {
-                return [self imageServiceURLForImageURL:imageURL width:width];
-            }
-            else {
-                return [self scaledImageURL:imageURL width:width];
-            }
+            return [self scaledImageURL:imageURL width:width];
             break;
         }
             
