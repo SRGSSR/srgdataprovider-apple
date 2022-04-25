@@ -45,7 +45,7 @@
         }
             
         case SRGImageScalingPreserveAspectRatio: {
-            return [self scaledImageURL:imageURL width:width];
+            return [self imageServiceURLForImageURL:imageURL width:width];
             break;
         }
             
