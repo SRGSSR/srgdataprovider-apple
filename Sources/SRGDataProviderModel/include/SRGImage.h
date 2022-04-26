@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Initializer for an image variant at the specified URL.
  */
-- (nullable instancetype)initWithURL:(NSURL *)URL variant:(SRGImageVariant)variant;
+- (nullable instancetype)initWithURL:(nullable NSURL *)URL variant:(SRGImageVariant)variant;
 
 /**
  *  The image variant.
