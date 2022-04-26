@@ -15,7 +15,7 @@
                                     published:(BOOL)published
                                        atDate:(NSDate *)date
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/page/%@", SRGPathComponentForVendor(vendor), uid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/page/%@", SRGPathComponentForVendor(vendor), uid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
@@ -33,7 +33,7 @@
                                     published:(BOOL)published
                                        atDate:(NSDate *)date
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/page/landingPage/byProduct/%@", SRGPathComponentForVendor(vendor), productName];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/page/landingPage/byProduct/%@", SRGPathComponentForVendor(vendor), productName];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
@@ -51,7 +51,7 @@
                                     published:(BOOL)published
                                        atDate:(NSDate *)date
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/page/byTopicUrn/%@", SRGPathComponentForVendor(vendor), topicURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/page/byTopicUrn/%@", SRGPathComponentForVendor(vendor), topicURN];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
@@ -68,7 +68,7 @@
                                              uid:(NSString *)uid
                                        published:(BOOL)published
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/section/%@", SRGPathComponentForVendor(vendor), uid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/section/%@", SRGPathComponentForVendor(vendor), uid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
@@ -84,7 +84,7 @@
                                published:(BOOL)published
                                   atDate:(NSDate *)date
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/section/mediaSection/%@", SRGPathComponentForVendor(vendor), contentSectionUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/section/mediaSection/%@", SRGPathComponentForVendor(vendor), contentSectionUid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (userId) {
@@ -106,7 +106,7 @@
                               published:(BOOL)published
                                  atDate:(NSDate *)date
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/section/showSection/%@", SRGPathComponentForVendor(vendor), contentSectionUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/section/showSection/%@", SRGPathComponentForVendor(vendor), contentSectionUid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (userId) {
@@ -128,7 +128,7 @@
                                       published:(BOOL)published
                                          atDate:(NSDate *)date
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/section/mediaSectionWithShow/%@", SRGPathComponentForVendor(vendor), contentSectionUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/section/mediaSectionWithShow/%@", SRGPathComponentForVendor(vendor), contentSectionUid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (userId) {

@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMetadata.h"
 #import "SRGModel.h"
@@ -30,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The episode date.
  */
 @property (nonatomic, readonly, nullable) NSDate *date;
+
+/**
+ *  The associated image.
+ */
+@property (nonatomic, readonly) SRGImage *image;
 
 /**
  *  The full-length URN, if any.

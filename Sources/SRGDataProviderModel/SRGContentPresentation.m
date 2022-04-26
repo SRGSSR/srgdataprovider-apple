@@ -30,12 +30,13 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGContentPresentation.new, type) : @"name",
-                       @keypath(SRGContentPresentation.new, title) : @"properties.title",
-                       @keypath(SRGContentPresentation.new, summary) : @"properties.description",
-                       @keypath(SRGContentPresentation.new, label) : @"properties.label",
-                       @keypath(SRGContentPresentation.new, hasDetailPage) : @"properties.hasDetailPage",
-                       @keypath(SRGContentPresentation.new, randomized) : @"properties.pickRandomElement"
+        s_mapping = @{
+            @keypath(SRGContentPresentation.new, type) : @"name",
+            @keypath(SRGContentPresentation.new, title) : @"properties.title",
+            @keypath(SRGContentPresentation.new, summary) : @"properties.description",
+            @keypath(SRGContentPresentation.new, label) : @"properties.label",
+            @keypath(SRGContentPresentation.new, hasDetailPage) : @"properties.hasDetailPage",
+            @keypath(SRGContentPresentation.new, randomized) : @"properties.pickRandomElement"
         };
     });
     return s_mapping;

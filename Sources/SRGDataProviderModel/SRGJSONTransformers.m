@@ -16,7 +16,7 @@ NSValueTransformer *SRGAspectRatioJSONTransformer(void)
     static NSValueTransformer *s_transformer;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *aspectRatioString, BOOL *success, NSError *__autoreleasing *error) {
+        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *aspectRatioString, BOOL *pSuccess, NSError *__autoreleasing *error) {
             NSArray<NSString *> *aspectRatioComponents = [aspectRatioString componentsSeparatedByString:@":"];
             if (aspectRatioComponents.count != 2) {
                 return @(SRGAspectRatioUndefined);
@@ -29,7 +29,7 @@ NSValueTransformer *SRGAspectRatioJSONTransformer(void)
             }
             
             return @(width / height);
-        } reverseBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        } reverseBlock:^id(id value, BOOL *pSuccess, NSError *__autoreleasing *error) {
             // No reverse transformation is provided. There is no unique string representation which can be inferred from a single scalar value
             return nil;
         }];
@@ -161,7 +161,7 @@ NSValueTransformer *SRGHexColorJSONTransformer(void)
     static NSValueTransformer *s_transformer;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *hexColorString, BOOL *success, NSError *__autoreleasing *error) {
+        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *hexColorString, BOOL *pSuccess, NSError *__autoreleasing *error) {
             NSScanner *scanner = [NSScanner scannerWithString:hexColorString];
             if ([hexColorString hasPrefix:@"#"]) {
                 [scanner setScanLocation:1];
@@ -174,7 +174,7 @@ NSValueTransformer *SRGHexColorJSONTransformer(void)
             CGFloat green = ((rgbValue & 0x00FF00) >> 8) / 255.f;
             CGFloat blue = (rgbValue & 0x0000FF) / 255.f;
             return [UIColor colorWithRed:red green:green blue:blue alpha:1.f];
-        } reverseBlock:^id(UIColor *color, BOOL *success, NSError *__autoreleasing *error) {
+        } reverseBlock:^id(UIColor *color, BOOL *pSuccess, NSError *__autoreleasing *error) {
             const CGFloat *components = CGColorGetComponents(color.CGColor);
             
             CGFloat r = components[0];
@@ -199,9 +199,9 @@ NSValueTransformer *SRGISO8601DateJSONTransformer(void)
         [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
         [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
         
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
+        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *pSuccess, NSError *__autoreleasing *error) {
             return [dateFormatter dateFromString:dateString];
-        } reverseBlock:^id(NSDate *date, BOOL *success, NSError *__autoreleasing *error) {
+        } reverseBlock:^id(NSDate *date, BOOL *pSuccess, NSError *__autoreleasing *error) {
             return [dateFormatter stringFromDate:date];
         }];
     });
@@ -213,9 +213,9 @@ NSValueTransformer *SRGLocaleJSONTransformer(void)
     static NSValueTransformer *s_transformer;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *localeString, BOOL *success, NSError *__autoreleasing *error) {
+        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *localeString, BOOL *pSuccess, NSError *__autoreleasing *error) {
             return [NSLocale localeWithLocaleIdentifier:localeString];
-        } reverseBlock:^id(NSLocale *locale, BOOL *success, NSError *__autoreleasing *error) {
+        } reverseBlock:^id(NSLocale *locale, BOOL *pSuccess, NSError *__autoreleasing *error) {
             return locale.localeIdentifier;
         }];
     });

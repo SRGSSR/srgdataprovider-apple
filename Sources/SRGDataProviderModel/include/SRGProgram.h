@@ -5,6 +5,7 @@
 //
 
 #import "SRGCrewMember.h"
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMetadata.h"
 #import "SRGModel.h"
@@ -32,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The date at which the content ends.
  */
 @property (nonatomic, readonly) NSDate *endDate;
+
+/**
+ *  The associated image.
+ */
+@property (nonatomic, readonly) SRGImage *image;
 
 /**
  *  A URL page associated with the content.

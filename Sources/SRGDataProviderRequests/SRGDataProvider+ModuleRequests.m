@@ -13,7 +13,7 @@
 - (NSURLRequest *)requestModulesForVendor:(SRGVendor)vendor
                                      type:(SRGModuleType)moduleType
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/moduleConfigList/%@", SRGPathComponentForVendor(vendor), SRGPathComponentForModuleType(moduleType)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/moduleConfigList/%@", SRGPathComponentForVendor(vendor), SRGPathComponentForModuleType(moduleType)];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 

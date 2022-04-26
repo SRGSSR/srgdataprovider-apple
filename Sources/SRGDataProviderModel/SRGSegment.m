@@ -28,8 +28,10 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
-        [mapping addEntriesFromDictionary:@{ @keypath(SRGSegment.new, markIn) : @"markIn",
-                                             @keypath(SRGSegment.new, markOut) : @"markOut" }];
+        [mapping addEntriesFromDictionary:@{
+            @keypath(SRGSegment.new, markIn) : @"markIn",
+            @keypath(SRGSegment.new, markOut) : @"markOut"
+        }];
         s_mapping = mapping.copy;
     });
     return s_mapping;

@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMetadata.h"
 #import "SRGModel.h"
@@ -14,11 +15,6 @@
 @import Foundation;
 
 NS_ASSUME_NONNULL_BEGIN
-
-// Supported alternative image types
-OBJC_EXPORT SRGImageType const SRGImageTypeShowBanner;          // Show banner image (3:1).
-OBJC_EXPORT SRGImageType const SRGImageTypeShowPoster;          // Show poster image (2:3).
-OBJC_EXPORT SRGImageType const SRGImageTypeShowPodcast;         // Show podcast logo image (1:1).
 
 /**
  *  Show information.
@@ -59,6 +55,26 @@ OBJC_EXPORT SRGImageType const SRGImageTypeShowPodcast;         // Show podcast 
  *  The unique identifier of the channel to which the show belongs.
  */
 @property (nonatomic, readonly, copy, nullable) NSString *primaryChannelUid;
+
+/**
+ *  The associated image.
+ */
+@property (nonatomic, readonly) SRGImage *image;
+
+/**
+ *  The associated banner image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *bannerImage;
+
+/**
+ *  The associated poster image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *posterImage;
+
+/**
+ *  The associated podcast image.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *podcastImage;
 
 /**
  *  The number of episodes available for the show.

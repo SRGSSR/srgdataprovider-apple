@@ -19,7 +19,6 @@
 
 - (void)setUp
 {
-    // Data provider business unit is irrelevant, such services can be accessed from any data provider.
     self.dataProvider = [[SRGDataProvider alloc] initWithServiceURL:SRGIntegrationLayerProductionServiceURL()];
 }
 

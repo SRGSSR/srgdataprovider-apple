@@ -49,46 +49,46 @@
 
 - (NSURLRequest *)requestMediaWithURN:(NSString *)mediaURN
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/media/byUrn/%@", mediaURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/media/byUrn/%@", mediaURN];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestMediasWithURNs:(NSArray<NSString *> *)mediaURNs
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/mediaList/byUrns"];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/byUrns"];
     NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"urns" value:[mediaURNs componentsJoinedByString: @","]] ];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems];
 }
 
 - (NSURLRequest *)requestLatestMediasForTopicWithURN:(NSString *)topicURN
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/mediaList/latest/byTopicUrn/%@", topicURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/latest/byTopicUrn/%@", topicURN];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestMostPopularMediasForTopicWithURN:(NSString *)topicURN
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/mediaList/mostClicked/byTopicUrn/%@", topicURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/mostClicked/byTopicUrn/%@", topicURN];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestMediaCompositionForURN:(NSString *)mediaURN
                                      standalone:(BOOL)standalone
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.1/mediaComposition/byUrn/%@", mediaURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.1/mediaComposition/byUrn/%@", mediaURN];
     NSArray<NSURLQueryItem *> *queryItems = standalone ? @[ [NSURLQueryItem queryItemWithName:@"onlyChapters" value:@"true"] ] : nil;
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems];
 }
 
 - (NSURLRequest *)requestShowWithURN:(NSString *)showURN
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/show/byUrn/%@", showURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/show/byUrn/%@", showURN];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestShowsWithURNs:(NSArray<NSString *> *)showURNs
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/showList/byUrns"];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/showList/byUrns"];
     NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"urns" value:[showURNs componentsJoinedByString: @","]] ];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems];
 }
@@ -96,7 +96,7 @@
 - (NSURLRequest *)requestLatestEpisodesForShowWithURN:(NSString *)showURN
                                 maximumPublicationDay:(SRGDay *)maximumPublicationDay
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/episodeComposition/latestByShow/byUrn/%@", showURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/episodeComposition/latestByShow/byUrn/%@", showURN];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (maximumPublicationDay) {
@@ -108,7 +108,7 @@
 
 - (NSURLRequest *)requestLatestMediasForShowWithURN:(NSString *)showURN
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/mediaList/latest/byShowUrn/%@", showURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/latest/byShowUrn/%@", showURN];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
@@ -116,7 +116,7 @@
                                                filter:(SRGMediaFilter)filter
                                 maximumPublicationDay:(SRGDay *)maximumPublicationDay
 {
-    NSString *resourcePath = @"2.0/mediaList/latest/byShowUrns";
+    NSString *resourcePath = @"integrationlayer/2.0/mediaList/latest/byShowUrns";
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     [queryItems addObject:[NSURLQueryItem queryItemWithName:@"urns" value:[showURNs componentsJoinedByString: @","]]];
@@ -145,7 +145,7 @@
 
 - (NSURLRequest *)requestLatestMediasForModuleWithURN:(NSString *)moduleURN
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/mediaList/latestByModuleConfigUrn/%@", moduleURN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaList/latestByModuleConfigUrn/%@", moduleURN];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 

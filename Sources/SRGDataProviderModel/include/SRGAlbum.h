@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGImage.h"
 #import "SRGModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -14,19 +15,19 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGAlbum : SRGModel
 
 /**
- *  Album name.
+ *  The album name.
  */
 @property (nonatomic, readonly, copy) NSString *name;
 
 /**
- *  Album small cover image URL.
+ *  The album small cover image.
  */
-@property (nonatomic, readonly, nullable) NSURL *smallCoverImageURL;
+@property (nonatomic, readonly, nullable) SRGImage *smallCoverImage;
 
 /**
- *  Album large cover image URL.
+ *  The album large cover image.
  */
-@property (nonatomic, readonly, nullable) NSURL *largeCoverImageURL;
+@property (nonatomic, readonly, nullable) SRGImage *largeCoverImage;
 
 @end
 

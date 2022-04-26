@@ -41,7 +41,6 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
 
 - (void)setUp
 {
-    // Data provider business unit is irrelevant, such services can be accessed from any data provider.
     self.dataProvider = [[SRGDataProvider alloc] initWithServiceURL:SRGIntegrationLayerProductionServiceURL()];
 }
 
@@ -460,7 +459,7 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
     
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
     
-    self.dataProvider = [[SRGDataProvider alloc] initWithServiceURL:[NSURL URLWithString:@"https://play-mmf.herokuapp.com/integrationlayer"]];
+    self.dataProvider = [[SRGDataProvider alloc] initWithServiceURL:[NSURL URLWithString:@"https://play-mmf.herokuapp.com"]];
     [[self.dataProvider mediaWithURN:@"urn:rts:video:_rts19h30_2" completionBlock:^(SRGMedia * _Nullable media, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(media);
         XCTAssertNil(error);

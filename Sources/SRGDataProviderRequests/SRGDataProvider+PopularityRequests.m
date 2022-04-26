@@ -27,7 +27,7 @@
     NSString *endpoint = s_endpoints[@(type)];
     NSAssert(endpoint, @"A supported social count type must be provided");
     
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/mediaStatistic/byUrn/%@/%@", URN, endpoint];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/mediaStatistic/byUrn/%@/%@", URN, endpoint];
     NSMutableURLRequest *URLRequest = [self URLRequestForResourcePath:resourcePath withQueryItems:nil].mutableCopy;
     URLRequest.HTTPMethod = @"POST";
     [URLRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -37,7 +37,7 @@
 
 - (NSURLRequest *)requestIncreaseSearchResultsViewCountForShow:(SRGShow *)show
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/showStatistic/byUrn/%@/searchResultClicked", show.URN];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/showStatistic/byUrn/%@/searchResultClicked", show.URN];
     NSMutableURLRequest *URLRequest = [self URLRequestForResourcePath:resourcePath withQueryItems:nil].mutableCopy;
     URLRequest.HTTPMethod = @"POST";
     return URLRequest.copy;

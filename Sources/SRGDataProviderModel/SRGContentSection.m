@@ -32,14 +32,16 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGContentSection.new, uid) : @"id",
-                       @keypath(SRGContentSection.new, vendor) : @"vendor",
-                       @keypath(SRGContentSection.new, type) : @"sectionType",
-                       @keypath(SRGContentSection.new, published) : @"isPublished",
-                       @keypath(SRGContentSection.new, personalized) : @"hasPersonalizedContent",
-                       @keypath(SRGContentSection.new, startDate) : @"start",
-                       @keypath(SRGContentSection.new, endDate) : @"end",
-                       @keypath(SRGContentSection.new, presentation) : @"representation" };
+        s_mapping = @{
+            @keypath(SRGContentSection.new, uid) : @"id",
+            @keypath(SRGContentSection.new, vendor) : @"vendor",
+            @keypath(SRGContentSection.new, type) : @"sectionType",
+            @keypath(SRGContentSection.new, published) : @"isPublished",
+            @keypath(SRGContentSection.new, personalized) : @"hasPersonalizedContent",
+            @keypath(SRGContentSection.new, startDate) : @"start",
+            @keypath(SRGContentSection.new, endDate) : @"end",
+            @keypath(SRGContentSection.new, presentation) : @"representation"
+        };
     });
     return s_mapping;
 }

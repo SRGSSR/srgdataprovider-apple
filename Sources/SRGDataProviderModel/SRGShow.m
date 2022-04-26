@@ -6,14 +6,9 @@
 
 #import "SRGShow.h"
 
-#import "NSURL+SRGDataProvider.h"
 #import "SRGJSONTransformers.h"
 
 @import libextobjc;
-
-SRGImageType const SRGImageTypeShowBanner = @"banner";
-SRGImageType const SRGImageTypeShowPoster = @"poster";
-SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 
 @interface SRGShow ()
 
@@ -24,6 +19,7 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 @property (nonatomic) NSURL *podcastDeezerURL;
 @property (nonatomic) NSURL *podcastSpotifyURL;
 @property (nonatomic, copy) NSString *primaryChannelUid;
+@property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSURL *bannerImageURL;
 @property (nonatomic) NSURL *posterImageURL;
 @property (nonatomic) NSURL *podcastImageURL;
@@ -33,7 +29,6 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 @property (nonatomic, copy) NSString *lead;
 @property (nonatomic, copy) NSString *summary;
 
-@property (nonatomic) NSURL *imageURL;
 @property (nonatomic, copy) NSString *imageTitle;
 @property (nonatomic, copy) NSString *imageCopyright;
 
@@ -54,33 +49,57 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGShow.new, homepageURL) : @"homepageUrl",
-                       @keypath(SRGShow.new, podcastSubscriptionURL) : @"podcastSubscriptionUrl",
-                       @keypath(SRGShow.new, podcastStandardDefinitionURL) : @"podcastFeedSdUrl",
-                       @keypath(SRGShow.new, podcastHighDefinitionURL) : @"podcastFeedHdUrl",
-                       @keypath(SRGShow.new, podcastDeezerURL) : @"podcastDeezerUrl",
-                       @keypath(SRGShow.new, podcastSpotifyURL) : @"podcastSpotifyUrl",
-                       @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
-                       @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
-                       @keypath(SRGShow.new, bannerImageURL) : @"bannerImageUrl",
-                       @keypath(SRGShow.new, posterImageURL) : @"posterImageUrl",
-                       @keypath(SRGShow.new, podcastImageURL) : @"podcastImageUrl",
-                       
-                       @keypath(SRGShow.new, title) : @"title",
-                       @keypath(SRGShow.new, lead) : @"lead",
-                       @keypath(SRGShow.new, summary) : @"description",
-                       
-                       @keypath(SRGShow.new, imageURL) : @"imageUrl",
-                       @keypath(SRGShow.new, imageTitle) : @"imageTitle",
-                       @keypath(SRGShow.new, imageCopyright) : @"imageCopyright",
-                       
-                       @keypath(SRGShow.new, uid) : @"id",
-                       @keypath(SRGShow.new, URN) : @"urn",
-                       @keypath(SRGShow.new, transmission) : @"transmission",
-                       @keypath(SRGShow.new, vendor) : @"vendor",
-                       @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation" };
+        s_mapping = @{
+            @keypath(SRGShow.new, homepageURL) : @"homepageUrl",
+            @keypath(SRGShow.new, podcastSubscriptionURL) : @"podcastSubscriptionUrl",
+            @keypath(SRGShow.new, podcastStandardDefinitionURL) : @"podcastFeedSdUrl",
+            @keypath(SRGShow.new, podcastHighDefinitionURL) : @"podcastFeedHdUrl",
+            @keypath(SRGShow.new, podcastDeezerURL) : @"podcastDeezerUrl",
+            @keypath(SRGShow.new, podcastSpotifyURL) : @"podcastSpotifyUrl",
+            @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
+            @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
+            @keypath(SRGShow.new, imageURL) : @"imageUrl",
+            @keypath(SRGShow.new, bannerImageURL) : @"bannerImageUrl",
+            @keypath(SRGShow.new, posterImageURL) : @"posterImageUrl",
+            @keypath(SRGShow.new, podcastImageURL) : @"podcastImageUrl",
+            
+            @keypath(SRGShow.new, title) : @"title",
+            @keypath(SRGShow.new, lead) : @"lead",
+            @keypath(SRGShow.new, summary) : @"description",
+            
+            @keypath(SRGShow.new, imageTitle) : @"imageTitle",
+            @keypath(SRGShow.new, imageCopyright) : @"imageCopyright",
+            
+            @keypath(SRGShow.new, uid) : @"id",
+            @keypath(SRGShow.new, URN) : @"urn",
+            @keypath(SRGShow.new, transmission) : @"transmission",
+            @keypath(SRGShow.new, vendor) : @"vendor",
+            @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation"
+        };
     });
     return s_mapping;
+}
+
+#pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGImage *)bannerImage
+{
+    return [SRGImage imageWithURL:self.bannerImageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGImage *)posterImage
+{
+    return [SRGImage imageWithURL:self.posterImageURL variant:SRGImageVariantPoster];
+}
+
+- (SRGImage *)podcastImage
+{
+    return [SRGImage imageWithURL:self.podcastImageURL variant:SRGImageVariantDefault];
 }
 
 #pragma mark Transformers
@@ -148,24 +167,6 @@ SRGImageType const SRGImageTypeShowPodcast = @"podcast";
 + (NSValueTransformer *)broadcastInformationJSONTransformer
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGBroadcastInformation.class];
-}
-
-#pragma mark SRGImage protocol
-
-- (NSURL *)imageURLForDimension:(SRGImageDimension)dimension withValue:(CGFloat)value type:(SRGImageType)type
-{
-    if ([type isEqualToString:SRGImageTypeShowBanner]) {
-        return [self.bannerImageURL srg_URLForDimension:dimension withValue:value];
-    }
-    else if ([type isEqualToString:SRGImageTypeShowPoster]) {
-        return [self.posterImageURL srg_URLForDimension:dimension withValue:value];
-    }
-    else if ([type isEqualToString:SRGImageTypeShowPodcast]) {
-        return [self.podcastImageURL srg_URLForDimension:dimension withValue:value];
-    }
-    else {
-        return [self.imageURL srg_URLForDimension:dimension withValue:value];
-    }
 }
 
 #pragma mark Equality

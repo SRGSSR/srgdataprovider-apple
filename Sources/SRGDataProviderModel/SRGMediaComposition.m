@@ -32,14 +32,16 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGMediaComposition.new, chapterURN) : @"chapterUrn",
-                       @keypath(SRGMediaComposition.new, segmentURN) : @"segmentUrn",
-                       @keypath(SRGMediaComposition.new, channel) : @"channel",
-                       @keypath(SRGMediaComposition.new, episode) : @"episode",
-                       @keypath(SRGMediaComposition.new, show) : @"show",
-                       @keypath(SRGMediaComposition.new, chapters) : @"chapterList",
-                       @keypath(SRGMediaComposition.new, analyticsLabels) : @"analyticsMetadata",
-                       @keypath(SRGMediaComposition.new, comScoreAnalyticsLabels) : @"analyticsData" };
+        s_mapping = @{
+            @keypath(SRGMediaComposition.new, chapterURN) : @"chapterUrn",
+            @keypath(SRGMediaComposition.new, segmentURN) : @"segmentUrn",
+            @keypath(SRGMediaComposition.new, channel) : @"channel",
+            @keypath(SRGMediaComposition.new, episode) : @"episode",
+            @keypath(SRGMediaComposition.new, show) : @"show",
+            @keypath(SRGMediaComposition.new, chapters) : @"chapterList",
+            @keypath(SRGMediaComposition.new, analyticsLabels) : @"analyticsMetadata",
+            @keypath(SRGMediaComposition.new, comScoreAnalyticsLabels) : @"analyticsData"
+        };
     });
     return s_mapping;
 }

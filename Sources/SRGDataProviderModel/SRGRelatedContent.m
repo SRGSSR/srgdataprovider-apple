@@ -28,12 +28,14 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGRelatedContent.new, uid) : @"id",
-                       @keypath(SRGRelatedContent.new, URL) : @"url",
-                       
-                       @keypath(SRGRelatedContent.new, title) : @"title",
-                       @keypath(SRGRelatedContent.new, lead) : @"lead",
-                       @keypath(SRGRelatedContent.new, summary) : @"description" };
+        s_mapping = @{
+            @keypath(SRGRelatedContent.new, uid) : @"id",
+            @keypath(SRGRelatedContent.new, URL) : @"url",
+            
+            @keypath(SRGRelatedContent.new, title) : @"title",
+            @keypath(SRGRelatedContent.new, lead) : @"lead",
+            @keypath(SRGRelatedContent.new, summary) : @"description"
+        };
     });
     return s_mapping;
 }

@@ -6,6 +6,7 @@
 
 #import "SRGDataProvider+ContentServices.h"
 #import "SRGDataProvider+GeneralServices.h"
+#import "SRGDataProvider+ImageServices.h"
 #import "SRGDataProvider+LiveCenterServices.h"
 #import "SRGDataProvider+ModuleServices.h"
 #import "SRGDataProvider+PopularityServices.h"

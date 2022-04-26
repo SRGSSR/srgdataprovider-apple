@@ -21,6 +21,7 @@
 #import "SRGEpisode.h"
 #import "SRGEpisodeComposition.h"
 #import "SRGIdentifierMetadata.h"
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMedia.h"
 #import "SRGMediaAggregations.h"
