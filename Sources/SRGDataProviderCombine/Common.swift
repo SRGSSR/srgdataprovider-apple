@@ -12,7 +12,7 @@ import SRGDataProviderModel
 
 public extension Calendar {
     /**
-     *  The calendar which the SRG SSR is located in, with its associated timezone (Zurich). Should be used for calendrical
+     *  The calendar which the SRG SSR is located in, with its associated time zone (Zurich). Should be used for calendrical
      *  calculations involving SRG SSR data.
      */
     static var srgDefault: Calendar = {

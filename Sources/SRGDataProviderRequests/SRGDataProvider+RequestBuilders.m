@@ -10,8 +10,8 @@
 
 NSString *SRGStringFromDate(NSDate *date)
 {
-    // IL parameters are interpreted in the IL timezone (expected to be Zurich). Convert to Zurich dates so that the
-    // returned objects have dates which, when converted back to the local timezone, match the original date specified.
+    // IL parameters are interpreted in the IL time zone (expected to be Zurich). Convert to Zurich dates so that the
+    // returned objects have dates which, when converted back to the local time zone, match the original date specified.
     static dispatch_once_t s_onceToken;
     static NSDateFormatter *s_dateFormatter;
     dispatch_once(&s_onceToken, ^{
