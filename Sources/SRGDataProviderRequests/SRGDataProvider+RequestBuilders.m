@@ -6,6 +6,8 @@
 
 #import "SRGDataProvider+RequestBuilders.h"
 
+@import SRGDataProviderModel;
+
 NSString *SRGStringFromDate(NSDate *date)
 {
     // IL parameters are interpreted in the IL timezone (expected to be Zurich). Convert to Zurich dates so that the
@@ -14,9 +16,9 @@ NSString *SRGStringFromDate(NSDate *date)
     static NSDateFormatter *s_dateFormatter;
     dispatch_once(&s_onceToken, ^{
         s_dateFormatter = [[NSDateFormatter alloc] init];
-        [s_dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-        [s_dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Zurich"]];
-        [s_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        s_dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        s_dateFormatter.timeZone = NSTimeZone.srg_defaultTimeZone;
+        s_dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
     });
     return [s_dateFormatter stringFromDate:date];
 }

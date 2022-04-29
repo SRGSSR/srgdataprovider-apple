@@ -5,6 +5,7 @@
 //
 
 #import "NSCalendar+SRGDataProvider.h"
+#import "NSTimeZone+SRGDataProvider.h"
 #import "SRGAlbum.h"
 #import "SRGArtist.h"
 #import "SRGBaseTopic.h"

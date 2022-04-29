@@ -17,9 +17,17 @@ public extension Calendar {
      */
     static var srgDefault: Calendar = {
         var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "Europe/Zurich")!
+        calendar.timeZone = TimeZone.srgTimeZone
         return calendar
     }()
+}
+
+public extension TimeZone {
+    /**
+     *  The time zone which the SRG SSR is located in (Zurich). Should be used for calendrical calculations involving SRG
+     *  SSR data.
+     */
+    static let srgTimeZone = TimeZone(identifier: "Europe/Zurich")!
 }
 
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)

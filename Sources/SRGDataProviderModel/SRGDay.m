@@ -7,6 +7,7 @@
 #import "SRGDay.h"
 
 #import "NSCalendar+SRGDataProvider.h"
+#import "NSTimeZone+SRGDataProvider.h"
 
 @interface SRGDay ()
 
@@ -85,9 +86,8 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         s_dateFormatter = [[NSDateFormatter alloc] init];
-        [s_dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-        // No timezone specified here. This would not make sense, as no time within the day is provided anyway for
-        // proper conversion.
+        s_dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        s_dateFormatter.timeZone = NSTimeZone.srg_defaultTimeZone;
         s_dateFormatter.dateFormat = @"yyyy-MM-dd";
     });
     return [s_dateFormatter stringFromDate:self.date];

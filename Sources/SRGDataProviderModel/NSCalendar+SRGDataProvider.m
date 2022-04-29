@@ -6,6 +6,8 @@
 
 #import "NSCalendar+SRGDataProvider.h"
 
+#import "NSTimeZone+SRGDataProvider.h"
+
 @implementation NSCalendar (PlaySRG)
 
 + (NSCalendar *)srg_defaultCalendar
@@ -14,7 +16,7 @@
     static NSCalendar *s_calendar;
     dispatch_once(&s_onceToken, ^{
         s_calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        s_calendar.timeZone = [NSTimeZone timeZoneWithName:@"Europe/Zurich"];
+        s_calendar.timeZone = NSTimeZone.srg_defaultTimeZone;
     });
     return s_calendar.copy;
 }
