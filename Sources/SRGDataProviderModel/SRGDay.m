@@ -6,6 +6,9 @@
 
 #import "SRGDay.h"
 
+#import "NSCalendar+SRGDataProvider.h"
+#import "NSTimeZone+SRGDataProvider.h"
+
 @interface SRGDay ()
 
 @property (nonatomic) NSDateComponents *components;
@@ -28,7 +31,7 @@
     components.month = month;
     components.year = year;
     
-    NSDate *date = [NSCalendar.currentCalendar dateFromComponents:components];
+    NSDate *date = [NSCalendar.srg_defaultCalendar dateFromComponents:components];
     return [[self.class alloc] initFromDate:date];
 }
 
@@ -44,20 +47,20 @@
     components.month = months;
     components.year = years;
     
-    NSDate *date = [NSCalendar.currentCalendar dateByAddingComponents:components toDate:day.date options:0];
+    NSDate *date = [NSCalendar.srg_defaultCalendar dateByAddingComponents:components toDate:day.date options:0];
     return [[self.class alloc] initFromDate:date];
 }
 
 + (SRGDay *)startDayForUnit:(NSCalendarUnit)unit containingDay:(SRGDay *)day
 {
     NSDate *startDate;
-    [NSCalendar.currentCalendar rangeOfUnit:unit startDate:&startDate interval:nil forDate:day.date];
+    [NSCalendar.srg_defaultCalendar rangeOfUnit:unit startDate:&startDate interval:nil forDate:day.date];
     return [self dayFromDate:startDate];
 }
 
 + (NSDateComponents *)components:(NSCalendarUnit)unitFlags fromDay:(SRGDay *)fromDay toDay:(SRGDay *)toDay
 {
-    return [NSCalendar.currentCalendar components:unitFlags fromDate:fromDay.date toDate:toDay.date options:0];
+    return [NSCalendar.srg_defaultCalendar components:unitFlags fromDate:fromDay.date toDate:toDay.date options:0];
 }
 
 #pragma mark Object lifecycle
@@ -65,7 +68,7 @@
 - (instancetype)initFromDate:(NSDate *)date
 {
     if (self = [super init]) {
-        self.components = [NSCalendar.currentCalendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
+        self.components = [NSCalendar.srg_defaultCalendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
     }
     return self;
 }
@@ -74,7 +77,7 @@
 
 - (NSDate *)date
 {
-    return [NSCalendar.currentCalendar dateFromComponents:self.components];
+    return [NSCalendar.srg_defaultCalendar dateFromComponents:self.components];
 }
 
 - (NSString *)string
@@ -83,9 +86,8 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         s_dateFormatter = [[NSDateFormatter alloc] init];
-        [s_dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-        // No timezone specified here. This would not make sense, as no time within the day is provided anyway for
-        // proper conversion.
+        s_dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        s_dateFormatter.timeZone = NSTimeZone.srg_defaultTimeZone;
         s_dateFormatter.dateFormat = @"yyyy-MM-dd";
     });
     return [s_dateFormatter stringFromDate:self.date];

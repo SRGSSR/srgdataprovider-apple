@@ -9,7 +9,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  Represents a day and provides basic associated arithmetic.
+ *  Represents a day and provides basic associated arithmetic using the default SRG SSR calendar, see
+ *  `NSCalendar+SRGDataProvider.h`.
  */
 @interface SRGDay : MTLModel
 
@@ -49,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSComparisonResult)compare:(SRGDay *)aDay;
 
 /**
- *  Representation of the day as an `NSDate` (midnight for the current calendar).
+ *  Representation of the day as an `NSDate`.
  */
 @property (nonatomic, readonly) NSDate *date;
 
