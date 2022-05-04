@@ -12,13 +12,9 @@
 
 + (NSCalendar *)srg_defaultCalendar
 {
-    static dispatch_once_t s_onceToken;
-    static NSCalendar *s_calendar;
-    dispatch_once(&s_onceToken, ^{
-        s_calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-        s_calendar.timeZone = NSTimeZone.srg_defaultTimeZone;
-    });
-    return s_calendar.copy;
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.timeZone = NSTimeZone.srg_defaultTimeZone;
+    return calendar;
 }
 
 @end

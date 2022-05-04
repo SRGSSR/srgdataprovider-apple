@@ -15,11 +15,11 @@ public extension Calendar {
      *  The calendar which the SRG SSR is located in, with its associated time zone (Zurich). Should be used for calendrical
      *  calculations involving SRG SSR data.
      */
-    static var srgDefault: Calendar {
+    static let srgDefault: Calendar = {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone.srgTimeZone
         return calendar
-    }
+    }()
 }
 
 public extension TimeZone {
