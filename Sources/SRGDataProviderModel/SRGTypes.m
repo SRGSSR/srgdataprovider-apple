@@ -19,28 +19,11 @@ static SRGImageWidth SRGDefaultImageWidthForSize(SRGImageSize size)
     static NSDictionary<NSNumber *, NSNumber *> *s_widths;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-#if TARGET_OS_IOS
-        if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            s_widths = @{
-                @(SRGImageSizeSmall) : @(SRGImageWidth320),
-                @(SRGImageSizeMedium) : @(SRGImageWidth640),
-                @(SRGImageSizeLarge) : @(SRGImageWidth960)
-            };
-        }
-        else {
-            s_widths = @{
-                @(SRGImageSizeSmall) : @(SRGImageWidth320),
-                @(SRGImageSizeMedium) : @(SRGImageWidth960),
-                @(SRGImageSizeLarge) : @(SRGImageWidth1920)
-            };
-        }
-#else
         s_widths = @{
-            @(SRGImageSizeSmall) : @(SRGImageWidth640),
-            @(SRGImageSizeMedium) : @(SRGImageWidth1920),
-            @(SRGImageSizeLarge) : @(SRGImageWidth1920)
+            @(SRGImageSizeSmall) : @(SRGImageWidth320),
+            @(SRGImageSizeMedium) : @(SRGImageWidth480),
+            @(SRGImageSizeLarge) : @(SRGImageWidth960)
         };
-#endif
     });
     
     return s_widths[@(size)].integerValue;
@@ -51,19 +34,11 @@ static SRGImageWidth SRGPosterImageWidthForSize(SRGImageSize size)
     static NSDictionary<NSNumber *, NSNumber *> *s_widths;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-#if TARGET_OS_IOS
         s_widths = @{
-            @(SRGImageSizeSmall) : @(SRGImageWidth320),
-            @(SRGImageSizeMedium) : @(SRGImageWidth480),
-            @(SRGImageSizeLarge) : @(SRGImageWidth640)
+            @(SRGImageSizeSmall) : @(SRGImageWidth240),
+            @(SRGImageSizeMedium) : @(SRGImageWidth320),
+            @(SRGImageSizeLarge) : @(SRGImageWidth480)
         };
-#else
-        s_widths = @{
-            @(SRGImageSizeSmall) : @(SRGImageWidth480),
-            @(SRGImageSizeMedium) : @(SRGImageWidth640),
-            @(SRGImageSizeLarge) : @(SRGImageWidth960)
-        };
-#endif
     });
     return s_widths[@(size)].integerValue;
 }
