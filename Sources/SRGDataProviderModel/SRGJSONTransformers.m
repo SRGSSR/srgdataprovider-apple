@@ -48,7 +48,7 @@ NSValueTransformer *SRGAudioCodecJSONTransformer(void)
                                                                                          @"MP2" : @(SRGAudioCodecMP2),
                                                                                          @"WMAV2" : @(SRGAudioCodecWMAV2),
                                                                                          @"UNKNOWN" : @(SRGAudioCodecUnknown) }
-                                                                         defaultValue:@(SRGAudioCodecNone)
+                                                                         defaultValue:@(SRGAudioCodecUnknown)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;
@@ -67,7 +67,7 @@ NSValueTransformer *SRGBlockingReasonJSONTransformer(void)
                                                                                          @"STARTDATE" : @(SRGBlockingReasonStartDate),
                                                                                          @"ENDDATE" : @(SRGBlockingReasonEndDate),
                                                                                          @"UNKNOWN" : @(SRGBlockingReasonUnknown) }
-                                                                         defaultValue:@(SRGBlockingReasonNone)
+                                                                         defaultValue:@(SRGBlockingReasonUnknown)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;
@@ -230,7 +230,7 @@ NSValueTransformer *SRGMediaContainerJSONTransformer(void)
         s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"MP4" : @(SRGMediaContainerMP4),
                                                                                          @"MKV" : @(SRGMediaContainerMKV),
                                                                                          @"UNKNOWN" : @(SRGMediaContainerUnknown) }
-                                                                         defaultValue:@(SRGMediaContainerNone)
+                                                                         defaultValue:@(SRGMediaContainerUnknown)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;
@@ -302,7 +302,7 @@ NSValueTransformer *SRGStreamingMethodJSONTransformer(void)
                                                                                          @"HTTPS" : @(SRGStreamingMethodHTTPS),
                                                                                          @"DASH" : @(SRGStreamingMethodDASH),
                                                                                          @"UNKNOWN" : @(SRGStreamingMethodUnknown) }
-                                                                         defaultValue:@(SRGStreamingMethodNone)
+                                                                         defaultValue:@(SRGStreamingMethodUnknown)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;
@@ -373,7 +373,7 @@ NSValueTransformer *SRGTransmissionJSONTransformer(void)
                                                                                          @"RADIO" : @(SRGTransmissionRadio),
                                                                                          @"ONLINE" : @(SRGTransmissionOnline),
                                                                                          @"UNKNOWN" : @(SRGTransmissionUnknown) }
-                                                                         defaultValue:@(SRGTransmissionNone)
+                                                                         defaultValue:@(SRGTransmissionUnknown)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;
@@ -436,7 +436,7 @@ NSValueTransformer *SRGVideoCodecJSONTransformer(void)
                                                                                          @"MPEG2" : @(SRGVideoCodecMPEG2),
                                                                                          @"WMV3" : @(SRGVideoCodecWMV3),
                                                                                          @"UNKNOWN" : @(SRGVideoCodecUnknown) }
-                                                                         defaultValue:@(SRGVideoCodecNone)
+                                                                         defaultValue:@(SRGVideoCodecUnknown)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;

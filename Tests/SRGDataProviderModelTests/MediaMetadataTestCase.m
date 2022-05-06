@@ -231,4 +231,16 @@
     XCTAssertEqual([media timeAvailabilityAtDate:currentDate], SRGTimeAvailabilityAvailable);
 }
 
+- (void)testNewUnknownBlockingReason
+{
+    NSError *error = nil;
+    NSDictionary *JSONDictionary = @{ @"blockReason" : @"SRGBlockingReasonNewOne" };
+    SRGMedia *media = [MTLJSONAdapter modelOfClass:SRGMedia.class fromJSONDictionary:JSONDictionary error:&error];
+    NSDate *currentDate = NSDate.date;
+    
+    XCTAssertNil(error);
+    XCTAssertEqual([media blockingReasonAtDate:currentDate], SRGBlockingReasonUnknown);
+    XCTAssertEqual([media timeAvailabilityAtDate:currentDate], SRGTimeAvailabilityAvailable);
+}
+
 @end
