@@ -23,7 +23,7 @@
 "The content was skipped to protect children. Please try again between 11PM and 5AM." = "Une séquence non adaptée aux enfants n’a pas été lue (accessible entre 23h et 5h).";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
-"The content was skipped to protect children. Please try again between 8AM and 6AM." = "Une séquence non adaptée aux enfants n’a pas été lue (accessible entre 20h et 6h).";
+"The content was skipped to protect children. Please try again between 8PM and 6AM." = "Une séquence non adaptée aux enfants n’a pas été lue (accessible entre 20h et 6h).";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "This commercial media is not available." = "Ce contenu n’est actuellement pas disponible.";

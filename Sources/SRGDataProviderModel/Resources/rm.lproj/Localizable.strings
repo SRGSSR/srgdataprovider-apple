@@ -23,7 +23,7 @@
 "The content was skipped to protect children. Please try again between 11PM and 5AM." = "Il cuntegn è vegnì eliminà per proteger uffants. Empuvai puspè tranter las 23.00 e las 05.00.";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
-"The content was skipped to protect children. Please try again between 8AM and 6AM." = "Il cuntegn è vegnì eliminà per proteger uffants. Empruvai puspè tranter las 20.00 e las 06.00.";
+"The content was skipped to protect children. Please try again between 8PM and 6AM." = "Il cuntegn è vegnì eliminà per proteger uffants. Empruvai puspè tranter las 20.00 e las 06.00.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "This commercial media is not available." = "Quest medium commerzial n'è betg disponibel.";
