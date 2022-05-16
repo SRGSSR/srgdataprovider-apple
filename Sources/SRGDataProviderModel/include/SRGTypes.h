@@ -671,13 +671,10 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGImageVariant) {
  *  Image widths for image retrieval.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageWidth) {
-    SRGImageWidth160 = 160,
     SRGImageWidth240 = 240,
     SRGImageWidth320 = 320,
     SRGImageWidth480 = 480,
-    SRGImageWidth640 = 640,
     SRGImageWidth960 = 960,
-    SRGImageWidth1280 = 1280,
     SRGImageWidth1920 = 1920
 };
 
