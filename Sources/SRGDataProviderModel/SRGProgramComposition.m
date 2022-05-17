@@ -9,6 +9,8 @@
 #import "SRGProgram+Private.h"
 #import "SRGJSONTransformers.h"
 
+@import libextobjc;
+
 static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChannel *channel)
 {
     NSString *startDateString = [SRGISO8601DateJSONTransformer() reverseTransformedValue:program.startDate];
@@ -19,8 +21,6 @@ static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChan
         SRGProgramCompositionAssignUidToProgram(subprogram, channel);
     }];
 }
-
-@import libextobjc;
 
 @interface SRGProgramComposition ()
 
