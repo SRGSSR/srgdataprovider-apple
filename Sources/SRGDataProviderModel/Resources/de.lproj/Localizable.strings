@@ -20,7 +20,7 @@
 "The content was skipped due to legal restrictions." = "Dieser Inhalt ist aus rechtlichen Gründen nicht verfügbar und wird übersprungen.";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
-"The content was skipped to protect children. Please try again between 11PM and 5AM." = "Dieser Inhalt ist aus Gründen des Jugendschutzes zur Zeit nicht verfügbar. Bitte versuchen Sie es zwischen 23:00 und 5:00 Uhr noch einmal.";
+"The content was skipped to protect children. Please try again between 10PM and 5AM." = "Dieser Inhalt ist aus Gründen des Jugendschutzes zur Zeit nicht verfügbar. Bitte versuchen Sie es zwischen 22:00 und 5:00 Uhr noch einmal.";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The content was skipped to protect children. Please try again between 8PM and 6AM." = "Dieser Inhalt ist aus Gründen des Jugendschutzes zur Zeit nicht verfügbar. Bitte versuchen Sie es zwischen 20:00 und 6:00 Uhr noch einmal.";
@@ -47,7 +47,7 @@
 "This program contains disturbing content and might not be suitable to some audiences" = "Dieses Programm kann verstörend wirken und ist für Kinder nicht geeignet";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
-"To protect children, this media is only available between 11PM and 5AM." = "Aus Gründen des Jugendschutzes steht dieser Inhalt nur zwischen 23:00 und 05:00 Uhr zur Verfügung.";
+"To protect children, this media is only available between 10PM and 5AM." = "Aus Gründen des Jugendschutzes steht dieser Inhalt nur zwischen 22:00 und 05:00 Uhr zur Verfügung.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "To protect children, this media is only available between 8PM and 6AM." = "Aus Gründen des Jugendschutzes steht dieser Inhalt nur zwischen 20:00 und 06:00 Uhr zur Verfügung.";
