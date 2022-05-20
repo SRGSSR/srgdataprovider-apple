@@ -17,12 +17,14 @@
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_endpoints;
     dispatch_once(&s_onceToken, ^{
-        s_endpoints = @{ @(SRGSocialCountTypeSRGView) : @"clicked",
-                         @(SRGSocialCountTypeSRGLike) : @"liked",
-                         @(SRGSocialCountTypeFacebookShare) : @"shared/facebook",
-                         @(SRGSocialCountTypeTwitterShare) : @"shared/twitter",
-                         @(SRGSocialCountTypeGooglePlusShare) : @"shared/google",
-                         @(SRGSocialCountTypeWhatsAppShare) : @"shared/whatsapp" };
+        s_endpoints = @{
+            @(SRGSocialCountTypeSRGView) : @"clicked",
+            @(SRGSocialCountTypeSRGLike) : @"liked",
+            @(SRGSocialCountTypeFacebookShare) : @"shared/facebook",
+            @(SRGSocialCountTypeTwitterShare) : @"shared/twitter",
+            @(SRGSocialCountTypeGooglePlusShare) : @"shared/google",
+            @(SRGSocialCountTypeWhatsAppShare) : @"shared/whatsapp"
+        };
     });
     NSString *endpoint = s_endpoints[@(type)];
     NSAssert(endpoint, @"A supported social count type must be provided");

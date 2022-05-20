@@ -11,8 +11,10 @@ static NSString *SRGMediaTypeParameter(SRGMediaType mediaType)
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_mediaTypes;
     dispatch_once(&s_onceToken, ^{
-        s_mediaTypes = @{ @(SRGMediaTypeVideo) : @"video",
-                          @(SRGMediaTypeAudio) : @"audio" };
+        s_mediaTypes = @{
+            @(SRGMediaTypeVideo) : @"video",
+            @(SRGMediaTypeAudio) : @"audio"
+        };
     });
     return s_mediaTypes[@(mediaType)];
 }
@@ -22,9 +24,11 @@ static NSString *SRGQualityParameter(SRGQuality quality)
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_qualities;
     dispatch_once(&s_onceToken, ^{
-        s_qualities = @{ @(SRGQualitySD) : @"sd",
-                         @(SRGQualityHD) : @"hd",
-                         @(SRGQualityHQ) : @"hd" /* Same value as for HD */ };
+        s_qualities = @{
+            @(SRGQualitySD) : @"sd",
+            @(SRGQualityHD) : @"hd",
+            @(SRGQualityHQ) : @"hd" /* Same value as for HD */
+        };
     });
     return s_qualities[@(quality)];
 }
@@ -34,8 +38,10 @@ static NSString *SRGSortCriteriumParameter(SRGSortCriterium sortCriterium)
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_sortCriteria;
     dispatch_once(&s_onceToken, ^{
-        s_sortCriteria = @{ @(SRGSortCriteriumDefault) : @"default",
-                            @(SRGSortCriteriumDate) : @"date" };
+        s_sortCriteria = @{
+            @(SRGSortCriteriumDefault) : @"default",
+            @(SRGSortCriteriumDate) : @"date"
+        };
     });
     return s_sortCriteria[@(sortCriterium)];
 }
@@ -45,8 +51,10 @@ static NSString *SRGSortDirectionParameter(SRGSortDirection sortDirection)
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_sortDirections;
     dispatch_once(&s_onceToken, ^{
-        s_sortDirections = @{ @(SRGSortDirectionDescending) : @"desc",
-                              @(SRGSortDirectionAscending) : @"asc" };
+        s_sortDirections = @{
+            @(SRGSortDirectionDescending) : @"desc",
+            @(SRGSortDirectionAscending) : @"asc"
+        };
     });
     return s_sortDirections[@(sortDirection)];
 }

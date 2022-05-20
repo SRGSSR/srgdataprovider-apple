@@ -37,8 +37,10 @@
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_mediaTypes;
     dispatch_once(&s_onceToken, ^{
-        s_mediaTypes = @{ @(SRGMediaTypeVideo) : @"video",
-                          @(SRGMediaTypeAudio) : @"audio" };
+        s_mediaTypes = @{
+            @(SRGMediaTypeVideo) : @"video",
+            @(SRGMediaTypeAudio) : @"audio"
+        };
     });
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray arrayWithObject:[NSURLQueryItem queryItemWithName:@"q" value:query]];
@@ -57,9 +59,11 @@
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_transmissionPaths;
     dispatch_once(&s_onceToken, ^{
-        s_transmissionPaths = @{  @(SRGTransmissionNone) : @"",
-                                  @(SRGTransmissionTV) : @"/tv",
-                                  @(SRGTransmissionRadio) : @"/radio" };
+        s_transmissionPaths = @{
+            @(SRGTransmissionNone) : @"",
+            @(SRGTransmissionTV) : @"/tv",
+            @(SRGTransmissionRadio) : @"/radio"
+        };
     });
     
     NSString *transmissionPath = s_transmissionPaths[@(transmission)];
@@ -76,9 +80,11 @@
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_transmissionPaths;
     dispatch_once(&s_onceToken, ^{
-        s_transmissionPaths = @{  @(SRGTransmissionNone) : @"",
-                                  @(SRGTransmissionTV) : @"tv/",
-                                  @(SRGTransmissionRadio) : @"radio/" };
+        s_transmissionPaths = @{
+            @(SRGTransmissionNone) : @"",
+            @(SRGTransmissionTV) : @"tv/",
+            @(SRGTransmissionRadio) : @"radio/"
+        };
     });
     
     NSString *transmissionPath = s_transmissionPaths[@(transmission)];
