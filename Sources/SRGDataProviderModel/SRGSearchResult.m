@@ -23,7 +23,9 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGSearchResult.new, URN) : @"urn" };
+        s_mapping = @{
+            @keypath(SRGSearchResult.new, URN) : @"urn"
+        };
     });
     return s_mapping;
 }

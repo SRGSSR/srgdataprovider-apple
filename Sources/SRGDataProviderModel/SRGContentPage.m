@@ -30,12 +30,14 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGContentPage.new, uid) : @"id",
-                       @keypath(SRGContentPage.new, vendor) : @"vendor",
-                       @keypath(SRGContentPage.new, title) : @"title",
-                       @keypath(SRGContentPage.new, published) : @"isPublished",
-                       @keypath(SRGContentPage.new, topicURN) : @"topicUrn",
-                       @keypath(SRGContentPage.new, sections) : @"sectionList" };
+        s_mapping = @{
+            @keypath(SRGContentPage.new, uid) : @"id",
+            @keypath(SRGContentPage.new, vendor) : @"vendor",
+            @keypath(SRGContentPage.new, title) : @"title",
+            @keypath(SRGContentPage.new, published) : @"isPublished",
+            @keypath(SRGContentPage.new, topicURN) : @"topicUrn",
+            @keypath(SRGContentPage.new, sections) : @"sectionList"
+        };
     });
     return s_mapping;
 }

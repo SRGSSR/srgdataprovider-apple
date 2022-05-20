@@ -41,23 +41,25 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGResource.new, URL) : @"url",
-                       @keypath(SRGResource.new, quality) : @"quality",
-                       @keypath(SRGResource.new, presentation) : @"presentation",
-                       @keypath(SRGResource.new, MIMEType) : @"mimeType",
-                       @keypath(SRGResource.new, streamingMethod) : @"streaming",
-                       @keypath(SRGResource.new, live) : @"live",
-                       @keypath(SRGResource.new, DVR) : @"dvr",
-                       @keypath(SRGResource.new, mediaContainer) : @"mediaContainer",
-                       @keypath(SRGResource.new, audioCodec) : @"audioCodec",
-                       @keypath(SRGResource.new, videoCodec) : @"videoCodec",
-                       @keypath(SRGResource.new, tokenType) : @"tokenType",
-                       @keypath(SRGResource.new, streamOffset) : @"streamOffset",
-                       @keypath(SRGResource.new, DRMs) : @"drmList",
-                       @keypath(SRGResource.new, subtitleVariants) : @"subtitleInformationList",
-                       @keypath(SRGResource.new, audioVariants) : @"audioTrackList",
-                       @keypath(SRGResource.new, analyticsLabels) : @"analyticsMetadata",
-                       @keypath(SRGResource.new, comScoreAnalyticsLabels) : @"analyticsData" };
+        s_mapping = @{
+            @keypath(SRGResource.new, URL) : @"url",
+            @keypath(SRGResource.new, quality) : @"quality",
+            @keypath(SRGResource.new, presentation) : @"presentation",
+            @keypath(SRGResource.new, MIMEType) : @"mimeType",
+            @keypath(SRGResource.new, streamingMethod) : @"streaming",
+            @keypath(SRGResource.new, live) : @"live",
+            @keypath(SRGResource.new, DVR) : @"dvr",
+            @keypath(SRGResource.new, mediaContainer) : @"mediaContainer",
+            @keypath(SRGResource.new, audioCodec) : @"audioCodec",
+            @keypath(SRGResource.new, videoCodec) : @"videoCodec",
+            @keypath(SRGResource.new, tokenType) : @"tokenType",
+            @keypath(SRGResource.new, streamOffset) : @"streamOffset",
+            @keypath(SRGResource.new, DRMs) : @"drmList",
+            @keypath(SRGResource.new, subtitleVariants) : @"subtitleInformationList",
+            @keypath(SRGResource.new, audioVariants) : @"audioTrackList",
+            @keypath(SRGResource.new, analyticsLabels) : @"analyticsMetadata",
+            @keypath(SRGResource.new, comScoreAnalyticsLabels) : @"analyticsData"
+        };
     });
     return s_mapping;
 }

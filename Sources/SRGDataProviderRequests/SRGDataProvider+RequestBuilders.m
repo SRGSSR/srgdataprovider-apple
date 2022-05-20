@@ -6,17 +6,19 @@
 
 #import "SRGDataProvider+RequestBuilders.h"
 
+@import SRGDataProviderModel;
+
 NSString *SRGStringFromDate(NSDate *date)
 {
-    // IL parameters are interpreted in the IL timezone (expected to be Zurich). Convert to Zurich dates so that the
-    // returned objects have dates which, when converted back to the local timezone, match the original date specified.
+    // IL parameters are interpreted in the IL time zone (expected to be Zurich). Convert to Zurich dates so that the
+    // returned objects have dates which, when converted back to the local time zone, match the original date specified.
     static dispatch_once_t s_onceToken;
     static NSDateFormatter *s_dateFormatter;
     dispatch_once(&s_onceToken, ^{
         s_dateFormatter = [[NSDateFormatter alloc] init];
-        [s_dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-        [s_dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"Europe/Zurich"]];
-        [s_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        s_dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        s_dateFormatter.timeZone = NSTimeZone.srg_defaultTimeZone;
+        s_dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
     });
     return [s_dateFormatter stringFromDate:date];
 }
@@ -26,12 +28,14 @@ NSString *SRGPathComponentForVendor(SRGVendor vendor)
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_pathComponents;
     dispatch_once(&s_onceToken, ^{
-        s_pathComponents = @{ @(SRGVendorRSI) : @"rsi",
-                              @(SRGVendorRTR) : @"rtr",
-                              @(SRGVendorRTS) : @"rts",
-                              @(SRGVendorSRF) : @"srf",
-                              @(SRGVendorSWI) : @"swi",
-                              @(SRGVendorSSATR) : @"ssatr" };
+        s_pathComponents = @{
+            @(SRGVendorRSI) : @"rsi",
+            @(SRGVendorRTR) : @"rtr",
+            @(SRGVendorRTS) : @"rts",
+            @(SRGVendorSRF) : @"srf",
+            @(SRGVendorSWI) : @"swi",
+            @(SRGVendorSSATR) : @"ssatr"
+        };
     });
     return s_pathComponents[@(vendor)] ?: @"not_supported";
 }

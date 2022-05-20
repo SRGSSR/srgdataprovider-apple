@@ -12,7 +12,7 @@
 
 - (NSURLRequest *)requestRadioChannelsForVendor:(SRGVendor)vendor
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/channelList/radio", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/channelList/radio", SRGPathComponentForVendor(vendor)];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
@@ -20,7 +20,7 @@
                                        withUid:(NSString *)channelUid
                                  livestreamUid:(NSString *)livestreamUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/channel/%@/radio/nowAndNext", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/channel/%@/radio/nowAndNext", SRGPathComponentForVendor(vendor), channelUid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (livestreamUid) {
@@ -36,7 +36,7 @@
                                              fromDate:(NSDate *)fromDate
                                                toDate:(NSDate *)toDate
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/programListComposition/radio/byChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/programListComposition/radio/byChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (livestreamUid) {
@@ -55,14 +55,14 @@
 - (NSURLRequest *)requestRadioLivestreamsForVendor:(SRGVendor)vendor
                                         channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/audio/livestreamsByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/audio/livestreamsByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioLivestreamsForVendor:(SRGVendor)vendor
                                   contentProviders:(SRGContentProviders)contentProviders
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/audio/livestreams", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/audio/livestreams", SRGPathComponentForVendor(vendor)];
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     
     switch (contentProviders) {
@@ -87,28 +87,28 @@
 - (NSURLRequest *)requestRadioLatestMediasForVendor:(SRGVendor)vendor
                                          channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/audio/latestByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/audio/latestByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioMostPopularMediasForVendor:(SRGVendor)vendor
                                               channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/audio/mostClickedByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/audio/mostClickedByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioLatestEpisodesForVendor:(SRGVendor)vendor
                                            channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/audio/latestEpisodesByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/audio/latestEpisodesByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioLatestVideosForVendor:(SRGVendor)vendor
                                          channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/video/latestByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/latestByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
@@ -120,27 +120,27 @@
         day = SRGDay.today;
     }
     
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/audio/episodesByDateAndChannel/%@/%@", SRGPathComponentForVendor(vendor), day.string, channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/audio/episodesByDateAndChannel/%@/%@", SRGPathComponentForVendor(vendor), day.string, channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioTopicsForVendor:(SRGVendor)vendor
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/topicList/radio", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/topicList/radio", SRGPathComponentForVendor(vendor)];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioShowsForVendor:(SRGVendor)vendor
                                   channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/showList/radio/alphabeticalByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/showList/radio/alphabeticalByChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioShowsForVendor:(SRGVendor)vendor
                                matchingQuery:(NSString *)query
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/searchResultShowList/radio", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/searchResultShowList/radio", SRGPathComponentForVendor(vendor)];
     NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"q" value:query] ];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }
@@ -148,14 +148,14 @@
 - (NSURLRequest *)requestRadioSongsForVendor:(SRGVendor)vendor
                                   channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/songList/radio/byChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/songList/radio/byChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 - (NSURLRequest *)requestRadioCurrentSongForVendor:(SRGVendor)vendor
                                         channelUid:(NSString *)channelUid
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/songList/radio/byChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/songList/radio/byChannel/%@", SRGPathComponentForVendor(vendor), channelUid];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:@[ [NSURLQueryItem queryItemWithName:@"onlyCurrentSong" value:@"true"] ]];
 }
 

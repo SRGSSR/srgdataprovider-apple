@@ -36,17 +36,19 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
-        [mapping addEntriesFromDictionary:@{ @keypath(SRGChapter.new, fullLengthMarkIn) : @"fullLengthMarkIn",
-                                             @keypath(SRGChapter.new, fullLengthMarkOut) : @"fullLengthMarkOut",
-                                             @keypath(SRGChapter.new, resources) : @"resourceList",
-                                             @keypath(SRGChapter.new, segments) : @"segmentList",
-                                             
-                                             @keypath(SRGChapter.new, preTrailerStartDate) : @"preTrailerStart",
-                                             @keypath(SRGChapter.new, postTrailerEndDate) : @"postTrailerStop",
-                                             
-                                             @keypath(SRGChapter.new, aspectRatio) : @"aspectRatio",
-                                             @keypath(SRGChapter.new, resourceReferenceDate) : @"dvrReferenceDate",
-                                             @keypath(SRGChapter.new, spriteSheet) : @"spriteSheet" }];
+        [mapping addEntriesFromDictionary:@{
+            @keypath(SRGChapter.new, fullLengthMarkIn) : @"fullLengthMarkIn",
+            @keypath(SRGChapter.new, fullLengthMarkOut) : @"fullLengthMarkOut",
+            @keypath(SRGChapter.new, resources) : @"resourceList",
+            @keypath(SRGChapter.new, segments) : @"segmentList",
+            
+            @keypath(SRGChapter.new, preTrailerStartDate) : @"preTrailerStart",
+            @keypath(SRGChapter.new, postTrailerEndDate) : @"postTrailerStop",
+            
+            @keypath(SRGChapter.new, aspectRatio) : @"aspectRatio",
+            @keypath(SRGChapter.new, resourceReferenceDate) : @"dvrReferenceDate",
+            @keypath(SRGChapter.new, spriteSheet) : @"spriteSheet"
+        }];
         s_mapping = mapping.copy;
     });
     return s_mapping;
@@ -83,14 +85,14 @@
     static NSValueTransformer *s_transformer;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSArray *JSONArray, BOOL *success, NSError *__autoreleasing *error) {
+        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSArray *JSONArray, BOOL *pSuccess, NSError *__autoreleasing *error) {
             NSArray<SRGSegment *> *segments = [MTLJSONAdapter modelsOfClass:SRGSegment.class fromJSONArray:JSONArray error:error];
             if (! segments) {
                 return nil;
             }
             
             return SRGSanitizedSegments(segments);
-        } reverseBlock:^id(NSArray *objects, BOOL *success, NSError *__autoreleasing *error) {
+        } reverseBlock:^id(NSArray *objects, BOOL *pSuccess, NSError *__autoreleasing *error) {
             return [MTLJSONAdapter JSONArrayFromModels:objects error:error];
         }];
     });

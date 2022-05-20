@@ -639,18 +639,54 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
 };
 
 /**
- *  Image dimensions for image retrieval.
+ *  Image scalings.
  */
-typedef NS_CLOSED_ENUM(NSInteger, SRGImageDimension) {
-    /**
-     *  Width.
-     */
-    SRGImageDimensionWidth = 0,
-    /**
-     *  Height.
-     */
-    SRGImageDimensionHeight
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageScaling) {
+    SRGImageScalingAspectFillSixteenToNine = 0,
+    SRGImageScalingDefault = SRGImageScalingAspectFillSixteenToNine,
+    SRGImageScalingAspectFitSixteenToNine,
+    SRGImageScalingAspectFitBlackSquare,
+    SRGImageScalingAspectFitTransparentSquare,
+    SRGImageScalingPreserveAspectRatio
 };
+
+/**
+ *  Semantic image sizes.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageSize) {
+    SRGImageSizeSmall = 0,
+    SRGImageSizeMedium,
+    SRGImageSizeLarge
+};
+
+/**
+ *  Semantic image variant.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageVariant) {
+    SRGImageVariantDefault = 0,
+    SRGImageVariantPoster
+};
+
+/**
+ *  Image widths for image retrieval.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageWidth) {
+    SRGImageWidth240 = 240,
+    SRGImageWidth320 = 320,
+    SRGImageWidth480 = 480,
+    SRGImageWidth960 = 960,
+    SRGImageWidth1920 = 1920
+};
+
+/**
+ *  Return the recommended image width corresponding to a given semantic size and variant.
+ */
+OBJC_EXPORT SRGImageWidth SRGRecommendedImageWidth(SRGImageSize size, SRGImageVariant variant);
+
+/**
+ *  Return the recommended image `CGSize` corresponding to a given semantic size and variant.
+ */
+OBJC_EXPORT CGSize SRGRecommendedImageCGSize(SRGImageSize size, SRGImageVariant variant);
 
 /**
  *  Filter for requesting medias.

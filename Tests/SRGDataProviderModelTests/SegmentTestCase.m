@@ -16,17 +16,22 @@
 - (void)testDisjointNormalSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @40000,
-                                                 @"markOut" : @45000,
-                                                 @"duration" : @5000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @40000,
+                @"markOut" : @45000,
+                @"duration" : @5000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -52,19 +57,24 @@
 - (void)testDisjointBlockedSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000,
-                                                 @"blockReason" : @"LEGAL" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @40000,
-                                                 @"markOut" : @45000,
-                                                 @"duration" : @5000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000,
+                @"blockReason" : @"LEGAL"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @40000,
+                @"markOut" : @45000,
+                @"duration" : @5000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -90,17 +100,22 @@
 - (void)testOverlappingNormalSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @15000,
-                                                 @"markOut" : @35000,
-                                                 @"duration" : @20000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @15000,
+                @"markOut" : @35000,
+                @"duration" : @20000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -126,18 +141,23 @@
 - (void)testOverlappingNormalAndBlockedSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @15000,
-                                                 @"markOut" : @35000,
-                                                 @"duration" : @20000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @15000,
+                @"markOut" : @35000,
+                @"duration" : @20000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -163,18 +183,23 @@
 - (void)testOverlappingBlockedAndNormalSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000,
-                                                 @"blockReason" : @"GEOBLOCK" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @15000,
-                                                 @"markOut" : @35000,
-                                                 @"duration" : @20000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000,
+                @"blockReason" : @"GEOBLOCK"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @15000,
+                @"markOut" : @35000,
+                @"duration" : @20000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -200,19 +225,24 @@
 - (void)testOverlappingBlockedSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000,
-                                                 @"blockReason" : @"LEGAL" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @15000,
-                                                 @"markOut" : @35000,
-                                                 @"duration" : @20000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000,
+                @"blockReason" : @"LEGAL"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @15000,
+                @"markOut" : @35000,
+                @"duration" : @20000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -238,17 +268,22 @@
 - (void)testNestedNormalSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @20000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @40000,
+                @"duration" : @20000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -281,18 +316,23 @@
 - (void)testNestedBlockedInNormalSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @20000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @40000,
+                @"duration" : @20000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -325,18 +365,23 @@
 - (void)testNestedNormalInBlockedSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000,
-                                                 @"blockReason" : @"GEOBLOCK" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @20000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000,
+                @"blockReason" : @"GEOBLOCK"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @40000,
+                @"duration" : @20000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -355,19 +400,24 @@
 - (void)testNestedBlockedSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000,
-                                                 @"blockReason" : @"LEGAL" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @20000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000,
+                @"blockReason" : @"LEGAL"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @40000,
+                @"duration" : @20000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -400,17 +450,22 @@
 - (void)testNestedNormalSegmentsWithSameMarkIn
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @30000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @10000,
+                @"markOut" : @40000,
+                @"duration" : @30000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -436,18 +491,23 @@
 - (void)testNestedBlockedInNormalSegmentsWithSameMarkIn
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @30000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @10000,
+                @"markOut" : @40000,
+                @"duration" : @30000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -473,18 +533,23 @@
 - (void)testNestedNormalInBlockedSegmentsWithSameMarkIn
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000,
-                                                 @"blockReason" : @"GEOBLOCK" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @30000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000,
+                @"blockReason" : @"GEOBLOCK"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @10000,
+                @"markOut" : @40000,
+                @"duration" : @30000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -503,19 +568,24 @@
 - (void)testNestedBlockedSegmentsWithSameMarkIn
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000,
-                                                 @"blockReason" : @"LEGAL" },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @30000,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000,
+                @"blockReason" : @"LEGAL"
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @10000,
+                @"markOut" : @40000,
+                @"duration" : @30000,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -541,17 +611,23 @@
 - (void)testIdenticalSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+                
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -570,17 +646,22 @@
 - (void)testNeighboringSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @20000,
-                                                 @"duration" : @10000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @45000,
-                                                 @"duration" : @25000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @20000,
+                @"duration" : @10000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @45000,
+                @"duration" : @25000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -618,17 +699,23 @@
 - (void)testInvalidSegments
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @10000,
-                                                 @"duration" : @0 },
-                                              
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @60000,
-                                                 @"markOut" : @10000,
-                                                 @"duration" : @50000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @10000,
+                @"duration" : @0
+                
+            },
+            @{
+                @"urn" : @"A",
+                @"markIn" : @60000,
+                @"markOut" : @10000,
+                @"duration" : @50000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -641,22 +728,28 @@
 - (void)testSRFScenario1
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @30000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @50000,
-                                                 @"duration" : @30000 },
-                                              
-                                              @{ @"urn" : @"C",
-                                                 @"markIn" : @60000,
-                                                 @"markOut" : @90000,
-                                                 @"duration" : @30000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @40000,
+                @"duration" : @30000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @50000,
+                @"duration" : @30000
+            },
+            @{
+                @"urn" : @"C",
+                @"markIn" : @60000,
+                @"markOut" : @90000,
+                @"duration" : @30000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -690,29 +783,36 @@
 - (void)testSRFScenario2
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @40000,
-                                                 @"duration" : @30000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @20000,
-                                                 @"markOut" : @70000,
-                                                 @"duration" : @50000,
-                                                 @"blockReason" : @"LEGAL" },
-                                              
-                                              @{ @"urn" : @"C",
-                                                 @"markIn" : @30000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @30000,
-                                                 @"blockReason" : @"COMMERCIAL" },
-                                              
-                                              @{ @"urn" : @"D",
-                                                 @"markIn" : @60000,
-                                                 @"markOut" : @90000,
-                                                 @"duration" : @30000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @40000,
+                @"duration" : @30000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @20000,
+                @"markOut" : @70000,
+                @"duration" : @50000,
+                @"blockReason" : @"LEGAL"
+            },
+            @{
+                @"urn" : @"C",
+                @"markIn" : @30000,
+                @"markOut" : @60000,
+                @"duration" : @30000,
+                @"blockReason" : @"COMMERCIAL"
+            },
+            @{
+                @"urn" : @"D",
+                @"markIn" : @60000,
+                @"markOut" : @90000,
+                @"duration" : @30000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -760,29 +860,36 @@
 - (void)testSRFScenario3
 {
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @30000,
-                                                 @"duration" : @20000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @30000,
-                                                 @"markOut" : @50000,
-                                                 @"duration" : @20000,
-                                                 @"blockReason" : @"LEGAL" },
-                                              
-                                              @{ @"urn" : @"C",
-                                                 @"markIn" : @45000,
-                                                 @"markOut" : @70000,
-                                                 @"duration" : @25000,
-                                                 @"blockReason" : @"COMMERCIAL" },
-                                              
-                                              @{ @"urn" : @"D",
-                                                 @"markIn" : @65000,
-                                                 @"markOut" : @80000,
-                                                 @"duration" : @15000 }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @30000,
+                @"duration" : @20000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @30000,
+                @"markOut" : @50000,
+                @"duration" : @20000,
+                @"blockReason" : @"LEGAL"
+            },
+            @{
+                @"urn" : @"C",
+                @"markIn" : @45000,
+                @"markOut" : @70000,
+                @"duration" : @25000,
+                @"blockReason" : @"COMMERCIAL"
+            },
+            @{
+                @"urn" : @"D",
+                @"markIn" : @65000,
+                @"markOut" : @80000,
+                @"duration" : @15000
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);
@@ -823,18 +930,23 @@
 {
     // After cut, a segment smaller than 1 second results but is discarded for this reason
     NSError *error = nil;
-    NSDictionary *JSONDictionary = @{ @"segmentList" : @[
-                                              @{ @"urn" : @"A",
-                                                 @"markIn" : @10000,
-                                                 @"markOut" : @60000,
-                                                 @"duration" : @50000 },
-                                              
-                                              @{ @"urn" : @"B",
-                                                 @"markIn" : @10500,
-                                                 @"markOut" : @30000,
-                                                 @"duration" : @19500,
-                                                 @"blockReason" : @"GEOBLOCK" }
-                                              ] };
+    NSDictionary *JSONDictionary = @{
+        @"segmentList" : @[
+            @{
+                @"urn" : @"A",
+                @"markIn" : @10000,
+                @"markOut" : @60000,
+                @"duration" : @50000
+            },
+            @{
+                @"urn" : @"B",
+                @"markIn" : @10500,
+                @"markOut" : @30000,
+                @"duration" : @19500,
+                @"blockReason" : @"GEOBLOCK"
+            }
+        ]
+    };
     
     SRGChapter *chapter = [MTLJSONAdapter modelOfClass:SRGChapter.class fromJSONDictionary:JSONDictionary error:&error];
     XCTAssertNil(error);

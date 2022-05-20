@@ -4,6 +4,8 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "NSCalendar+SRGDataProvider.h"
+#import "NSTimeZone+SRGDataProvider.h"
 #import "SRGAlbum.h"
 #import "SRGArtist.h"
 #import "SRGBaseTopic.h"
@@ -21,6 +23,7 @@
 #import "SRGEpisode.h"
 #import "SRGEpisodeComposition.h"
 #import "SRGIdentifierMetadata.h"
+#import "SRGImage.h"
 #import "SRGImageMetadata.h"
 #import "SRGMedia.h"
 #import "SRGMediaAggregations.h"

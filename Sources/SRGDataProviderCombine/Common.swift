@@ -10,6 +10,26 @@ import SRGDataProviderModel
 
 @_implementationOnly import Mantle
 
+public extension Calendar {
+    /**
+     *  The calendar which the SRG SSR is located in, with its associated time zone (Zurich). Should be used for calendrical
+     *  calculations involving SRG SSR data.
+     */
+    static let srgDefault: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone.srgTimeZone
+        return calendar
+    }()
+}
+
+public extension TimeZone {
+    /**
+     *  The time zone which the SRG SSR is located in (Zurich). Should be used for calendrical calculations involving SRG
+     *  SSR data.
+     */
+    static let srgTimeZone = TimeZone(identifier: "Europe/Zurich")!
+}
+
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 private extension SRGDataProvider {
     typealias PaginatedObjectsOutput<T> = (objects: [T], total: UInt, aggregations: SRGMediaAggregations?, suggestions: [SRGSearchSuggestion]?, nextRequest: URLRequest?)

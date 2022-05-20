@@ -29,13 +29,15 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGSection.new, uid) : @"id",
-                       @keypath(SRGSection.new, startDate) : @"publishStartTimestamp",
-                       @keypath(SRGSection.new, endDate) : @"publishEndTimestamp",
-                       
-                       @keypath(SRGSection.new, title) : @"title",
-                       @keypath(SRGSection.new, lead) : @"lead",
-                       @keypath(SRGSection.new, summary) : @"description" };
+        s_mapping = @{
+            @keypath(SRGSection.new, uid) : @"id",
+            @keypath(SRGSection.new, startDate) : @"publishStartTimestamp",
+            @keypath(SRGSection.new, endDate) : @"publishEndTimestamp",
+            
+            @keypath(SRGSection.new, title) : @"title",
+            @keypath(SRGSection.new, lead) : @"lead",
+            @keypath(SRGSection.new, summary) : @"description"
+        };
     });
     return s_mapping;
 }

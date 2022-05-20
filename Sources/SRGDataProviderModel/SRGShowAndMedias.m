@@ -24,8 +24,10 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGShowAndMedias.new, show) : @"show",
-                       @keypath(SRGShowAndMedias.new, medias) : @"mediaList" };
+        s_mapping = @{
+            @keypath(SRGShowAndMedias.new, show) : @"show",
+            @keypath(SRGShowAndMedias.new, medias) : @"mediaList"
+        };
     });
     return s_mapping;
 }

@@ -30,12 +30,14 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGSong.new, title) : @"title",
-                       @keypath(SRGSong.new, date) : @"date",
-                       @keypath(SRGSong.new, duration) : @"duration",
-                       @keypath(SRGSong.new, playing) : @"isPlayingNow",
-                       @keypath(SRGSong.new, artist) : @"artist",
-                       @keypath(SRGSong.new, album) : @"cd" };
+        s_mapping = @{
+            @keypath(SRGSong.new, title) : @"title",
+            @keypath(SRGSong.new, date) : @"date",
+            @keypath(SRGSong.new, duration) : @"duration",
+            @keypath(SRGSong.new, playing) : @"isPlayingNow",
+            @keypath(SRGSong.new, artist) : @"artist",
+            @keypath(SRGSong.new, album) : @"cd"
+        };
     });
     return s_mapping;
 }

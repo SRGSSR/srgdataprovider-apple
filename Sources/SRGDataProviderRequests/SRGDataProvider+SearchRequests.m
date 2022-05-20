@@ -14,7 +14,7 @@
                            matchingQuery:(NSString *)query
                             withSettings:(SRGMediaSearchSettings *)settings
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/searchResultMediaList", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/searchResultMediaList", SRGPathComponentForVendor(vendor)];
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (query) {
@@ -32,13 +32,15 @@
                           matchingQuery:(NSString *)query
                               mediaType:(SRGMediaType)mediaType
 {
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/searchResultShowList", SRGPathComponentForVendor(vendor)];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/searchResultShowList", SRGPathComponentForVendor(vendor)];
     
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_mediaTypes;
     dispatch_once(&s_onceToken, ^{
-        s_mediaTypes = @{ @(SRGMediaTypeVideo) : @"video",
-                          @(SRGMediaTypeAudio) : @"audio" };
+        s_mediaTypes = @{
+            @(SRGMediaTypeVideo) : @"video",
+            @(SRGMediaTypeAudio) : @"audio"
+        };
     });
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray arrayWithObject:[NSURLQueryItem queryItemWithName:@"q" value:query]];
@@ -57,14 +59,16 @@
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_transmissionPaths;
     dispatch_once(&s_onceToken, ^{
-        s_transmissionPaths = @{  @(SRGTransmissionNone) : @"",
-                                  @(SRGTransmissionTV) : @"/tv",
-                                  @(SRGTransmissionRadio) : @"/radio" };
+        s_transmissionPaths = @{
+            @(SRGTransmissionNone) : @"",
+            @(SRGTransmissionTV) : @"/tv",
+            @(SRGTransmissionRadio) : @"/radio"
+        };
     });
     
     NSString *transmissionPath = s_transmissionPaths[@(transmission)];
     NSAssert(transmissionPath, @"Only None, TV and Radio transmissions are supported for shows ssearch");
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/searchResultShowList%@", SRGPathComponentForVendor(vendor), transmissionPath];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/searchResultShowList%@", SRGPathComponentForVendor(vendor), transmissionPath];
 
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray arrayWithObject:[NSURLQueryItem queryItemWithName:@"q" value:query]];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
@@ -76,14 +80,16 @@
     static dispatch_once_t s_onceToken;
     static NSDictionary<NSNumber *, NSString *> *s_transmissionPaths;
     dispatch_once(&s_onceToken, ^{
-        s_transmissionPaths = @{  @(SRGTransmissionNone) : @"",
-                                  @(SRGTransmissionTV) : @"tv/",
-                                  @(SRGTransmissionRadio) : @"radio/" };
+        s_transmissionPaths = @{
+            @(SRGTransmissionNone) : @"",
+            @(SRGTransmissionTV) : @"tv/",
+            @(SRGTransmissionRadio) : @"radio/"
+        };
     });
     
     NSString *transmissionPath = s_transmissionPaths[@(transmission)];
     NSAssert(transmissionPath, @"Only None, TV and Radio transmissions are supported for most searched shows");
-    NSString *resourcePath = [NSString stringWithFormat:@"2.0/%@/showList/%@mostClickedSearchResults", SRGPathComponentForVendor(vendor), transmissionPath];
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/showList/%@mostClickedSearchResults", SRGPathComponentForVendor(vendor), transmissionPath];
     return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
@@ -94,10 +100,10 @@
 {
     NSString *resourcePath = nil;
     if (fullLengthExcluded) {
-        resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/video/latestByTags/excludeFullLength", SRGPathComponentForVendor(vendor)];
+        resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/latestByTags/excludeFullLength", SRGPathComponentForVendor(vendor)];
     }
     else {
-        resourcePath = [NSString stringWithFormat:@"2.0/%@/mediaList/video/latestByTags", SRGPathComponentForVendor(vendor)];
+        resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/latestByTags", SRGPathComponentForVendor(vendor)];
     }
     
     NSString *includesString = [tags componentsJoinedByString:@","];

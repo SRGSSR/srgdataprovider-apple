@@ -25,9 +25,10 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGCrewMember.new, name) : @"realName",
-                       @keypath(SRGCrewMember.new, role) : @"role",
-                       @keypath(SRGCrewMember.new, characterName) : @"name"
+        s_mapping = @{
+            @keypath(SRGCrewMember.new, name) : @"realName",
+            @keypath(SRGCrewMember.new, role) : @"role",
+            @keypath(SRGCrewMember.new, characterName) : @"name"
         };
     });
     return s_mapping;

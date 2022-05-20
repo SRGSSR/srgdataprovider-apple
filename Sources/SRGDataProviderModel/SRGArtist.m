@@ -24,8 +24,10 @@
     static NSDictionary *s_mapping;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_mapping = @{ @keypath(SRGArtist.new, name) : @"name",
-                       @keypath(SRGArtist.new, URL) : @"url" };
+        s_mapping = @{
+            @keypath(SRGArtist.new, name) : @"name",
+            @keypath(SRGArtist.new, URL) : @"url"
+        };
     });
     return s_mapping;
 }

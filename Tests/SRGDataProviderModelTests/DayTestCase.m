@@ -27,7 +27,7 @@
     components2.hour = 9;
     components2.minute = 41;
 
-    NSDate *date2 = [NSCalendar.currentCalendar dateFromComponents:components2];
+    NSDate *date2 = [NSCalendar.srg_defaultCalendar dateFromComponents:components2];
     SRGDay *day2 = [SRGDay dayFromDate:date2];
     XCTAssertEqualObjects(day2.string, @"2015-07-03");
 }
@@ -36,28 +36,28 @@
 {
     NSDateComponents *components1 = [[NSDateComponents alloc] init];
     
-    NSDate *date1 = [NSCalendar.currentCalendar dateFromComponents:components1];
+    NSDate *date1 = [NSCalendar.srg_defaultCalendar dateFromComponents:components1];
     SRGDay *day1 = [SRGDay dayFromDate:date1];
     XCTAssertEqualObjects(day1.string, @"0001-01-01");
     
     NSDateComponents *components2 = [[NSDateComponents alloc] init];
     components2.year = 2015;
     
-    NSDate *date2 = [NSCalendar.currentCalendar dateFromComponents:components2];
+    NSDate *date2 = [NSCalendar.srg_defaultCalendar dateFromComponents:components2];
     SRGDay *day2 = [SRGDay dayFromDate:date2];
     XCTAssertEqualObjects(day2.string, @"2015-01-01");
     
     NSDateComponents *components3 = [[NSDateComponents alloc] init];
     components3.month = 12;
     
-    NSDate *date3 = [NSCalendar.currentCalendar dateFromComponents:components3];
+    NSDate *date3 = [NSCalendar.srg_defaultCalendar dateFromComponents:components3];
     SRGDay *day3 = [SRGDay dayFromDate:date3];
     XCTAssertEqualObjects(day3.string, @"0001-12-01");
     
     NSDateComponents *components4 = [[NSDateComponents alloc] init];
     components4.day = 7;
     
-    NSDate *date4 = [NSCalendar.currentCalendar dateFromComponents:components4];
+    NSDate *date4 = [NSCalendar.srg_defaultCalendar dateFromComponents:components4];
     SRGDay *day4 = [SRGDay dayFromDate:date4];
     XCTAssertEqualObjects(day4.string, @"0001-01-07");
 }
@@ -101,7 +101,7 @@
     components5.hour = 9;
     components5.minute = 41;
     
-    NSDate *date5 = [NSCalendar.currentCalendar dateFromComponents:components5];
+    NSDate *date5 = [NSCalendar.srg_defaultCalendar dateFromComponents:components5];
     SRGDay *day5 = [SRGDay dayFromDate:date5];
     
     XCTAssertEqual([day1 compare:day5], NSOrderedSame);
@@ -131,7 +131,7 @@
     components1.minute = 45;
     components1.second = 27;
     
-    NSDate *date1 = [NSCalendar.currentCalendar dateFromComponents:components1];
+    NSDate *date1 = [NSCalendar.srg_defaultCalendar dateFromComponents:components1];
     SRGDay *day1 = [SRGDay dayFromDate:date1];
     
     NSDateComponents *components2 = [[NSDateComponents alloc] init];
@@ -139,7 +139,7 @@
     components2.month = 4;
     components2.day = 5;
     
-    NSDate *date2 = [NSCalendar.currentCalendar dateFromComponents:components2];
+    NSDate *date2 = [NSCalendar.srg_defaultCalendar dateFromComponents:components2];
     SRGDay *day2 = [SRGDay dayFromDate:date2];
     
     XCTAssertEqualObjects(day1, day2);
@@ -169,7 +169,7 @@
     components.month = 7;
     components.day = 3;
     
-    NSDate *date = [NSCalendar.currentCalendar dateFromComponents:components];
+    NSDate *date = [NSCalendar.srg_defaultCalendar dateFromComponents:components];
     SRGDay *day = [SRGDay dayFromDate:date];
     XCTAssertEqualObjects(day.string, @"2015-07-03");
     
@@ -227,7 +227,7 @@
 - (void)testDateRepresentation
 {
     SRGDay *day = [SRGDay day:3 month:1 year:2016];
-    NSDateComponents *components = [NSCalendar.currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:day.date];
+    NSDateComponents *components = [NSCalendar.srg_defaultCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:day.date];
     XCTAssertEqual(components.year, 2016);
     XCTAssertEqual(components.month, 1);
     XCTAssertEqual(components.day, 3);
