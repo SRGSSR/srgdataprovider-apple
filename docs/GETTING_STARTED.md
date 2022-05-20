@@ -201,6 +201,17 @@ The image API allows you to either generate images based on a finite set of widt
 
 Should these semantic sizes not match your needs you are always free to either request images based on some desired widths or to define your own set of semantic sizes.
 
+## Dates and times
+
+Formatted dates provided as request parameters, as well as data delivered by the SRG Data Provider library, are tightly bound to the Zurich time zone.
+
+In general it makes little sense for applications using SRG SSR data to format dates and times in other time zones. This is why the data provider library provides standard time zone and calendar extensions to access the SRG SSR time zone in a consistent way:
+
+- `NSTimeZone.srg_defaultTimeZone` in Objective-C and `TimeZone.srgDefault` in Swift.
+- `NSCalendar.srg_defaultCalendar` in Objective-C and `Calendar.srgDefault` in Swift.
+
+Your application is free to format dates returned by the SRG Data Provider library in any time zone, though using the above helpers can deliver a more consistent user experience overall.
+
 ## Service availability
 
 Request availability depends on the business unit. Refer to the provided [service compatibility matrix](SERVICE_AVAILABILITY.md) for reference. This matrix also provides information about page constraints for services supporting pagination.
