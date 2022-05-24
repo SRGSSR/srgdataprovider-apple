@@ -111,6 +111,10 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      */
     SRGContentPresentationTypeHero,
     /**
+     *  Highlight.
+     */
+    SRGContentPresentationTypeHighlight,
+    /**
      *  Grid.
      */
     SRGContentPresentationTypeGrid,

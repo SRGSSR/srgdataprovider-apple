@@ -108,6 +108,7 @@ NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void)
     dispatch_once(&s_onceToken, ^{
         s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"Swimlane" : @(SRGContentPresentationTypeSwimlane),
                                                                                          @"HeroStage" : @(SRGContentPresentationTypeHero),
+                                                                                         @"Highlight" : @(SRGContentPresentationTypeHighlight),
                                                                                          @"Grid" : @(SRGContentPresentationTypeGrid),
                                                                                          @"MediaElement" : @(SRGContentPresentationTypeMediaHighlight),
                                                                                          @"MediaElementSwimlane" : @(SRGContentPresentationTypeMediaHighlightSwimlane),
