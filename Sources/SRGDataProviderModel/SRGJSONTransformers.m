@@ -107,19 +107,19 @@ NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void)
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"Swimlane" : @(SRGContentPresentationTypeSwimlane),
-                                                                                         @"HeroStage" : @(SRGContentPresentationTypeHero),
+                                                                                         @"HeroStage" : @(SRGContentPresentationTypeHeroStage),
                                                                                          @"Highlight" : @(SRGContentPresentationTypeHighlight),
                                                                                          @"Grid" : @(SRGContentPresentationTypeGrid),
-                                                                                         @"MediaElement" : @(SRGContentPresentationTypeMediaHighlight),
-                                                                                         @"MediaElementSwimlane" : @(SRGContentPresentationTypeMediaHighlightSwimlane),
-                                                                                         @"ShowElement" : @(SRGContentPresentationTypeShowHighlight),
+                                                                                         @"MediaElement" : @(SRGContentPresentationTypeMediaElement),
+                                                                                         @"MediaElementSwimlane" : @(SRGContentPresentationTypeMediaElementSwimlane),
+                                                                                         @"ShowElement" : @(SRGContentPresentationTypeShowElement),
                                                                                          @"FavoriteShows" : @(SRGContentPresentationTypeFavoriteShows),
                                                                                          @"Livestreams" : @(SRGContentPresentationTypeLivestreams),
                                                                                          @"TopicSelector" : @(SRGContentPresentationTypeTopicSelector),
                                                                                          @"ShowAccess" : @(SRGContentPresentationTypeShowAccess),
-                                                                                         @"ContinueWatching" : @(SRGContentPresentationTypeResumePlayback),
+                                                                                         @"ContinueWatching" : @(SRGContentPresentationTypeContinueWatching),
                                                                                          @"WatchLater" : @(SRGContentPresentationTypeWatchLater),
-                                                                                         @"MyProgram" : @(SRGContentPresentationTypePersonalizedProgram) }
+                                                                                         @"MyProgram" : @(SRGContentPresentationTypeMyProgram) }
                                                                          defaultValue:@(SRGContentPresentationTypeNone)
                                                                   reverseDefaultValue:nil];
     });

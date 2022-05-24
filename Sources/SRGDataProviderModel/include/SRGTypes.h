@@ -107,9 +107,9 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      */
     SRGContentPresentationTypeSwimlane,
     /**
-     *  Hero.
+     *  Hero stage.
      */
-    SRGContentPresentationTypeHero,
+    SRGContentPresentationTypeHeroStage,
     /**
      *  Highlight.
      */
@@ -119,17 +119,17 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      */
     SRGContentPresentationTypeGrid,
     /**
-     *  Media highlight (focus on a single media).
+     *  Media element (focus on a single media).
      */
-    SRGContentPresentationTypeMediaHighlight,
+    SRGContentPresentationTypeMediaElement,
     /**
-     *  Media highlight swimlane (focus on a several medias).
+     *  Media element swimlane (focus on a several medias).
      */
-    SRGContentPresentationTypeMediaHighlightSwimlane,
+    SRGContentPresentationTypeMediaElementSwimlane,
     /**
-     *  Show highlight (focus on a single show).
+     *  Show element (focus on a single show).
      */
-    SRGContentPresentationTypeShowHighlight,
+    SRGContentPresentationTypeShowElement,
     
     /**
      *  @name Presentations for predefined sections.
@@ -152,17 +152,17 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      */
     SRGContentPresentationTypeShowAccess,
     /**
-     *  Resume playback.
+     *  Continue watching (resume playback).
      */
-    SRGContentPresentationTypeResumePlayback,
+    SRGContentPresentationTypeContinueWatching,
     /**
      *  Watch later.
      */
     SRGContentPresentationTypeWatchLater,
     /**
-     *  Personalized program.
+     *  My program (personalized playback).
      */
-    SRGContentPresentationTypePersonalizedProgram
+    SRGContentPresentationTypeMyProgram
 };
 
 /**
