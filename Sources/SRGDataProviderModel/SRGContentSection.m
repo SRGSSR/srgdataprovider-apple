@@ -73,4 +73,21 @@
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGContentPresentation.class];
 }
 
+#pragma mark Equality
+
+- (BOOL)isEqual:(id)object
+{
+    if (! [object isKindOfClass:self.class]) {
+        return NO;
+    }
+    
+    SRGContentSection *otherContentSection = object;
+    return [self.uid isEqual:otherContentSection.uid];
+}
+
+- (NSUInteger)hash
+{
+    return self.uid.hash;
+}
+
 @end

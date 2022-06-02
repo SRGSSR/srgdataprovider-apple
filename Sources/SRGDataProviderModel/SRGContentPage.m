@@ -54,4 +54,21 @@
     return [MTLJSONAdapter arrayTransformerWithModelClass:SRGContentSection.class];
 }
 
+#pragma mark Equality
+
+- (BOOL)isEqual:(id)object
+{
+    if (! [object isKindOfClass:self.class]) {
+        return NO;
+    }
+    
+    SRGContentPage *otherContentPage = object;
+    return [self.uid isEqual:otherContentPage.uid];
+}
+
+- (NSUInteger)hash
+{
+    return self.uid.hash;
+}
+
 @end

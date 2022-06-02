@@ -37,6 +37,23 @@
     return self;
 }
 
+#pragma mark Equality
+
+- (BOOL)isEqual:(id)object
+{
+    if (! [object isKindOfClass:self.class]) {
+        return NO;
+    }
+    
+    SRGImage *otherImage = object;
+    return [self.URL isEqual:otherImage.URL] && self.variant == otherImage.variant;
+}
+
+- (NSUInteger)hash
+{
+    return [NSString stringWithFormat:@"%@_%@", self.URL, @(self.variant)].hash;
+}
+
 #pragma mark Description
 
 - (NSString *)description

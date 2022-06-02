@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGImage.h"
 #import "SRGModel.h"
 #import "SRGTypes.h"
 
@@ -33,6 +34,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  Short label associated with the content.
  */
 @property (nonatomic, readonly, copy, nullable) NSString *label;
+
+/**
+ *  Image associated with the content.
+ */
+@property (nonatomic, readonly, nullable) SRGImage *image;
 
 /**
  *  `YES` iff a detail page should be made available for the content.
