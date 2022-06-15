@@ -45,7 +45,6 @@
 #import "SRGSearchSuggestion.h"
 #import "SRGSection.h"
 #import "SRGSegment.h"
-#import "SRGServiceMessage.h"
 #import "SRGShow.h"
 #import "SRGShowAndMedias.h"
 #import "SRGShowIdentifierMetadata.h"

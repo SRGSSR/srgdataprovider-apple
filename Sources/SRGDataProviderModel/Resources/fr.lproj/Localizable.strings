@@ -20,7 +20,7 @@
 "The content was skipped due to legal restrictions." = "Une séquence dépubliée sur décision de justice n’a pas été lue.";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
-"The content was skipped to protect children. Please try again between 10PM and 5AM." = "Une séquence non adaptés aux enfants n’a pas été lue (accessible entre 22h et 5h).";
+"The content was skipped to protect children. Please try again between 10PM and 5AM." = "Une séquence non adaptée aux enfants n’a pas été lue (accessible entre 22h et 5h).";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The content was skipped to protect children. Please try again between 8PM and 6AM." = "Une séquence non adaptée aux enfants n’a pas été lue (accessible entre 20h et 6h).";

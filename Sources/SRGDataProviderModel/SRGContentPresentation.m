@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *summary;
 @property (nonatomic, copy) NSString *label;
+@property (nonatomic) NSURL *imageURL;
 @property (nonatomic) BOOL hasDetailPage;
 @property (nonatomic, getter=isRandomized) BOOL randomized;
 
@@ -35,11 +36,19 @@
             @keypath(SRGContentPresentation.new, title) : @"properties.title",
             @keypath(SRGContentPresentation.new, summary) : @"properties.description",
             @keypath(SRGContentPresentation.new, label) : @"properties.label",
+            @keypath(SRGContentPresentation.new, imageURL) : @"properties.imageUrl",
             @keypath(SRGContentPresentation.new, hasDetailPage) : @"properties.hasDetailPage",
             @keypath(SRGContentPresentation.new, randomized) : @"properties.pickRandomElement"
         };
     });
     return s_mapping;
+}
+
+#pragma mark Getters and setters
+
+- (SRGImage *)image
+{
+    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
 }
 
 #pragma mark Transformers
