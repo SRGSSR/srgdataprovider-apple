@@ -107,6 +107,27 @@
 
 @end
 
+@implementation SRGItemBucket
+
+#pragma mark MTLJSONSerializing protocol
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    static NSDictionary *s_mapping;
+    static dispatch_once_t s_onceToken;
+    dispatch_once(&s_onceToken, ^{
+        NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
+        [mapping addEntriesFromDictionary:@{
+            @keypath(SRGItemBucket.new, URN) : @"urn",
+            @keypath(SRGItemBucket.new, title) : @"title"
+        }];
+        s_mapping = mapping.copy;
+    });
+    return s_mapping;
+}
+
+@end
+
 @implementation SRGMediaTypeBucket
 
 #pragma mark MTLJSONSerializing protocol
@@ -181,27 +202,6 @@
 
 @end
 
-@implementation SRGShowBucket
-
-#pragma mark MTLJSONSerializing protocol
-
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
-{
-    static NSDictionary *s_mapping;
-    static dispatch_once_t s_onceToken;
-    dispatch_once(&s_onceToken, ^{
-        NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
-        [mapping addEntriesFromDictionary:@{
-            @keypath(SRGShowBucket.new, URN) : @"urn",
-            @keypath(SRGShowBucket.new, title) : @"title"
-        }];
-        s_mapping = mapping.copy;
-    });
-    return s_mapping;
-}
-
-@end
-
 @implementation SRGSubtitlesAvailableBucket
 
 #pragma mark MTLJSONSerializing protocol
@@ -214,27 +214,6 @@
         NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
         [mapping addEntriesFromDictionary:@{
             @keypath(SRGSubtitlesAvailableBucket.new, subtitlesAvailable) : @"subtitlesAvailable"
-        }];
-        s_mapping = mapping.copy;
-    });
-    return s_mapping;
-}
-
-@end
-
-@implementation SRGTopicBucket
-
-#pragma mark MTLJSONSerializing protocol
-
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
-{
-    static NSDictionary *s_mapping;
-    static dispatch_once_t s_onceToken;
-    dispatch_once(&s_onceToken, ^{
-        NSMutableDictionary *mapping = [super JSONKeyPathsByPropertyKey].mutableCopy;
-        [mapping addEntriesFromDictionary:@{
-            @keypath(SRGShowBucket.new, URN) : @"urn",
-            @keypath(SRGShowBucket.new, title) : @"title"
         }];
         s_mapping = mapping.copy;
     });
@@ -300,12 +279,12 @@
 
 + (NSValueTransformer *)showBucketsJSONTransformer
 {
-    return [MTLJSONAdapter arrayTransformerWithModelClass:SRGShowBucket.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:SRGItemBucket.class];
 }
 
 + (NSValueTransformer *)topicBucketsJSONTransformer
 {
-    return [MTLJSONAdapter arrayTransformerWithModelClass:SRGTopicBucket.class];
+    return [MTLJSONAdapter arrayTransformerWithModelClass:SRGItemBucket.class];
 }
 
 + (NSValueTransformer *)durationInMinutesBucketsJSONTransformer
