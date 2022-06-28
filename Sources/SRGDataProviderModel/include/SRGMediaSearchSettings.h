@@ -56,22 +56,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) SRGMediaType mediaType;
 
 /**
- *  If `@YES`, restrict results to medias with subtitles, if `@NO` to medias without. The default is `nil`, i.e.
- *  no such filter is applied.
+ *  If `YES` restrict results to medias with subtitles, otherwise does not apply any such filter.
  */
-@property (nonatomic, nullable) NSNumber *subtitlesAvailable;
+@property (nonatomic) BOOL subtitlesAvailable;
 
 /**
- *  If `@YES`, restrict results to medias which can be downloaded, if `@NO` to medias which cannot be. The default is
- *  `nil`, i.e. no such filter is applied.
+ *  If `YES` restrict results to medias which can be downloaded, otherwise does not apply any such filter.
  */
-@property (nonatomic, nullable) NSNumber *downloadAvailable;
+@property (nonatomic) BOOL downloadAvailable;
 
 /**
- *  If `@YES`, restrict results to medias playable abroad, if `@NO` to medias playable within Switzerland only. The
- *  default is `nil`, i.e. no such filter is applied.
+ *  If `YES` restrict results to medias playable abroad, otherwise does not apply any such filter.
  */
-@property (nonatomic, nullable) NSNumber *playableAbroad;
+@property (nonatomic) BOOL playableAbroad;
 
 /**
  *  Restrict results to a given quality. Default is `SRGQualityNone`, i.e. no such filter is applied.

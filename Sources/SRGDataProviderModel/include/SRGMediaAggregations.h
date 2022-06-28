@@ -58,6 +58,23 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /**
+ *  Bucket for a generic item.
+ */
+@interface SRGItemBucket : SRGBucket
+
+/**
+ *  The URN associated with the item.
+ */
+@property (nonatomic, readonly, copy) NSString *URN;
+
+/**
+ *  The item title.
+ */
+@property (nonatomic, readonly, copy) NSString *title;
+
+@end
+
+/**
  *  Bucket for a media type.
  */
 @interface SRGMediaTypeBucket : SRGBucket
@@ -94,23 +111,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /**
- *  Bucket for a show.
- */
-@interface SRGShowBucket : SRGBucket
-
-/**
- *  The show URN associated with the bucket.
- */
-@property (nonatomic, readonly, copy) NSString *URN;
-
-/**
- *  The show title.
- */
-@property (nonatomic, readonly, copy) NSString *title;
-
-@end
-
-/**
  *  Bucket for subtitles availability.
  */
 @interface SRGSubtitlesAvailableBucket : SRGBucket
@@ -119,23 +119,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  The boolean value for the subtitles availability.
  */
 @property (nonatomic, readonly) BOOL subtitlesAvailable;
-
-@end
-
-/**
- *  Bucket for a topic.
- */
-@interface SRGTopicBucket : SRGBucket
-
-/**
- *  The topic URN associated with the bucket.
- */
-@property (nonatomic, readonly, copy) NSString *URN;
-
-/**
- *  The topic title.
- */
-@property (nonatomic, readonly, copy) NSString *title;
 
 @end
 
@@ -156,8 +139,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSArray<SRGQualityBucket *> *qualityBuckets;
 
-@property (nonatomic, readonly) NSArray<SRGShowBucket *> *showBuckets;
-@property (nonatomic, readonly) NSArray<SRGTopicBucket *> *topicBuckets;
+@property (nonatomic, readonly) NSArray<SRGItemBucket *> *showBuckets;
+@property (nonatomic, readonly) NSArray<SRGItemBucket *> *topicBuckets;
 
 @property (nonatomic, readonly) NSArray<SRGDurationBucket *> *durationInMinutesBuckets;
 @property (nonatomic, readonly) NSArray<SRGDateBucket *> *dateBuckets;
