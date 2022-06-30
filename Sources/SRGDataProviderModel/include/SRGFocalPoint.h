@@ -14,14 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGFocalPoint : SRGModel
 
 /**
- *  The width percentage at which the point is located.
+ *  The relative width (value between 0 and 1) at which the point is located, 0 corresponding to the leading edge,
+ *  1 to the trailing edge.
  */
-@property (nonatomic, readonly) CGFloat widthPercentage;
+@property (nonatomic, readonly) CGFloat relativeWidth;
 
 /**
- *  The height percentage at which the point is located.
+ *  The relative height (value between 0 and 1) at which the point is located, 0 corresponding to the bottom edge,
+ *  1 to the top edge.
  */
-@property (nonatomic, readonly) CGFloat heightPercentage;
+@property (nonatomic, readonly) CGFloat relativeHeight;
 
 @end
 
