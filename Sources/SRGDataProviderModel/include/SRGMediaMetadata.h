@@ -12,8 +12,6 @@
 #import "SRGSocialCount.h"
 #import "SRGTypes.h"
 
-@import Foundation;
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**

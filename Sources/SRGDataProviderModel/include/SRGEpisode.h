@@ -10,8 +10,6 @@
 #import "SRGModel.h"
 #import "SRGSocialCount.h"
 
-@import CoreGraphics;
-
 // Forward declarations.
 @class SRGMedia;
 

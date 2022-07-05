@@ -22,6 +22,7 @@
 #import "SRGDRM.h"
 #import "SRGEpisode.h"
 #import "SRGEpisodeComposition.h"
+#import "SRGFocalPoint.h"
 #import "SRGIdentifierMetadata.h"
 #import "SRGImage.h"
 #import "SRGImageMetadata.h"
