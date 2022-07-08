@@ -265,10 +265,6 @@ static NSString * const kUserId = @"test_user_id";
     
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request 2 succeeded"];
     
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    dateComponents.year = 2016;
-    dateComponents.month = 5;
-    dateComponents.day = 12;
     SRGDay *day = [SRGDay day:12 month:5 year:2016];
     [[self.dataProvider tvEpisodesForVendor:SRGVendorSWI day:day withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(error);

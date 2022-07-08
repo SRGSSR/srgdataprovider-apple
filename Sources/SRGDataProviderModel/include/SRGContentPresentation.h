@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGFocalPoint.h"
 #import "SRGImage.h"
 #import "SRGModel.h"
 #import "SRGTypes.h"
@@ -19,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The presentation type.
  */
 @property (nonatomic, readonly) SRGContentPresentationType type;
+
+/**
+ *  The image focal point, if any.
+ */
+@property (nonatomic, readonly, nullable) SRGFocalPoint *imageFocalPoint;
 
 /**
  *  The title to be displayed alongside the content.

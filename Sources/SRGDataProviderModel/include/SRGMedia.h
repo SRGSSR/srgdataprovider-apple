@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGFocalPoint.h"
 #import "SRGMediaMetadata.h"
 #import "SRGMediaParentMetadata.h"
 #import "SRGModel.h"
@@ -21,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The recommended way to present the media.
  */
 @property (nonatomic, readonly) SRGPresentation presentation;
+
+/**
+ *  The image focal point, if any.
+ */
+@property (nonatomic, readonly, nullable) SRGFocalPoint *imageFocalPoint;
 
 /**
  *  Available audio variants.

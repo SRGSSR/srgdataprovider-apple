@@ -11,9 +11,6 @@
 #import "SRGShowIdentifierMetadata.h"
 #import "SRGTypes.h"
 
-@import CoreGraphics;
-@import Foundation;
-
 NS_ASSUME_NONNULL_BEGIN
 
 /**

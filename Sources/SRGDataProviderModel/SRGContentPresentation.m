@@ -13,6 +13,7 @@
 @interface SRGContentPresentation ()
 
 @property (nonatomic) SRGContentPresentationType type;
+@property (nonatomic) SRGFocalPoint *imageFocalPoint;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *summary;
 @property (nonatomic, copy) NSString *label;
@@ -33,6 +34,7 @@
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
             @keypath(SRGContentPresentation.new, type) : @"name",
+            @keypath(SRGContentPresentation.new, imageFocalPoint) : @"properties.imageFocalPoint",
             @keypath(SRGContentPresentation.new, title) : @"properties.title",
             @keypath(SRGContentPresentation.new, summary) : @"properties.description",
             @keypath(SRGContentPresentation.new, label) : @"properties.label",
@@ -52,6 +54,11 @@
 }
 
 #pragma mark Transformers
+
++ (NSValueTransformer *)imageFocalPointJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGFocalPoint.class];
+}
 
 + (NSValueTransformer *)typeJSONTransformer
 {

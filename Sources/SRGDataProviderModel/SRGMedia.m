@@ -14,6 +14,7 @@
 @interface SRGMedia () <SRGMediaExtendedMetadata>
 
 @property (nonatomic) SRGPresentation presentation;
+@property (nonatomic) SRGFocalPoint *imageFocalPoint;
 @property (nonatomic) NSArray<SRGVariant *> *audioVariants;
 @property (nonatomic) NSArray<SRGVariant *> *subtitleVariants;
 
@@ -62,6 +63,7 @@
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
             @keypath(SRGMedia.new, presentation) : @"presentation",
+            @keypath(SRGMedia.new, imageFocalPoint) : @"imageFocalPoint",
             @keypath(SRGMedia.new, audioVariants) : @"audioTrackList",
             @keypath(SRGMedia.new, subtitleVariants) : @"subtitleInformationList",
             
@@ -123,6 +125,11 @@
 + (NSValueTransformer *)presentationJSONTransformer
 {
     return SRGPresentationJSONTransformer();
+}
+
++ (NSValueTransformer *)imageFocalPointJSONTransformer
+{
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGFocalPoint.class];
 }
 
 + (NSValueTransformer *)audioVariantsJSONTransformer

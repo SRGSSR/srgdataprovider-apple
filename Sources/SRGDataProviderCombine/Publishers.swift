@@ -38,9 +38,13 @@ public extension Publisher {
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension Publishers {
     /**
-     *  Make the upstream publisher publish each time a second signal publisher emits some value.
+     *  Make the upstream publisher publish each time a second signal publisher emits some value. If no
+     *  signal is provided the publisher never executes.
      */
-    static func Publish<S, P>(onOutputFrom signal: S, _ publisher: @escaping () -> P) -> AnyPublisher<P.Output, P.Failure> where S: Publisher, P: Publisher, S.Failure == Never {
+    static func Publish<S, P>(onOutputFrom signal: S?, _ publisher: @escaping () -> P) -> AnyPublisher<P.Output, P.Failure> where S: Publisher, P: Publisher, S.Failure == Never {
+        guard let signal = signal else {
+            return Empty<P.Output, P.Failure>().eraseToAnyPublisher()
+        }
         return signal
             .map { _ in }
             .setFailureType(to: P.Failure.self)          // TODO: Remove when iOS 14 is the minimum deployment target
@@ -52,9 +56,14 @@ public extension Publishers {
     }
     
     /**
-     *  Make the upstream publisher execute once and repeat each time a second signal publisher emits some value.
+     *  Make the upstream publisher execute once and repeat each time a second signal publisher emits some value. If no
+     *  signal is provided the publisher simply executes once and never repeats.
      */
-    static func PublishAndRepeat<S, P>(onOutputFrom signal: S, _ publisher: @escaping () -> P) -> AnyPublisher<P.Output, P.Failure> where S: Publisher, P: Publisher, S.Failure == Never {
+    static func PublishAndRepeat<S, P>(onOutputFrom signal: S?, _ publisher: @escaping () -> P) -> AnyPublisher<P.Output, P.Failure> where S: Publisher, P: Publisher, S.Failure == Never {
+        guard let signal = signal else {
+            return publisher().eraseToAnyPublisher()
+        }
+        
         // Use `prepend(_:)` to trigger an initial update
         // Inspired from https://stackoverflow.com/questions/66075000/swift-combine-publishers-where-one-hasnt-sent-a-value-yet
         return signal
