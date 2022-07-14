@@ -32,8 +32,8 @@
         "package": "SRGLogger",
         "repositoryURL": "https://github.com/SRGSSR/srglogger-apple.git",
         "state": {
-          "branch": "feature/ios16-tvos16-xcode14",
-          "revision": "36fd041b78224b77d8dd348511dbf6ed8cd88d68",
+          "branch": "develop",
+          "revision": "3b7c04bccfb6714d2ea9589e98591ed9088d128e",
           "version": null
         }
       },
@@ -41,8 +41,8 @@
         "package": "SRGNetwork",
         "repositoryURL": "https://github.com/SRGSSR/srgnetwork-apple.git",
         "state": {
-          "branch": "feature/ios16-tvos16-xcode14",
-          "revision": "ac107207c25f65060c13688239e0f0cdf3724e60",
+          "branch": "develop",
+          "revision": "dedfb9032837c72ec1c3365f3dfb3ff04d65ec75",
           "version": null
         }
       }
