@@ -3,14 +3,14 @@
 import PackageDescription
 
 struct ProjectSettings {
-    static let marketingVersion: String = "16.0.0"
+    static let marketingVersion: String = "16.1.0"
 }
 
 let package = Package(
     name: "SRGDataProvider",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v11),
+        .iOS(.v12),
         .tvOS(.v12),
         .watchOS(.v5)
     ],
@@ -25,9 +25,9 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "libextobjc", url: "https://github.com/SRGSSR/libextobjc.git", .exact("0.6.0-srg3")),
+        .package(name: "libextobjc", url: "https://github.com/SRGSSR/libextobjc.git", .exact("0.6.0-srg4")),
         .package(name: "Mantle", url: "https://github.com/Mantle/Mantle.git", .upToNextMinor(from: "2.2.0")),
-        .package(name: "SRGNetwork", url: "https://github.com/SRGSSR/srgnetwork-apple.git", .upToNextMinor(from: "3.0.0"))
+        .package(name: "SRGNetwork", url: "https://github.com/SRGSSR/srgnetwork-apple.git", .upToNextMinor(from: "3.1.0"))
     ],
     targets: [
         .target(

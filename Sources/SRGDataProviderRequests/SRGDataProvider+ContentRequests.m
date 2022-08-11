@@ -19,7 +19,7 @@
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     if (date) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
@@ -37,7 +37,7 @@
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     if (date) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
@@ -55,7 +55,7 @@
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     if (date) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
@@ -72,7 +72,7 @@
     
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
@@ -91,7 +91,7 @@
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"userId" value:userId]];
     }
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     if (date) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
@@ -113,7 +113,7 @@
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"userId" value:userId]];
     }
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     if (date) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
@@ -135,7 +135,7 @@
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"userId" value:userId]];
     }
     if (! published) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"published" value:@"false"]];
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
     }
     if (date) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
