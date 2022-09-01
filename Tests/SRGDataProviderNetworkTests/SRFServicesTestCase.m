@@ -7,6 +7,8 @@
 @import SRGDataProviderNetwork;
 @import XCTest;
 
+@import libextobjc;
+
 static NSString * const kAudioSearchQuery = @"tennis";
 static NSString * const kAudioURN = @"urn:srf:audio:e7cfd700-e14e-43b4-9710-3527fc2098bc";
 
@@ -570,12 +572,36 @@ static NSString * const kTag2 = @"curling";
 
 - (void)testLiveCenterVideos
 {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterNone withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
-        [expectation fulfill];
+        [expectation1 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterScheduledLivestream withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeScheduledLivestream)];
+        XCTAssertEqual([medias filteredArrayUsingPredicate:predicate].count, medias.count);
+        [expectation2 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterEpisode withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeEpisode)];
+        XCTAssertEqual([medias filteredArrayUsingPredicate:predicate].count, medias.count);
+        [expectation3 fulfill];
     }] resume];
     
     [self waitForExpectationsWithTimeout:30. handler:nil];

@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  List of videos available from the Live Center.
  */
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
+                                 contentTypeFilter:(SRGContentTypeFilter)liveCenterFilter
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 @end
