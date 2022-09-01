@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGDataProvider (LiveCenterRequests)
 
 - (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor
-                                 contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter;
+                                 contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
+                                        withResult:(BOOL)withResult;
 
 @end
 

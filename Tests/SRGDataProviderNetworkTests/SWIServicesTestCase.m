@@ -555,7 +555,7 @@ static NSString * const kUserId = @"test_user_id";
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterNone withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterNone withResult:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(error);
         [expectation1 fulfill];
     }] resume];
@@ -564,7 +564,7 @@ static NSString * const kUserId = @"test_user_id";
     
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterScheduledLivestream withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterScheduledLivestream withResult:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(error);
         [expectation2 fulfill];
     }] resume];
@@ -573,9 +573,18 @@ static NSString * const kUserId = @"test_user_id";
     
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterEpisode withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterEpisode withResult:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(error);
         [expectation3 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSWI contentTypeFilter:SRGContentTypeFilterNone withResult:NO withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(error);
+        [expectation4 fulfill];
     }] resume];
     
     [self waitForExpectationsWithTimeout:30. handler:nil];
