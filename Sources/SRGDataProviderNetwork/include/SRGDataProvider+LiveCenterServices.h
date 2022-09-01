@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)liveCenterFilter
-                                        withResult:(BOOL)withResult
+                                         hasResult:(BOOL)hasResult
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 @end

@@ -15,10 +15,10 @@
 
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)liveCenterFilter
-                                        withResult:(BOOL)withResult
+                                         hasResult:(BOOL)hasResult
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock
 {
-    NSURLRequest *URLRequest = [self requestLiveCenterVideosForVendor:vendor contentTypeFilter:liveCenterFilter withResult:withResult];
+    NSURLRequest *URLRequest = [self requestLiveCenterVideosForVendor:vendor contentTypeFilter:liveCenterFilter hasResult:hasResult];
     return [self listPaginatedObjectsWithURLRequest:URLRequest modelClass:SRGMedia.class rootKey:@"mediaList" completionBlock:^(NSArray * _Nullable objects, NSDictionary<NSString *,id> *metadata, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         completionBlock(objects, page, nextPage, HTTPResponse, error);
     }];

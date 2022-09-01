@@ -23,7 +23,9 @@ static NSString *SRGContentTypeFilterParameter(SRGContentTypeFilter contentTypeF
 
 @implementation SRGDataProvider (LiveCenterRequests)
 
-- (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter withResult:(BOOL)withResult
+- (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor
+                                 contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
+                                         hasResult:(BOOL)hasResult
 {
     NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/scheduledLivestreams/livecenter", SRGPathComponentForVendor(vendor)];
     NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
