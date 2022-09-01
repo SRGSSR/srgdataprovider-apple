@@ -114,12 +114,18 @@
     }];
 }
 
-- (SRGRequest *)tvTrendingMediasForVendor:(SRGVendor)vendor withLimit:(NSNumber *)limit completionBlock:(SRGMediaListCompletionBlock)completionBlock
+- (SRGRequest *)tvTrendingMediasForVendor:(SRGVendor)vendor
+                                withLimit:(NSNumber *)limit
+                          completionBlock:(SRGMediaListCompletionBlock)completionBlock
 {
     return [self tvTrendingMediasForVendor:vendor withLimit:limit editorialLimit:nil episodesOnly:NO completionBlock:completionBlock];
 }
 
-- (SRGRequest *)tvTrendingMediasForVendor:(SRGVendor)vendor withLimit:(NSNumber *)limit editorialLimit:(NSNumber *)editorialLimit episodesOnly:(BOOL)episodesOnly completionBlock:(SRGMediaListCompletionBlock)completionBlock
+- (SRGRequest *)tvTrendingMediasForVendor:(SRGVendor)vendor
+                                withLimit:(NSNumber *)limit
+                           editorialLimit:(NSNumber *)editorialLimit
+                             episodesOnly:(BOOL)episodesOnly
+                          completionBlock:(SRGMediaListCompletionBlock)completionBlock
 {
     NSURLRequest *URLRequest = [self requestTVTrendingMediasForVendor:vendor withLimit:limit editorialLimit:editorialLimit episodesOnly:episodesOnly];
     return [self listObjectsWithURLRequest:URLRequest modelClass:SRGMedia.class rootKey:@"mediaList" completionBlock:completionBlock];
@@ -134,7 +140,8 @@
     }];
 }
 
-- (SRGFirstPageRequest *)tvLatestWebFirstEpisodesForVendor:(SRGVendor)vendor withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock
+- (SRGFirstPageRequest *)tvLatestWebFirstEpisodesForVendor:(SRGVendor)vendor
+                                       withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock
 {
     NSURLRequest *URLRequest = [self requestTVLatestWebFirstEpisodesForVendor:vendor];
     return [self listPaginatedObjectsWithURLRequest:URLRequest modelClass:SRGMedia.class rootKey:@"mediaList" completionBlock:^(NSArray * _Nullable objects, NSDictionary<NSString *,id> *metadata, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
