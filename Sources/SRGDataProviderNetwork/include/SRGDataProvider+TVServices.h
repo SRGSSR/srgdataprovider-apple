@@ -77,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  List of TV scheduled livestreams.
  */
 - (SRGFirstPageRequest *)tvScheduledLivestreamsForVendor:(SRGVendor)vendor
+                                        signLanguageOnly:(BOOL)signLanguageOnly
                                      withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 /**

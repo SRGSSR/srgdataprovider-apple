@@ -76,8 +76,8 @@ public extension SRGDataProvider {
     /**
      *  List of TV scheduled livestreams.
      */
-    func tvScheduledLivestreams(for vendor: SRGVendor, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
-        let request = requestTVScheduledLivestreams(for: vendor)
+    func tvScheduledLivestreams(for vendor: SRGVendor, signLanguageOnly: Bool = false, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
+        let request = requestTVScheduledLivestreams(for: vendor, signLanguageOnly: signLanguageOnly)
         return paginatedObjectsTriggeredPublisher(at: Page(request: request, size: pageSize), rootKey: "mediaList", type: SRGMedia.self, paginatedBy: signal)
     }
 }

@@ -63,9 +63,10 @@
 }
 
 - (SRGFirstPageRequest *)tvScheduledLivestreamsForVendor:(SRGVendor)vendor
+                                        signLanguageOnly:(BOOL)signLanguageOnly
                                      withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock
 {
-    NSURLRequest *URLRequest = [self requestTVScheduledLivestreamsForVendor:vendor];
+    NSURLRequest *URLRequest = [self requestTVScheduledLivestreamsForVendor:vendor signLanguageOnly:signLanguageOnly];
     return [self listPaginatedObjectsWithURLRequest:URLRequest modelClass:SRGMedia.class rootKey:@"mediaList" completionBlock:^(NSArray * _Nullable objects, NSDictionary<NSString *,id> *metadata, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         completionBlock(objects, page, nextPage, HTTPResponse, error);
     }];
