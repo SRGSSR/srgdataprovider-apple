@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
                                      minimal:(BOOL)minimal;
 - (NSURLRequest *)requestTVLivestreamsForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVScheduledLivestreamsForVendor:(SRGVendor)vendor
-                                         hasSignLanguage:(BOOL)hasSignLanguage;
+                                        signLanguageOnly:(BOOL)signLanguageOnly;
 - (NSURLRequest *)requestTVEditorialMediasForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVHeroStageMediasForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVLatestMediasForVendor:(SRGVendor)vendor;

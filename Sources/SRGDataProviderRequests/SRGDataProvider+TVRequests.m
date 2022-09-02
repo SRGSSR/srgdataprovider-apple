@@ -85,10 +85,10 @@
 }
 
 - (NSURLRequest *)requestTVScheduledLivestreamsForVendor:(SRGVendor)vendor
-                                         hasSignLanguage:(BOOL)hasSignLanguage
+                                        signLanguageOnly:(BOOL)signLanguageOnly
 {
     NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/scheduledLivestreams", SRGPathComponentForVendor(vendor)];
-    NSArray<NSURLQueryItem *> *queryItems = hasSignLanguage ? @[ [NSURLQueryItem queryItemWithName:@"signLanguageOnly" value:@"true"] ] : nil;
+    NSArray<NSURLQueryItem *> *queryItems = signLanguageOnly ? @[ [NSURLQueryItem queryItemWithName:@"signLanguageOnly" value:@"true"] ] : nil;
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems];
 }
 
