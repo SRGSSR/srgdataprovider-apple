@@ -11,24 +11,24 @@
 static NSString *SRGContentTypeFilterParameter(SRGContentTypeFilter contentTypeFilter)
 {
     static dispatch_once_t s_onceToken;
-    static NSDictionary<NSNumber *, NSString *> *s_liveCenterFilters;
+    static NSDictionary<NSNumber *, NSString *> *s_contentTypeFilters;
     dispatch_once(&s_onceToken, ^{
-        s_liveCenterFilters = @{
+        s_contentTypeFilters = @{
             @(SRGContentTypeFilterScheduledLivestream) : @"scheduled_livestream",
             @(SRGContentTypeFilterEpisode) : @"episode"
         };
     });
-    return s_liveCenterFilters[@(contentTypeFilter)];
+    return s_contentTypeFilters[@(contentTypeFilter)];
 }
 
 @implementation SRGDataProvider (LiveCenterRequests)
 
 - (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
-                                         hasResult:(BOOL)hasResult
+                              eventsWithResultOnly:(BOOL)eventsWithResultOnly
 {
     NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/scheduledLivestreams/livecenter", SRGPathComponentForVendor(vendor)];
-    NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"onlyEventsWithResult" value:hasResult ? @"true" : @"false"] ];
+    NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"onlyEventsWithResult" value:eventsWithResultOnly ? @"true" : @"false"] ];
     if (contentTypeFilter != SRGContentTypeFilterNone) {
         queryItems = [queryItems arrayByAddingObject:[NSURLQueryItem queryItemWithName:@"types" value:SRGContentTypeFilterParameter(contentTypeFilter)]];
     }

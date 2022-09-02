@@ -584,7 +584,7 @@ static NSString * const kTag2 = @"curling";
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterNone hasResult:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterNone eventsWithResultOnly:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         [expectation1 fulfill];
@@ -594,7 +594,7 @@ static NSString * const kTag2 = @"curling";
     
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterScheduledLivestream hasResult:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterScheduledLivestream eventsWithResultOnly:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeScheduledLivestream)];
@@ -606,7 +606,7 @@ static NSString * const kTag2 = @"curling";
     
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterEpisode hasResult:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterEpisode eventsWithResultOnly:YES withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeEpisode)];
@@ -618,7 +618,7 @@ static NSString * const kTag2 = @"curling";
     
     XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterNone hasResult:NO withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [[self.dataProvider liveCenterVideosForVendor:SRGVendorSRF contentTypeFilter:SRGContentTypeFilterNone eventsWithResultOnly:NO withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         [expectation4 fulfill];

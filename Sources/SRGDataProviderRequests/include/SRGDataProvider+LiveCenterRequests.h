@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
-                                         hasResult:(BOOL)hasResult;
+                              eventsWithResultOnly:(BOOL)eventsWithResultOnly;
 
 @end
 
