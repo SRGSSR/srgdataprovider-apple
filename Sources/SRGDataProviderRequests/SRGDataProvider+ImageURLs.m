@@ -80,9 +80,13 @@
         };
     });
     
-    NSURL *URL = [self.serviceURL URLByAppendingPathComponent:@"images/"];
-    NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    NSURLComponents *rootServiceURLComponents = [[NSURLComponents alloc] init];
+    rootServiceURLComponents.scheme = self.serviceURL.scheme;
+    rootServiceURLComponents.host = self.serviceURL.host;
     
+    NSURL *URL = [rootServiceURLComponents.URL URLByAppendingPathComponent:@"images/"];
+    NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+
     NSString *format = s_formats[imageURL.pathExtension] ?: @"jpg";
     URLComponents.queryItems = @[
         [NSURLQueryItem queryItemWithName:@"imageUrl" value:imageURL.absoluteString],
