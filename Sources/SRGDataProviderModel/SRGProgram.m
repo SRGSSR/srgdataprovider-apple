@@ -28,6 +28,7 @@
 @property (nonatomic) NSNumber *numberOfEpisodes;
 @property (nonatomic) NSNumber *productionYear;
 @property (nonatomic, copy) NSString *productionCountry;
+@property (nonatomic) SRGYouthProtectionColor youthProtectionColor;
 @property (nonatomic, copy) NSString *originalTitle;
 @property (nonatomic) NSArray<SRGCrewMember *> *crewMembers;
 @property (nonatomic) BOOL isRebroadcast;
@@ -71,6 +72,7 @@
             @keypath(SRGProgram.new, numberOfEpisodes) : @"episodesTotal",
             @keypath(SRGProgram.new, productionYear) : @"productionYear",
             @keypath(SRGProgram.new, productionCountry) : @"productionCountry",
+            @keypath(SRGProgram.new, youthProtectionColor) : @"youthProtectionColor",
             @keypath(SRGProgram.new, originalTitle) : @"originalTitle",
             
             @keypath(SRGProgram.new, crewMembers) : @"creditList",
@@ -130,6 +132,11 @@
 + (NSValueTransformer *)subprogramsJSONTransformer
 {
     return [MTLJSONAdapter arrayTransformerWithModelClass:SRGProgram.class];
+}
+
++ (NSValueTransformer *)youthProtectionColorJSONTransformer
+{
+    return SRGYouthProtectionColorJSONTransformer();
 }
 
 + (NSValueTransformer *)crewMembersJSONTransformer

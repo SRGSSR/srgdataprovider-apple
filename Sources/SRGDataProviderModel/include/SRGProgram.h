@@ -90,6 +90,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy, nullable) NSString *productionCountry;
 
 /**
+ *  The youth protection color.
+ */
+@property (nonatomic, readonly) SRGYouthProtectionColor youthProtectionColor;
+
+/**
  *  The original title.
  */
 @property (nonatomic, readonly, copy, nullable) NSString *originalTitle;
