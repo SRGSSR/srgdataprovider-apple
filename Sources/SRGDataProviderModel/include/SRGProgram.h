@@ -35,6 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSDate *endDate;
 
 /**
+ *  Return the time availability associated with the program at the specified date.
+ *
+ *  @discussion Time availability is only intended for informative purposes.
+ */
+- (SRGTimeAvailability)timeAvailabilityAtDate:(NSDate *)date;
+
+/**
  *  The associated image.
  */
 @property (nonatomic, readonly) SRGImage *image;

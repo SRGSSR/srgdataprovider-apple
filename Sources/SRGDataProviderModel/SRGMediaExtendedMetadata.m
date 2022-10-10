@@ -6,6 +6,8 @@
 
 #import "SRGMediaExtendedMetadata.h"
 
+#import "NSDate+PlaySRG.h"
+
 SRGBlockingReason SRGBlockingReasonForMediaMetadata(id<SRGMediaExtendedMetadata> mediaMetadata, NSDate *date)
 {
     if (mediaMetadata.originalBlockingReason != SRGBlockingReasonNone) {
@@ -33,13 +35,5 @@ SRGTimeAvailability SRGTimeAvailabilityForMediaMetadata(id<SRGMediaExtendedMetad
         return SRGTimeAvailabilityNotAvailableAnymore;
     }
     
-    if (mediaMetadata.endDate && [mediaMetadata.endDate compare:date] == NSOrderedAscending) {
-        return SRGTimeAvailabilityNotAvailableAnymore;
-    }
-    else if (mediaMetadata.startDate && [date compare:mediaMetadata.startDate] == NSOrderedAscending) {
-        return SRGTimeAvailabilityNotYetAvailable;
-    }
-    else {
-        return SRGTimeAvailabilityAvailable;
-    }
+    return SRGTimeAvailabilityForStartAndEndDate(mediaMetadata.startDate, mediaMetadata.endDate, date);
 }

@@ -6,6 +6,7 @@
 
 #import "SRGProgram.h"
 
+#import "NSDate+PlaySRG.h"
 #import "SRGJSONTransformers.h"
 
 @import libextobjc;
@@ -100,6 +101,11 @@
 - (SRGImage *)image
 {
     return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+}
+
+- (SRGTimeAvailability)timeAvailabilityAtDate:(NSDate *)date
+{
+    return SRGTimeAvailabilityForStartAndEndDate(self.startDate, self.endDate, date);
 }
 
 #pragma mark Transformers
