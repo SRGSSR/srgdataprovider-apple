@@ -6,7 +6,7 @@
 
 #import "NSDate+PlaySRG.h"
 
-SRGTimeAvailability SRGTimeAvailabilityForStartAndEndDate(NSDate *startDate, NSDate *endDate, NSDate *date)
+SRGTimeAvailability SRGTimeAvailabilityForStartDateAndEndDate(NSDate *startDate, NSDate *endDate, NSDate *date)
 {
     if (endDate && [endDate compare:date] == NSOrderedAscending) {
         return SRGTimeAvailabilityNotAvailableAnymore;

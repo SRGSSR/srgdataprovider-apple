@@ -9,10 +9,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- *  Return the time availability associated with the start and end date at the specified date.
+ *  Return the time availability associated with the start date and end date at the specified date.
  *
  *  @discussion Time availability is only intended for informative purposes.
  */
-OBJC_EXPORT SRGTimeAvailability SRGTimeAvailabilityForStartAndEndDate(NSDate * _Nullable startDate, NSDate * _Nullable endDate, NSDate *date);
+OBJC_EXPORT SRGTimeAvailability SRGTimeAvailabilityForStartDateAndEndDate(NSDate * _Nullable startDate, NSDate * _Nullable endDate, NSDate *date);
 
 NS_ASSUME_NONNULL_END

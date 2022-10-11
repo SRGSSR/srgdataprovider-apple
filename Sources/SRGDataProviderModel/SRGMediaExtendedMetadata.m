@@ -35,5 +35,5 @@ SRGTimeAvailability SRGTimeAvailabilityForMediaMetadata(id<SRGMediaExtendedMetad
         return SRGTimeAvailabilityNotAvailableAnymore;
     }
     
-    return SRGTimeAvailabilityForStartAndEndDate(mediaMetadata.startDate, mediaMetadata.endDate, date);
+    return SRGTimeAvailabilityForStartDateAndEndDate(mediaMetadata.startDate, mediaMetadata.endDate, date);
 }

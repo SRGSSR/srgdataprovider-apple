@@ -105,7 +105,7 @@
 
 - (SRGTimeAvailability)timeAvailabilityAtDate:(NSDate *)date
 {
-    return SRGTimeAvailabilityForStartAndEndDate(self.startDate, self.endDate, date);
+    return SRGTimeAvailabilityForStartDateAndEndDate(self.startDate, self.endDate, date);
 }
 
 #pragma mark Transformers
