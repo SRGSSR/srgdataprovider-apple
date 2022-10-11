@@ -22,8 +22,8 @@ static NSString * const kTVShowSearchQuery = @"telegiornale";
 
 static NSString * const kTVShowURN = @"urn:rsi:show:tv:3567604";
 static NSString * const kTVShowOtherURN = @"urn:rsi:show:tv:8925532";
-static NSString * const kRadioShowURN = @"urn:rsi:show:radio:2720638";
-static NSString * const kRadioShowOtherURN = @"urn:rsi:show:radio:3706987";
+static NSString * const kRadioShowURN = @"urn:rsi:show:radio:2100980";
+static NSString * const kRadioShowOtherURN = @"urn:rsi:show:radio:3519646";
 static NSString * const kInvalidShowURN = @"urn:rsi:show:tv:999999999999999";
 static NSString * const kInvalidShowOtherURN = @"urn:srf:show:tv:999999999999999";
 
