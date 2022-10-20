@@ -35,6 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSDate *endDate;
 
 /**
+ *  Return the time availability associated with the program at the specified date.
+ *
+ *  @discussion Time availability is only intended for informative purposes.
+ */
+- (SRGTimeAvailability)timeAvailabilityAtDate:(NSDate *)date;
+
+/**
  *  The associated image.
  */
 @property (nonatomic, readonly) SRGImage *image;
@@ -88,6 +95,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The production country (displayable name).
  */
 @property (nonatomic, readonly, copy, nullable) NSString *productionCountry;
+
+/**
+ *  The youth protection color.
+ */
+@property (nonatomic, readonly) SRGYouthProtectionColor youthProtectionColor;
 
 /**
  *  The original title.
