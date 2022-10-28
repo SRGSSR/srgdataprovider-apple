@@ -16,9 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGDataProvider (LiveCenterServices)
 
 /**
- *  List of videos available from the Live Center.
+ *  List of videos available from the Live Center (Sport Manager).
+ *
+ *  @param contentTypeFilter    The content type filter to apply.
+ *  @param eventsWithResultOnly Whether only medias which are in the Live & Result Center (LRC) must be returned.
  */
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
+                                 contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
+                              eventsWithResultOnly:(BOOL)eventsWithResultOnly
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 @end
