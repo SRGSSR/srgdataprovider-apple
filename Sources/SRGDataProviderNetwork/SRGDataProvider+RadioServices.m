@@ -13,7 +13,8 @@
 
 @implementation SRGDataProvider (RadioServices)
 
-- (SRGRequest *)radioChannelsForVendor:(SRGVendor)vendor withCompletionBlock:(SRGChannelListCompletionBlock)completionBlock
+- (SRGRequest *)radioChannelsForVendor:(SRGVendor)vendor
+                   withCompletionBlock:(SRGChannelListCompletionBlock)completionBlock
 {
     NSURLRequest *URLRequest = [self requestRadioChannelsForVendor:vendor];
     return [self listObjectsWithURLRequest:URLRequest modelClass:SRGChannel.class rootKey:@"channelList" completionBlock:completionBlock];

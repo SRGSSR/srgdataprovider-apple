@@ -216,13 +216,31 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentType) {
      */
     SRGContentTypeClip,
     /**
-     *  Live.
+     *  Livestream.
      */
     SRGContentTypeLivestream,
     /**
-     *  Live in the future.
+     *  Scheduled livestram with start and end times.
      */
     SRGContentTypeScheduledLivestream
+};
+
+/**
+ *  Content type filter
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGContentTypeFilter) {
+    /**
+     *  Any content.
+     */
+    SRGContentTypeFilterNone = 0,
+    /**
+     *  Scheduled livestreams with start and end times.
+     */
+    SRGContentTypeFilterScheduledLivestream,
+    /**
+     *  Episodes.
+     */
+    SRGContentTypeFilterEpisode
 };
 
 /**

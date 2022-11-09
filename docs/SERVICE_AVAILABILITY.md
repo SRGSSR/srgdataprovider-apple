@@ -105,7 +105,7 @@ Regional livestreams only exist for SRF, otherwise only main livestreams are ava
 | Recent songs | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ✅ (return songs for the current day) |
 | Current song on air | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | N/A |
 
-## Live center services
+## Live center (Sport Manager) services
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|

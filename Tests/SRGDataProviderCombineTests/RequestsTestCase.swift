@@ -12,7 +12,7 @@ enum TestError: Error {
 }
 
 @available(iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-final class DataProviderCombineTestCase: XCTestCase {
+final class RequestsTestCase: XCTestCase {
     var dataProvider: SRGDataProvider!
     var cancellables: Set<AnyCancellable>!
     
@@ -104,6 +104,4 @@ final class DataProviderCombineTestCase: XCTestCase {
         
         waitForExpectations(timeout: 10.0, handler: nil)
     }
-    
-    // TODO: Should test Triggers and associated publisher operators
 }

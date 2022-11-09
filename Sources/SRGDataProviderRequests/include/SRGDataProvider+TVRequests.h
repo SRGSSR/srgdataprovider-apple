@@ -29,7 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
                                          day:(nullable SRGDay *)day
                                      minimal:(BOOL)minimal;
 - (NSURLRequest *)requestTVLivestreamsForVendor:(SRGVendor)vendor;
-- (NSURLRequest *)requestTVScheduledLivestreamsForVendor:(SRGVendor)vendor;
+- (NSURLRequest *)requestTVScheduledLivestreamsForVendor:(SRGVendor)vendor
+                                        signLanguageOnly:(BOOL)signLanguageOnly;
 - (NSURLRequest *)requestTVEditorialMediasForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVHeroStageMediasForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVLatestMediasForVendor:(SRGVendor)vendor;
