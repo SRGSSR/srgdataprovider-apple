@@ -16,7 +16,7 @@ static NSString * const kRadioChannelUid = @"rete-uno";
 static NSString * const kRadioLivestreamUid = @"livestream_ReteUno";
 static NSString * const kRadioShowSearchQuery = @"modem";
 
-static NSString * const kVideoURN = @"urn:rsi:video:8812327";
+static NSString * const kVideoURN = @"urn:rsi:video:9014650";
 
 static NSString * const kTVChannelUid = @"la1";
 static NSString * const kTVLivestreamUid = @"livestream_La1";
@@ -972,8 +972,8 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     // Full-length VOD
-    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:video:8950717" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"8950717");
+    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:video:9014650" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"9014650");
         [expectation1 fulfill];
     }] resume];
     
