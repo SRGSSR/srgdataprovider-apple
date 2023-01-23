@@ -130,6 +130,10 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      *  Show element (focus on a single show).
      */
     SRGContentPresentationTypeShowElement,
+    /**
+     *  Show promotion (highlight a single show).
+     */
+    SRGContentPresentationTypeShowPromotion,
     
     /**
      *  @name Presentations for predefined sections.
