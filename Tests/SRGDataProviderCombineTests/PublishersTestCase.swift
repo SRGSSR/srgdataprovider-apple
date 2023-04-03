@@ -24,7 +24,7 @@ final class PublishersTestCase: XCTestCase {
             Just(2),
             Just(3)
         )
-        .sink { completion in
+        .sink { _ in
             expectation.fulfill()
         } receiveValue: { value in
             XCTAssertEqual(value, [1, 2, 3])
