@@ -118,6 +118,59 @@
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+- (void)testContentPageForShow
+{
+    XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider contentPageForVendor:SRGVendorSRF product:SRGProductPlayVideo showWithURN:@"urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9" published:YES atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(contentPage);
+        XCTAssertNil(error);
+        [expectation1 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider contentPageForVendor:SRGVendorSRF productName:@"PLAY_VIDEO" showWithURN:@"urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9" published:YES atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(contentPage);
+        XCTAssertNil(error);
+        [expectation2 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider contentPageForVendor:SRGVendorSRF productName:@"UNKNOWN_PRODUCT" showWithURN:@"urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9" published:YES atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNil(contentPage);
+        XCTAssertNotNil(error);
+        [expectation3 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider contentPageForVendor:SRGVendorSRF product:SRGProductPlayVideo showWithURN:@"urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9" published:NO atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(contentPage);
+        XCTAssertNil(error);
+        [expectation4 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+    
+    XCTestExpectation *expectation5 = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider contentPageForVendor:SRGVendorSRF productName:@"PLAY_VIDEO" showWithURN:@"urn:srf:show:tv:ff969c14-c5a7-44ab-ab72-14d4c9e427a9" published:NO atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(contentPage);
+        XCTAssertNil(error);
+        [expectation5 fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
 - (void)testContentSection
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];

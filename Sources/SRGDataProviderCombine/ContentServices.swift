@@ -63,6 +63,31 @@ public extension SRGDataProvider {
     }
     
     /**
+     *  Retrieve a page of content for a specific show.
+     *
+     *  - Parameter published: Set this parameter to `true` to look only for published pages.
+     *  - Parameter product: The product to retrieve the content page for.
+     *  - Parameter date: The page content might change over time. Use `nil` to retrieve the page as it looks now, or
+     *                    at a specific date.
+     */
+    func contentPage(for vendor: SRGVendor, product: SRGProduct, showWithUrn showUrn: String, published: Bool = true, at date: Date? = nil) -> AnyPublisher<SRGContentPage, Error> {
+        return contentPage(for: vendor, productName: product.rawValue, showWithUrn: showUrn, published: published, at: date)
+    }
+    
+    /**
+     *  Retrieve a page of content for a specific show.
+     *
+     *  - Parameter published: Set this parameter to `true` to look only for published pages.
+     *  - Parameter productName: The name of the product to retrieve the content page for.
+     *  - Parameter date: The page content might change over time. Use `nil` to retrieve the page as it looks now, or
+     *                    at a specific date.
+     */
+    func contentPage(for vendor: SRGVendor, productName: String, showWithUrn showUrn: String, published: Bool = true, at date: Date? = nil) -> AnyPublisher<SRGContentPage, Error> {
+        let request = requestContentPage(for: vendor, productName: productName, showWithURN: showUrn, published: published, at: date)
+        return objectPublisher(for: request, type: SRGContentPage.self)
+    }
+    
+    /**
      *  Retrieve a section of content given by its unique identifier.
      *
      *  - Parameter published: Set this parameter to `true` to look only for published sections.

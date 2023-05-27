@@ -157,6 +157,8 @@ These services return content configured by editors through the Play Application
 | Page for a product | ❌ | N/A |
 | Page for a product name | ❌ | N/A |
 | Page for a topic | ❌ | N/A |
+| Page for a show in product | ❌ | N/A |
+| Page for a show in product name | ❌ | N/A |
 | Section | ❌ | N/A |
 | Medias for a section | ✅ | ❌ |
 | Shows for a section | ✅ | ❌ |

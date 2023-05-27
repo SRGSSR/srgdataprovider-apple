@@ -27,6 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
                                  topicWithURN:(NSString *)topicURN
                                     published:(BOOL)published
                                        atDate:(nullable NSDate *)date;
+- (NSURLRequest *)requestContentPageForVendor:(SRGVendor)vendor
+                                  productName:(NSString *)productName
+                                  showWithURN:(NSString *)showURN
+                                    published:(BOOL)published
+                                       atDate:(nullable NSDate *)date;
 
 - (NSURLRequest *)requestContentSectionForVendor:(SRGVendor)vendor
                                              uid:(NSString *)uid
