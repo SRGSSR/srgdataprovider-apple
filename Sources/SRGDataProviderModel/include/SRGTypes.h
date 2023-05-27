@@ -166,7 +166,11 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
     /**
      *  My program (personalized playback).
      */
-    SRGContentPresentationTypeMyProgram
+    SRGContentPresentationTypeMyProgram,
+    /**
+     *  Available episodes for a show.
+     */
+    SRGContentPresentationTypeAvailableEpisodes
 };
 
 /**

@@ -120,7 +120,8 @@ NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void)
                                                                                          @"ShowAccess" : @(SRGContentPresentationTypeShowAccess),
                                                                                          @"ContinueWatching" : @(SRGContentPresentationTypeContinueWatching),
                                                                                          @"WatchLater" : @(SRGContentPresentationTypeWatchLater),
-                                                                                         @"MyProgram" : @(SRGContentPresentationTypeMyProgram) }
+                                                                                         @"MyProgram" : @(SRGContentPresentationTypeMyProgram),
+                                                                                         @"AvailableEpisodes" : @(SRGContentPresentationTypeAvailableEpisodes) }
                                                                          defaultValue:@(SRGContentPresentationTypeNone)
                                                                   reverseDefaultValue:nil];
     });
