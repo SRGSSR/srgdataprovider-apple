@@ -1111,7 +1111,7 @@ static NSString * const kTag2 = @"curling";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scaling:SRGImageScalingDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceDefault];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         
@@ -1129,7 +1129,7 @@ static NSString * const kTag2 = @"curling";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scaling:SRGImageScalingDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceDefault];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         

@@ -665,15 +665,12 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
 };
 
 /**
- *  Image scalings.
+ *  Image scaling services.
  */
-typedef NS_CLOSED_ENUM(NSInteger, SRGImageScaling) {
-    SRGImageScalingAspectFillSixteenToNine = 0,
-    SRGImageScalingDefault = SRGImageScalingAspectFillSixteenToNine,
-    SRGImageScalingAspectFitSixteenToNine,
-    SRGImageScalingAspectFitBlackSquare,
-    SRGImageScalingAspectFitTransparentSquare,
-    SRGImageScalingPreserveAspectRatio
+typedef NS_CLOSED_ENUM(NSInteger, SRGImageScalingService) {
+    SRGImageScalingServiceBusinessUnit = 0,
+    SRGImageScalingServiceDefault = SRGImageScalingServiceBusinessUnit,
+    SRGImageScalingServiceIntegrationLayer
 };
 
 /**

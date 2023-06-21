@@ -17,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Return the request URL for an image having a given width and scaled by applying the specified behavior.
  */
-- (nullable NSURL *)requestURLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling;
+- (nullable NSURL *)requestURLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width scalingService:(SRGImageScalingService)scaling;
 
 /**
  *  Return the request URL for an image having a given semantic size and scaled by applying the specified behavior.
  */
-- (nullable NSURL *)requestURLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling;
+- (nullable NSURL *)requestURLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size scalingService:(SRGImageScalingService)scaling;
 
 @end
 

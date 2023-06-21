@@ -184,14 +184,18 @@ These services provide a way to access content from any business unit from any d
 
 ## Image scaling services
 
-A ⚠️ means that a service is supported, but might not return an image with the exact requested dimension.
+By default, it uses the Business Unit scaling image service.
 
 | Request | SRF | RTS | RSI | RTR | SWI |
 |:-- |:--:|:--:|:--:|:--:|:--:|
-| Video image with width | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| Video image with height | ✅ | ✅ | ❌| ✅ | ⚠️ |
-| Audio image with width | ✅ | ✅ | ⚠️ | ✅ | ❌ |
-| Audio image with height | ⚠️ | ✅ | ❌ | ⚠️ | ❌ |
+| Video image with width | ✅ | ✅ | ⚠️* | ✅ | ✅ |
+| Video image with height | ✅ | ✅ | ❌| ✅ | ⚠️* |
+| Audio image with width | ✅ | ✅ | ⚠️* | ✅ | ❌ |
+| Audio image with height | ⚠️* | ✅ | ❌ | ⚠️* | ❌ |
+
+\*⚠️ means that a service is supported, but might not return an image with the exact requested dimension.
+
+Optionnaly, the [centralized Integration Layer image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) can be used.
 
 ### Remark
 
