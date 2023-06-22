@@ -56,7 +56,7 @@ static NSString * const kVideoURN = @"urn:srf:video:24b1f659-052e-4847-a523-a626
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceIntegrationLayer];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceCentralized];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 180.);
@@ -93,7 +93,7 @@ static NSString * const kVideoURN = @"urn:srf:video:24b1f659-052e-4847-a523-a626
         XCTAssertNil(error);
         
         CGSize expectedSize = SRGRecommendedImageCGSize(SRGImageSizeMedium, SRGImageVariantDefault);
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeMedium scalingService:SRGImageScalingServiceIntegrationLayer];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeMedium scalingService:SRGImageScalingServiceCentralized];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, expectedSize.width);
         XCTAssertEqual(image.size.height, expectedSize.height);
@@ -130,7 +130,7 @@ static NSString * const kVideoURN = @"urn:srf:video:24b1f659-052e-4847-a523-a626
         XCTAssertNil(error);
         
         CGSize expectedSize = SRGRecommendedImageCGSize(SRGImageSizeLarge, SRGImageVariantDefault);
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeLarge scalingService:SRGImageScalingServiceIntegrationLayer];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withSize:SRGImageSizeLarge scalingService:SRGImageScalingServiceCentralized];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, expectedSize.width);
         XCTAssertEqual(image.size.height, expectedSize.height);

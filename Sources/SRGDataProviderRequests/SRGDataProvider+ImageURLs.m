@@ -33,13 +33,13 @@
     }
     
     switch (scalingService) {
-        case SRGImageScalingServiceIntegrationLayer: {
-            return [self imageServiceURLForImageURL:imageURL width:width];
+        case SRGImageScalingServiceCentralized: {
+            return [self centralizedScalingServiceURLForImageURL:imageURL width:width];
             break;
         }
             
         default: {
-            return [self scaledImageURL:imageURL width:width];
+            return [self businessUnitScalingServiceURLForImageURL:imageURL width:width];
             break;
         }
     }
@@ -50,9 +50,9 @@
     return [self requestURLForImageURL:imageURL withWidth:SRGRecommendedImageWidth(size, variant) scalingService:scalingService];
 }
 
-#pragma mark Modern image scaling
+#pragma mark Centralised image scaling service
 
-- (NSURL *)imageServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
+- (NSURL *)centralizedScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
 {
     static NSDictionary<NSString *, NSString *> *s_formats;
     static dispatch_once_t s_onceToken;
@@ -79,9 +79,9 @@
     return URLComponents.URL;
 }
 
-#pragma mark Legacy image scaling
+#pragma mark Business Unit image scaling service
 
-- (NSURL *)scaledImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
+- (NSURL *)businessUnitScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
 {
     NSString *sizeComponent = [NSString stringWithFormat:@"scale/width/%@", @(width)];
     return [imageURL URLByAppendingPathComponent:sizeComponent];

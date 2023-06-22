@@ -195,7 +195,7 @@ By default, it uses the Business Unit scaling image service.
 
 \*⚠️ means that a service is supported, but might not return an image with the exact requested dimension.
 
-Optionnaly, the [centralized Integration Layer image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) can be used.
+Optionnaly, `SRGImageScalingServiceCentralized` the [centralized image service from Integration Layer](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) can be used.
 
 ### Remark
 
