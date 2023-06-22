@@ -193,9 +193,9 @@ By default, it uses the Business Unit scaling image service.
 | Audio image with width | ✅ | ✅ | ⚠️* | ✅ | ❌ |
 | Audio image with height | ⚠️* | ✅ | ❌ | ⚠️* | ❌ |
 
-\*⚠️ means that a service is supported, but might not return an image with the exact requested dimension.
+\*⚠️ means that a service is supported, but might not return an image with the exact requested `SRGImageWidth` dimension.
 
-Optionnaly, `SRGImageScalingServiceCentralized` the [centralized image service from Integration Layer](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) can be used.
+Optionnaly, `SRGImageScalingServiceCentralized` allows to use the [centralized image service from Integration Layer](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) with `SRGImageWidth`. Jpeg and png input format are supported.
 
 ### Remark
 
