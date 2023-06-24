@@ -1099,7 +1099,7 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-- (void)testVideoImage
+- (void)testVideoImageFromBusinessUnitService
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
@@ -1107,7 +1107,7 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceBusinessUnit];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         
@@ -1117,7 +1117,7 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-- (void)testAudioImage
+- (void)testAudioImageFromBusinessUnitService
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
@@ -1125,7 +1125,43 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceBusinessUnit];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        XCTAssertEqual(image.size.width, 320.);
+        
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testVideoImageFromCentralizedService
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider mediaWithURN:kVideoURN completionBlock:^(SRGMedia * _Nullable media, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(media);
+        XCTAssertNil(error);
+        
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceCentralized];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        XCTAssertEqual(image.size.width, 320.);
+        
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testAudioImageFromCentralizedService
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider mediaWithURN:kAudioURN completionBlock:^(SRGMedia * _Nullable media, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(media);
+        XCTAssertNil(error);
+        
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scalingService:SRGImageScalingServiceCentralized];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
         XCTAssertEqual(image.size.width, 320.);
         
