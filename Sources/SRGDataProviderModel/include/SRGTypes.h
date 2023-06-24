@@ -669,7 +669,6 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageScalingService) {
     SRGImageScalingServiceBusinessUnit = 0,
-    SRGImageScalingServiceDefault = SRGImageScalingServiceBusinessUnit,
     SRGImageScalingServiceCentralized
 };
 

@@ -184,19 +184,15 @@ These services provide a way to access content from any business unit from any d
 
 ## Image scaling services
 
-By default, it uses the Business Unit scaling image service.
+Various image services exist. Only prefined width or size are available for scaling.
+
+By default, the business unit scaling image service is used, hosted on their domain. Those services are BUs dependant. The convention is `https:[BU].ch/[image path]/scale/width/[width]`.
 
 | Request | SRF | RTS | RSI | RTR | SWI |
 |:-- |:--:|:--:|:--:|:--:|:--:|
-| Video image with width | ✅ | ✅ | ⚠️* | ✅ | ✅ |
-| Video image with height | ✅ | ✅ | ❌| ✅ | ⚠️* |
-| Audio image with width | ✅ | ✅ | ⚠️* | ✅ | ❌ |
-| Audio image with height | ⚠️* | ✅ | ❌ | ⚠️* | ❌ |
+| Video image with width | ✅ | ✅ | ⚠️ | ✅ | ✅ |
+| Audio image with width | ✅ | ✅ | ⚠️ | ✅ | ❌ |
 
-\*⚠️ means that a service is supported, but might not return an image with the exact requested `SRGImageWidth` dimension.
+⚠️ means that a service is supported, but might not return an image with the exact requested `SRGImageWidth` dimension.
 
-Optionnaly, `SRGImageScalingServiceCentralized` allows to use the [centralized image service from Integration Layer](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) with `SRGImageWidth`. Jpeg and png input format are supported.
-
-### Remark
-
-Scale image URL services are BUs dependant
+Optionnaly, the [centralzed image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) can be used, hosted on the service.
