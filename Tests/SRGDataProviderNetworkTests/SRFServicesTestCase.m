@@ -1113,7 +1113,7 @@ static NSString * const kTag2 = @"curling";
         
         NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
-        // 16/9 ratio expected
+        // 16:9 ratio expected
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 180.);
         
@@ -1133,7 +1133,7 @@ static NSString * const kTag2 = @"curling";
         
         NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
-        // 16/9 ratio expected
+        // 16:9 ratio expected
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 180.);
         

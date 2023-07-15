@@ -970,7 +970,7 @@ static NSString * const kUserId = @"test_user_id";
         
         NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
-        // 16/9 ratio expected
+        // 16:9 ratio expected
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 180.);
         
