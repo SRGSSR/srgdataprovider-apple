@@ -13,14 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SRGDataProvider (ImageServices)
 
 /**
- *  Return the URL for an image having a given width and scaled by applying the specified behavior.
+ *  Return the URL for an image having a given width.
  */
-- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width scalingService:(SRGImageScalingService)scalingService;
+- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width;
 
 /**
- *  Return the URL for an image having a given semantic size and scaled by applying the specified behavior.
+ *  Return the URL for an image having a given semantic size.
  */
-- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size scalingService:(SRGImageScalingService)scalingService;
+- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size;
 
 @end
 

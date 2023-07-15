@@ -182,17 +182,10 @@ These services provide a way to access content from any business unit from any d
 
 ⚠️ Pagination is supported, but with a limit of 50. Attempting to request larger page sizes will fail.
 
-## Image scaling services
+## Image scaling service
 
-Various image services exist. Only prefined width or size are available for scaling.
+Only prefined width or size are available for scaling.
 
-By default, the business unit scaling image service is used, hosted on their domain. Those services are BUs dependant. The convention is `https:[BU].ch/[image path]/scale/width/[width]`.
+The [PlaySRG image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) is used for all image urls*.
 
-| Request | SRF | RTS | RSI | RTR | SWI |
-|:-- |:--:|:--:|:--:|:--:|:--:|
-| Video image with width | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| Audio image with width | ✅ | ✅ | ⚠️ | ✅ | ❌ |
-
-⚠️ means that a service is supported, but might not return an image with the exact requested `SRGImageWidth` dimension.
-
-Optionnaly, the [centralzed image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) can be used, hosted on the service.
+*An exeption exixts when url host contains `rts.ch` and url path contains `.image`. In this case, the business unit scaling image service is used, using the convention of `https:[BU].ch/[image path]/scale/width/[width]`.

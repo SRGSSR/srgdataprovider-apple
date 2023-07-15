@@ -665,14 +665,6 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentProviders) {
 };
 
 /**
- *  Image scaling services.
- */
-typedef NS_CLOSED_ENUM(NSInteger, SRGImageScalingService) {
-    SRGImageScalingServiceBusinessUnit = 0,
-    SRGImageScalingServiceCentralized
-};
-
-/**
  *  Semantic image sizes.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageSize) {

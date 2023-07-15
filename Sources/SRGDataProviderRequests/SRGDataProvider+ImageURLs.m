@@ -12,17 +12,17 @@
 
 #pragma mark Public methods
 
-- (NSURL *)requestURLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width scalingService:(SRGImageScalingService)scalingService
+- (NSURL *)requestURLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width
 {
-    return [self requestURLForImageURL:image.URL withWidth:width scalingService:scalingService];
+    return [self requestURLForImageURL:image.URL withWidth:width];
 }
 
-- (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size scalingService:(SRGImageScalingService)scalingService
+- (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size
 {
-    return [self requestURLForImageURL:image.URL withSize:size variant:image.variant scalingService:scalingService];
+    return [self requestURLForImageURL:image.URL withSize:size variant:image.variant];
 }
 
-- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withWidth:(SRGImageWidth)width scalingService:(SRGImageScalingService)scalingService
+- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withWidth:(SRGImageWidth)width
 {
     if (! imageURL) {
         return nil;
@@ -32,27 +32,22 @@
         return imageURL;
     }
     
-    switch (scalingService) {
-        case SRGImageScalingServiceCentralized: {
-            return [self centralizedScalingServiceURLForImageURL:imageURL width:width];
-            break;
-        }
-            
-        default: {
-            return [self businessUnitScalingServiceURLForImageURL:imageURL width:width];
-            break;
-        }
+    if ([imageURL.host containsString:@"rts.ch"] && [imageURL.path containsString:@".image"]) {
+        return [self businessUnitScalingServiceURLForImageURL:imageURL width:width];
+    }
+    else {
+        return [self playsrgScalingServiceURLForImageURL:imageURL width:width];
     }
 }
 
-- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant scalingService:(SRGImageScalingService)scalingService
+- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant
 {
-    return [self requestURLForImageURL:imageURL withWidth:SRGRecommendedImageWidth(size, variant) scalingService:scalingService];
+    return [self requestURLForImageURL:imageURL withWidth:SRGRecommendedImageWidth(size, variant)];
 }
 
-#pragma mark Centralised image scaling service
+#pragma mark PlaySRG image scaling service
 
-- (NSURL *)centralizedScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
+- (NSURL *)playsrgScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
 {
     static NSDictionary<NSString *, NSString *> *s_formats;
     static dispatch_once_t s_onceToken;

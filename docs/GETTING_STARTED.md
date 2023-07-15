@@ -186,22 +186,20 @@ Please carefully read the [SRG Network getting started guide](https://github.com
 Images are returned as opaque `SRGImage` objects, for which `SRGDataProvider` offers instance methods to generate corresponding URLs, in Objective-C:
 
 ```objective-c
-- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width scalingService:(SRGImageScalingService)scalingService;
-- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size scalingService:(SRGImageScalingService)scalingService;
+- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withWidth:(SRGImageWidth)width;
+- (nullable NSURL *)URLForImage:(nullable SRGImage *)image withSize:(SRGImageSize)size;
 ```
 
 and in Swift:
 
 ```swift
-func url(for image: SRGImage?, width: SRGImageWidth, scalingService: SRGImageScalingService) -> URL?
-func url(for image: SRGImage?, size: SRGImageSize, scalingService: SRGImageScalingService) -> URL? 
+func url(for image: SRGImage?, width: SRGImageWidth) -> URL?
+func url(for image: SRGImage?, size: SRGImageSize) -> URL? 
 ```
 
 The image API allows you to either generate images based on a finite set of widths (arbitrary widths are not supported) or on a set of semantic sizes (small, medium, large) which should fulfill most needs. Should these semantic sizes not match your needs you are always free to either request images based on some desired widths or to define your own set of semantic sizes.
 
 Dimensions for images of a given width can be retrieved using `SRGRecommendedImageWidth` and `SRGRecommendedImageCGSize`. This can sometimes be useful if your application precisely needs to adjust some frames based on the size somes images they may contain.
-
-Finally, several behaviors are available when scaling images, e.g. to preserve the aspect ratio or to fit an image within a frame with a 1:1 or 16:9 frame. Check `SRGImageScaling` for available options.
 
 ## Dates and times
 
