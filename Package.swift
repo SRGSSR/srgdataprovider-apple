@@ -77,6 +77,10 @@ let package = Package(
             ]
         ),
         .testTarget(
+            name: "SRGDataProviderRequestsTests",
+            dependencies: ["SRGDataProviderRequests"]
+        ),
+        .testTarget(
             name: "SRGDataProviderNetworkTests",
             dependencies: ["SRGDataProviderNetwork"]
         ),
