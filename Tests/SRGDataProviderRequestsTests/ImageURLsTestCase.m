@@ -174,6 +174,18 @@
     XCTAssertEqualObjects(components.formatQueryValue, @"png");
 }
 
+- (void)testProgramGuideImage
+{
+    NSString *urlString = @"https://il.srgssr.ch/images/https://il.srgssr.ch/image-service/dynamic/7ec4fb9e.svg/format/png";
+    NSURLComponents *components = [self componentsFromUrlString:urlString width:SRGImageWidth320];
+    
+    XCTAssertEqualObjects(components.host, @"il.srgssr.ch");
+    XCTAssertEqual([components.path rangeOfString:@"/images"].location, 0);
+    XCTAssertEqualObjects(components.imageUrlQueryValue, urlString);
+    XCTAssertEqualObjects(components.widthQueryValue, @"320");
+    XCTAssertEqualObjects(components.formatQueryValue, @"png");
+}
+
 @end
 
 @implementation NSURLComponents (ImageURLsTestCase)

@@ -64,8 +64,8 @@
     
     NSURL *URL = [rootServiceURLComponents.URL URLByAppendingPathComponent:@"images/"];
     NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
-
-    NSString *format = s_formats[imageURL.pathExtension] ?: @"jpg";
+    
+    NSString *format = s_formats[imageURL.pathExtension] ?: s_formats[imageURL.pathComponents.lastObject] ?: @"jpg";
     URLComponents.queryItems = @[
         [NSURLQueryItem queryItemWithName:@"imageUrl" value:imageURL.absoluteString],
         [NSURLQueryItem queryItemWithName:@"format" value:format],
