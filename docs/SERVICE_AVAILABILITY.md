@@ -184,7 +184,7 @@ These services provide a way to access content from any business unit from any d
 
 ## Image scaling service
 
-Only prefined width or size are available for scaling.
+Only predefined widths and sizes are available for scaling.
 
 The [PlaySRG image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) is used for all image urls*.
 
