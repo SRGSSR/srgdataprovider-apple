@@ -32,6 +32,7 @@
         return imageURL;
     }
     
+    // See https://github.com/SRGSSR/srgdataprovider-apple/issues/47
     if ([imageURL.host containsString:@"rts.ch"] && [imageURL.path containsString:@".image"]) {
         return [self businessUnitScalingServiceURLForImageURL:imageURL width:width];
     }

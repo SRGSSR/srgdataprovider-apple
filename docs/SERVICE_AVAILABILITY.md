@@ -188,4 +188,4 @@ Only predefined widths and sizes are available for scaling.
 
 The [PlaySRG image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) is used for all image URLs*.
 
-*An exception exists when the url host contains `rts.ch` and the url path contains `.image`. In this case, the business unit scaling image service is still used, using the convention of `https:[BU].ch/[image path]/scale/width/[width]`.
+*Exception for RTS CMS image urls. See [#47](https://github.com/SRGSSR/srgdataprovider-apple/issues/47) for more details.
