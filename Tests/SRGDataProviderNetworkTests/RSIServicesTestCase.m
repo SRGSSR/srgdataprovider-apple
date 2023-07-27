@@ -1091,9 +1091,11 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scaling:SRGImageScalingDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        // 16:9 ratio expected
         XCTAssertEqual(image.size.width, 320.);
+        XCTAssertEqual(image.size.height, 180.);
         
         [expectation fulfill];
     }] resume];
@@ -1109,9 +1111,11 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320 scaling:SRGImageScalingDefault];
+        NSURL *imageURL = [self.dataProvider URLForImage:media.image withWidth:SRGImageWidth320];
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageURL]];
+        // 16:9 ratio expected
         XCTAssertEqual(image.size.width, 320.);
+        XCTAssertEqual(image.size.height, 180.);
         
         [expectation fulfill];
     }] resume];

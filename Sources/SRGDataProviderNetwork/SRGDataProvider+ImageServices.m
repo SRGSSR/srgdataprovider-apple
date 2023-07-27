@@ -12,14 +12,14 @@
 
 #pragma mark Public methods
 
-- (NSURL *)URLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling
+- (NSURL *)URLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width
 {
-    return [self requestURLForImage:image withWidth:width scaling:scaling];
+    return [self requestURLForImage:image withWidth:width];
 }
 
-- (NSURL *)URLForImage:(SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling
+- (NSURL *)URLForImage:(SRGImage *)image withSize:(SRGImageSize)size
 {
-    return [self requestURLForImage:image withSize:size scaling:scaling];
+    return [self requestURLForImage:image withSize:size];
 }
 
 @end

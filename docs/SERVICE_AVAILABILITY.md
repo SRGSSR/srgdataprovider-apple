@@ -182,17 +182,10 @@ These services provide a way to access content from any business unit from any d
 
 ⚠️ Pagination is supported, but with a limit of 50. Attempting to request larger page sizes will fail.
 
-## Image scaling services
+## Image scaling service
 
-A ⚠️ means that a service is supported, but might not return an image with the exact requested dimension.
+Only predefined widths and sizes are available for scaling.
 
-| Request | SRF | RTS | RSI | RTR | SWI |
-|:-- |:--:|:--:|:--:|:--:|:--:|
-| Video image with width | ✅ | ✅ | ⚠️ | ✅ | ✅ |
-| Video image with height | ✅ | ✅ | ❌| ✅ | ⚠️ |
-| Audio image with width | ✅ | ✅ | ⚠️ | ✅ | ❌ |
-| Audio image with height | ⚠️ | ✅ | ❌ | ⚠️ | ❌ |
+The [PlaySRG image service](https://confluence.srg.beecollaboration.com/display/SRGPLAY/Project+-+Image+Service) is used for all image URLs*.
 
-### Remark
-
-Scale image URL services are BUs dependant
+*Exception for RTS CMS image urls. See [#47](https://github.com/SRGSSR/srgdataprovider-apple/issues/47) for more details.
