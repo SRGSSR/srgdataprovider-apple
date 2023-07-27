@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The associated image.
  */
-@property (nonatomic, readonly) SRGImage *image;
+@property (nonatomic, readonly, nullable) SRGImage *image;
 
 /**
  *  A URL page associated with the content.
