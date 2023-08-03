@@ -12,17 +12,17 @@
 
 #pragma mark Public methods
 
-- (NSURL *)requestURLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling
+- (NSURL *)requestURLForImage:(SRGImage *)image withWidth:(SRGImageWidth)width
 {
-    return [self requestURLForImageURL:image.URL withWidth:width scaling:scaling];
+    return [self requestURLForImageURL:image.URL withWidth:width];
 }
 
-- (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size scaling:(SRGImageScaling)scaling
+- (NSURL *)requestURLForImage:(SRGImage *)image withSize:(SRGImageSize)size
 {
-    return [self requestURLForImageURL:image.URL withSize:size variant:image.variant scaling:scaling];
+    return [self requestURLForImageURL:image.URL withSize:size variant:image.variant];
 }
 
-- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withWidth:(SRGImageWidth)width scaling:(SRGImageScaling)scaling
+- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withWidth:(SRGImageWidth)width
 {
     if (! imageURL) {
         return nil;
@@ -32,44 +32,23 @@
         return imageURL;
     }
     
-    switch (scaling) {
-        case SRGImageScalingAspectFitSixteenToNine: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-pillarbox" imageURL:imageURL width:width];
-            break;
-        }
-        
-        case SRGImageScalingAspectFitBlackSquare: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one" imageURL:imageURL width:width];
-            break;
-        }
-        
-        case SRGImageScalingAspectFitTransparentSquare: {
-            return [self scaledImageURLForResourcePath:@"integrationlayer/2.0/image-scale-one-to-one-transparent-background" imageURL:imageURL width:width];
-            break;
-        }
-            
-        case SRGImageScalingPreserveAspectRatio: {
-            return [self imageServiceURLForImageURL:imageURL width:width];
-            break;
-        }
-            
-        default: {
-            // We do not use `integrationlayer/2.0/image-scale-sixteen-to-nine` here since it delivers PNGs, too costly
-            // in comparison to resource paths scaling delivering JPEG.
-            return [self scaledImageURL:imageURL width:width];
-            break;
-        }
+    // See https://github.com/SRGSSR/srgdataprovider-apple/issues/47
+    if ([imageURL.host containsString:@"rts.ch"] && [imageURL.path containsString:@".image"]) {
+        return [self businessUnitScalingServiceURLForImageURL:imageURL width:width];
+    }
+    else {
+        return [self playsrgScalingServiceURLForImageURL:imageURL width:width];
     }
 }
 
-- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant scaling:(SRGImageScaling)scaling
+- (NSURL *)requestURLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant
 {
-    return [self requestURLForImageURL:imageURL withWidth:SRGRecommendedImageWidth(size, variant) scaling:scaling];
+    return [self requestURLForImageURL:imageURL withWidth:SRGRecommendedImageWidth(size, variant)];
 }
 
-#pragma mark Modern image scaling
+#pragma mark PlaySRG image scaling service
 
-- (NSURL *)imageServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
+- (NSURL *)playsrgScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
 {
     static NSDictionary<NSString *, NSString *> *s_formats;
     static dispatch_once_t s_onceToken;
@@ -86,8 +65,8 @@
     
     NSURL *URL = [rootServiceURLComponents.URL URLByAppendingPathComponent:@"images/"];
     NSURLComponents *URLComponents = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
-
-    NSString *format = s_formats[imageURL.pathExtension] ?: @"jpg";
+    
+    NSString *format = s_formats[imageURL.pathExtension] ?: s_formats[imageURL.pathComponents.lastObject] ?: @"jpg";
     URLComponents.queryItems = @[
         [NSURLQueryItem queryItemWithName:@"imageUrl" value:imageURL.absoluteString],
         [NSURLQueryItem queryItemWithName:@"format" value:format],
@@ -96,18 +75,12 @@
     return URLComponents.URL;
 }
 
-#pragma mark Legacy image scaling
+#pragma mark Business Unit image scaling service
 
-- (NSURL *)scaledImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
+- (NSURL *)businessUnitScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
 {
     NSString *sizeComponent = [NSString stringWithFormat:@"scale/width/%@", @(width)];
     return [imageURL URLByAppendingPathComponent:sizeComponent];
-}
-
-- (NSURL *)scaledImageURLForResourcePath:(NSString *)resourcePath imageURL:(NSURL *)imageURL width:(SRGImageWidth)width
-{
-    NSString *sizeComponent = [NSString stringWithFormat:@"scale/width/%@", @(width)];
-    return [[[self.serviceURL URLByAppendingPathComponent:resourcePath] URLByAppendingPathComponent:imageURL.absoluteString] URLByAppendingPathComponent:sizeComponent];
 }
 
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic) NSDate *startDate;
 @property (nonatomic) NSDate *endDate;
 @property (nonatomic) NSURL *imageURL;
+@property (nonatomic) BOOL imageIsFallbackUrl;
 @property (nonatomic) NSURL *URL;
 @property (nonatomic) SRGShow *show;
 @property (nonatomic) NSArray<SRGProgram *> *subprograms;
@@ -63,6 +64,7 @@
             @keypath(SRGProgram.new, startDate) : @"startTime",
             @keypath(SRGProgram.new, endDate) : @"endTime",
             @keypath(SRGProgram.new, imageURL) : @"imageUrl",
+            @keypath(SRGProgram.new, imageIsFallbackUrl) : @"imageIsFallbackUrl",
             @keypath(SRGProgram.new, URL) : @"url",
             @keypath(SRGProgram.new, show) : @"show",
             @keypath(SRGProgram.new, subprograms) : @"subProgramList",
@@ -100,7 +102,8 @@
 
 - (SRGImage *)image
 {
-    return [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault];
+    // See https://github.com/SRGSSR/srgdataprovider-apple/issues/48
+    return !self.imageIsFallbackUrl ? [SRGImage imageWithURL:self.imageURL variant:SRGImageVariantDefault] : nil;
 }
 
 - (SRGTimeAvailability)timeAvailabilityAtDate:(NSDate *)date

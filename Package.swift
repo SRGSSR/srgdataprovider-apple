@@ -3,7 +3,7 @@
 import PackageDescription
 
 struct ProjectSettings {
-    static let marketingVersion: String = "17.0.1"
+    static let marketingVersion: String = "18.0.0"
 }
 
 let package = Package(
@@ -75,6 +75,10 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("Private")
             ]
+        ),
+        .testTarget(
+            name: "SRGDataProviderRequestsTests",
+            dependencies: ["SRGDataProviderRequests"]
         ),
         .testTarget(
             name: "SRGDataProviderNetworkTests",
