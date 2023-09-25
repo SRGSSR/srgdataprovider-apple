@@ -97,10 +97,11 @@
     NSString *urlString = @"https://www.rts.ch/2017/03/20/20/17/8478254.image/16x9";
     NSURLComponents *components = [self componentsFromUrlString:urlString width:SRGImageWidth320];
     
-    // Business unit image service
-    XCTAssertEqualObjects(components.host, @"www.rts.ch");
-    XCTAssertEqual([components.string rangeOfString:urlString].location, 0);
-    XCTAssertNotEqual([components.path rangeOfString:@"/scale/width/320"].location, NSNotFound);
+    XCTAssertEqualObjects(components.host, @"il.srgssr.ch");
+    XCTAssertEqual([components.path rangeOfString:@"/images"].location, 0);
+    XCTAssertEqualObjects(components.imageUrlQueryValue, urlString);
+    XCTAssertEqualObjects(components.widthQueryValue, @"320");
+    XCTAssertEqualObjects(components.formatQueryValue, @"jpg");
 }
 
 - (void)testAudioRTSImage
@@ -108,10 +109,11 @@
     NSString *urlString = @"https://www.rts.ch/2021/04/30/14/43/7978319.image/16x9";
     NSURLComponents *components = [self componentsFromUrlString:urlString width:SRGImageWidth320];
     
-    // Business unit image service
-    XCTAssertEqualObjects(components.host, @"www.rts.ch");
-    XCTAssertEqual([components.string rangeOfString:urlString].location, 0);
-    XCTAssertNotEqual([components.path rangeOfString:@"/scale/width/320"].location, NSNotFound);
+    XCTAssertEqualObjects(components.host, @"il.srgssr.ch");
+    XCTAssertEqual([components.path rangeOfString:@"/images"].location, 0);
+    XCTAssertEqualObjects(components.imageUrlQueryValue, urlString);
+    XCTAssertEqualObjects(components.widthQueryValue, @"320");
+    XCTAssertEqualObjects(components.formatQueryValue, @"jpg");;
 }
 
 - (void)testVideoSRFImage
