@@ -279,7 +279,7 @@ static BOOL DataProviderURLContainsQueryParameter(NSURL *URL, NSString *name, NS
     
     SRGDataProvider *dataProvider = [[SRGDataProvider alloc] initWithServiceURL:SRGIntegrationLayerProductionServiceURL()];
     __block SRGFirstPageRequest *request = nil;
-    request = [[dataProvider latestEpisodesForShowWithURN:@"urn:rts:show:tv:6454717" maximumPublicationDay:nil completionBlock:^(SRGEpisodeComposition * _Nullable episodeComposition, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    request = [[dataProvider latestEpisodesForShowWithURN:@"urn:rts:show:tv:548307" maximumPublicationDay:nil completionBlock:^(SRGEpisodeComposition * _Nullable episodeComposition, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertEqual(episodeComposition.episodes.count, 4);
         
         if (page.number == 0) {
