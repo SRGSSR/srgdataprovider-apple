@@ -513,7 +513,7 @@ static BOOL DataProviderURLContainsQueryParameter(NSURL *URL, NSString *name, NS
     dataProvider.globalParameters = @{ @"forceLocation" : @"WW" };
     
     __block SRGFirstPageRequest *request = nil;
-    request = [[dataProvider latestEpisodesForShowWithURN:@"urn:rts:show:tv:6454706" maximumPublicationDay:nil completionBlock:^(SRGEpisodeComposition * _Nullable episodeComposition, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    request = [[dataProvider latestEpisodesForShowWithURN:@"urn:rts:show:tv:548307" maximumPublicationDay:nil completionBlock:^(SRGEpisodeComposition * _Nullable episodeComposition, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         if (page.number == 0) {
             SRGPageRequest *nextRequest = [request requestWithPage:nextPage];
             NSURLRequest *nextPageURLRequest = nextRequest.URLRequest;

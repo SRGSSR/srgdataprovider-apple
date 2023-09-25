@@ -19,7 +19,7 @@ static NSString * const kTVShowSRFOtherURN = @"urn:srf:show:tv:c38cc259-b5cd-4ac
 
 static NSString * const kRadioShowSRFURN = @"urn:srf:show:radio:da260da8-2efd-49b0-9e7b-977f5f254f0d";
 
-static NSString * const kShowRTSURN = @"urn:rts:show:tv:6454706";
+static NSString * const kShowRTSURN = @"urn:rts:show:tv:548307";
 
 static NSString * const kTopicURN = @"urn:rts:topic:tv:1081";
 static NSString * const kInvalidTopicURN = @"urn:srf:topic:tv:1";
