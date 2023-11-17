@@ -170,7 +170,11 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
     /**
      *  Available episodes for a show.
      */
-    SRGContentPresentationTypeAvailableEpisodes
+    SRGContentPresentationTypeAvailableEpisodes,
+    /**
+     *  Trending shows by topic.
+     */
+    SRGContentPresentationTypeTrendingShowsByTopic
 };
 
 /**
