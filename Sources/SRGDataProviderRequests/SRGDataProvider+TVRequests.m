@@ -191,4 +191,11 @@
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }
 
+- (NSURLRequest *)requestTVMostPopularShowsForVendor:(SRGVendor)vendor
+                                            topicUid:(NSString *)topicUid
+{
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/showList/tv/byTopic/%@/mostClicked", SRGPathComponentForVendor(vendor), topicUid];
+    return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
+}
+
 @end

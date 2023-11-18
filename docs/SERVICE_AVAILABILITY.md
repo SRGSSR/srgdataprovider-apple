@@ -54,6 +54,7 @@ Services are currently only available for SRG SSR vendors (SRF, RTS, RSI, RTR an
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | All shows | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Show search | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Most popular shows for topic | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
 
 #### Remark
 

@@ -22,6 +22,8 @@ static NSString * const kTVChannelUid = @"23FFBE1B-65CE-4188-ADD2-C724186C2C9F";
 static NSString * const kTVLivestreamUid = @"c4927fcf-e1a0-0001-7edd-1ef01d441651";
 static NSString * const kTVShowSearchQuery = @"kassensturz";
 
+static NSString * const kTVTopicUid = @"a709c610-b275-4c0c-a496-cba304c36712";
+
 static NSString * const kTVShowURN = @"urn:srf:show:tv:6fd27ab0-d10f-450f-aaa9-836f1cac97bd";
 static NSString * const kTVShowOtherURN = @"urn:srf:show:tv:c38cc259-b5cd-4ac1-b901-e3fddd901a3d";
 static NSString * const kRadioShowURN = @"urn:srf:show:radio:da260da8-2efd-49b0-9e7b-977f5f254f0d";
@@ -330,6 +332,20 @@ static NSString * const kTag2 = @"curling";
     [[self.dataProvider tvShowsForVendor:SRGVendorSRF matchingQuery:kTVShowSearchQuery withCompletionBlock:^(NSArray<NSString *> * _Nullable showURNs, NSNumber * _Nullable total, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(showURNs);
         XCTAssertNotNil(total);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testTVMostPopularShowsForTopic
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider tvMostPopularShowsForVendor:SRGVendorSRF topicUid:kTVTopicUid withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(shows);
+        XCTAssertTrue(shows.count > 0);
         XCTAssertNil(error);
         [expectation fulfill];
     }] resume];
