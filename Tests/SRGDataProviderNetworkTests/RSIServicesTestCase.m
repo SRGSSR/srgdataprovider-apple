@@ -22,7 +22,7 @@ static NSString * const kTVChannelUid = @"la1";
 static NSString * const kTVLivestreamUid = @"livestream_La1";
 static NSString * const kTVShowSearchQuery = @"telegiornale";
 
-static NSString * const kTVTopicUid = @"703571";
+static NSString * const kTVTopicUid = @"7";
 
 static NSString * const kTVShowURN = @"urn:rsi:show:tv:703571";
 static NSString * const kTVShowOtherURN = @"urn:rsi:show:tv:704146";
@@ -335,14 +335,13 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for RSI
 - (void)testTVMostPopularShowsForTopic
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider tvMostPopularShowsForVendor:SRGVendorRSI topicUid:kTVTopicUid withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(shows);
-        XCTAssertTrue(shows.count == 0);
+        XCTAssertTrue(shows.count > 0);
         XCTAssertNil(error);
         [expectation fulfill];
     }] resume];
