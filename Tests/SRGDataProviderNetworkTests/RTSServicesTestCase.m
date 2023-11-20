@@ -22,7 +22,7 @@ static NSString * const kTVChannelUid = @"143932a79bb5a123a646b68b1d1188d7ae493e
 static NSString * const kTVLivestreamUid = @"3608506";
 static NSString * const kTVShowSearchQuery = @"entendeur";
 
-static NSString * const kTVTopicUid = @"548307";
+static NSString * const kTVTopicUid = @"665";
 
 static NSString * const kTVShowURN = @"urn:rts:show:tv:548307";
 static NSString * const kTVShowOtherURN = @"urn:rts:show:tv:105932";
