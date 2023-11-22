@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLRequest *)requestTVShowsForVendor:(SRGVendor)vendor;
 - (NSURLRequest *)requestTVShowsForVendor:(SRGVendor)vendor
                             matchingQuery:(NSString *)query;
+- (NSURLRequest *)requestTVMostPopularShowsForVendor:(SRGVendor)vendor
+                                            topicUid:(NSString *)topicUid;
 
 @end
 NS_ASSUME_NONNULL_END

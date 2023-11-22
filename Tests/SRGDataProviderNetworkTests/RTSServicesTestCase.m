@@ -22,6 +22,8 @@ static NSString * const kTVChannelUid = @"143932a79bb5a123a646b68b1d1188d7ae493e
 static NSString * const kTVLivestreamUid = @"3608506";
 static NSString * const kTVShowSearchQuery = @"entendeur";
 
+static NSString * const kTVTopicUid = @"665";
+
 static NSString * const kTVShowURN = @"urn:rts:show:tv:548307";
 static NSString * const kTVShowOtherURN = @"urn:rts:show:tv:105932";
 static NSString * const kRadioShowURN = @"urn:rts:show:radio:8272976";
@@ -323,6 +325,19 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(showURNs);
         XCTAssertNotNil(total);
         XCTAssertNil(error);
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+// Not supported for RTS
+- (void)testTVMostPopularShowsForTopic
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider tvMostPopularShowsForVendor:SRGVendorRTS topicUid:kTVTopicUid withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(error);
         [expectation fulfill];
     }] resume];
     
@@ -1133,6 +1148,20 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 180.);
         
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+// Not supported for RTS
+- (void)testShowWithTopics
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider showWithURN:kTVShowURN completionBlock:^(SRGShow * _Nullable show, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(show);
+        XCTAssertNil(show.topics);
         [expectation fulfill];
     }] resume];
     

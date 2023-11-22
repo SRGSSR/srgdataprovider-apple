@@ -22,6 +22,8 @@ static NSString * const kTVChannelUid = @"la1";
 static NSString * const kTVLivestreamUid = @"livestream_La1";
 static NSString * const kTVShowSearchQuery = @"telegiornale";
 
+static NSString * const kTVTopicUid = @"7";
+
 static NSString * const kTVShowURN = @"urn:rsi:show:tv:703571";
 static NSString * const kTVShowOtherURN = @"urn:rsi:show:tv:704146";
 static NSString * const kRadioShowURN = @"urn:rsi:show:radio:703560";
@@ -326,6 +328,20 @@ static NSString * const kUserId = @"test_user_id";
     [[self.dataProvider tvShowsForVendor:SRGVendorRSI matchingQuery:kTVShowSearchQuery withCompletionBlock:^(NSArray<NSString *> * _Nullable showURNs, NSNumber * _Nullable total, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(showURNs);
         XCTAssertNotNil(total);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testTVMostPopularShowsForTopic
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider tvMostPopularShowsForVendor:SRGVendorRSI topicUid:kTVTopicUid withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(shows);
+        XCTAssertTrue(shows.count > 0);
         XCTAssertNil(error);
         [expectation fulfill];
     }] resume];
@@ -1117,6 +1133,20 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertEqual(image.size.width, 320.);
         XCTAssertEqual(image.size.height, 180.);
         
+        [expectation fulfill];
+    }] resume];
+    
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testShowWithTopics
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    
+    [[self.dataProvider showWithURN:kTVShowURN completionBlock:^(SRGShow * _Nullable show, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(show);
+        XCTAssertNotNil(show.topics);
+        XCTAssertTrue(show.topics.count > 0);
         [expectation fulfill];
     }] resume];
     
