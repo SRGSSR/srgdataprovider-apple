@@ -54,6 +54,7 @@ Services are currently only available for SRG SSR vendors (SRF, RTS, RSI, RTR an
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | All shows | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Show search | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Most popular shows for topic | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ | ❌ |
 
 #### Remark
 
@@ -89,7 +90,7 @@ Regional livestreams only exist for SRF, otherwise only main livestreams are ava
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Topics | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | N/A |
+| Topics | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | N/A |
 
 ### Shows
 
@@ -157,6 +158,8 @@ These services return content configured by editors through the Play Application
 | Page for a product | ❌ | N/A |
 | Page for a product name | ❌ | N/A |
 | Page for a topic | ❌ | N/A |
+| Page for a show in product | ❌ | N/A |
+| Page for a show in product name | ❌ | N/A |
 | Section | ❌ | N/A |
 | Medias for a section | ✅ | ❌ |
 | Shows for a section | ✅ | ❌ |

@@ -71,6 +71,36 @@ NS_ASSUME_NONNULL_BEGIN
                  withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock;
 
 /**
+ *  Retrieve a page of content for a specific show.
+ *
+ *  @param published Set this parameter to `YES` to look only for published pages.
+ *  @param product   The product to retrieve the content page for.
+ *  @param date      The page content might change over time. Use `nil` to retrieve the page as it looks now, or
+ *                   at a specific date.
+ */
+- (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
+                             product:(SRGProduct)product
+                         showWithURN:(NSString *)showURN
+                           published:(BOOL)published
+                              atDate:(nullable NSDate *)date
+                 withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock;
+
+/**
+ *  Retrieve a page of content for a specific show.
+ *
+ *  @param published Set this parameter to `YES` to look only for published pages.
+ *  @param productName The name of the product to retrieve the content page for.
+ *  @param date      The page content might change over time. Use `nil` to retrieve the page as it looks now, or
+ *                   at a specific date.
+ */
+- (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
+                         productName:(NSString *)productName
+                         showWithURN:(NSString *)showURN
+                           published:(BOOL)published
+                              atDate:(nullable NSDate *)date
+                 withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock;
+
+/**
  *  Retrieve a section of content given by its unique identifier.
  *
  *  @param published Set this parameter to `YES` to look only for published sections.

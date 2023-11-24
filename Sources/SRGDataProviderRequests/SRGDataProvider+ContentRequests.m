@@ -64,6 +64,25 @@
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }
 
+- (NSURLRequest *)requestContentPageForVendor:(SRGVendor)vendor
+                                  productName:(NSString *)productName
+                                  showWithURN:(NSString *)showURN
+                                    published:(BOOL)published
+                                       atDate:(NSDate *)date
+{
+    NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/page/%@/showPage/%@", SRGPathComponentForVendor(vendor), productName, showURN];
+    
+    NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray array];
+    if (! published) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"isPublished" value:@"false"]];
+    }
+    if (date) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"previewDate" value:SRGStringFromDate(date)]];
+    }
+    
+    return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
+}
+
 - (NSURLRequest *)requestContentSectionForVendor:(SRGVendor)vendor
                                              uid:(NSString *)uid
                                        published:(BOOL)published

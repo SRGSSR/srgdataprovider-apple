@@ -214,4 +214,12 @@ public extension SRGDataProvider {
             }
             .eraseToAnyPublisher()
     }
+    
+    /**
+     *  Most popular shows for a topic.
+     */
+    func tvMostPopularShows(for vendor: SRGVendor, topicUid: String, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGShow], Error> {
+        let request = requestTVMostPopularShows(for: vendor, topicUid: topicUid)
+        return paginatedObjectsTriggeredPublisher(at: Page(request: request, size: pageSize), rootKey: "showList", type: SRGShow.self, paginatedBy: signal)
+    }
 }

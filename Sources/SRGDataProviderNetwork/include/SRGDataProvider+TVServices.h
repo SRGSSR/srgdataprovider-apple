@@ -191,6 +191,13 @@ NS_ASSUME_NONNULL_BEGIN
                             matchingQuery:(NSString *)query
                       withCompletionBlock:(SRGPaginatedShowSearchCompletionBlock)completionBlock;
 
+/**
+ *  Most popular shows for a topic.
+ */
+- (SRGFirstPageRequest *)tvMostPopularShowsForVendor:(SRGVendor)vendor
+                                            topicUid:(NSString *)topicUid
+                                 withCompletionBlock:(SRGPaginatedShowListCompletionBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

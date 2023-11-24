@@ -9,6 +9,7 @@
 #import "SRGMetadata.h"
 #import "SRGModel.h"
 #import "SRGShowIdentifierMetadata.h"
+#import "SRGTopic.h"
 #import "SRGTypes.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -77,6 +78,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The number of episodes available for the show.
  */
 @property (nonatomic, readonly, nullable) NSNumber *numberOfEpisodes;
+
+/**
+ *  The related topics.
+ */
+@property (nonatomic, readonly, nullable) NSArray<SRGTopic *> *topics;
 
 @end
 

@@ -51,6 +51,28 @@
     return [self fetchObjectWithURLRequest:URLRequest modelClass:SRGContentPage.class completionBlock:completionBlock];
 }
 
+- (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
+                             product:(SRGProduct)product
+                         showWithURN:(NSString *)showURN
+                           published:(BOOL)published
+                              atDate:(NSDate *)date
+                 withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock
+{
+    NSURLRequest *URLRequest = [self requestContentPageForVendor:vendor productName:product showWithURN:showURN published:published atDate:date];
+    return [self fetchObjectWithURLRequest:URLRequest modelClass:SRGContentPage.class completionBlock:completionBlock];
+}
+
+- (SRGRequest *)contentPageForVendor:(SRGVendor)vendor
+                         productName:(NSString *)productName
+                         showWithURN:(NSString *)showURN
+                           published:(BOOL)published
+                              atDate:(NSDate *)date
+                 withCompletionBlock:(SRGContentPageCompletionBlock)completionBlock
+{
+    NSURLRequest *URLRequest = [self requestContentPageForVendor:vendor productName:productName showWithURN:showURN published:published atDate:date];
+    return [self fetchObjectWithURLRequest:URLRequest modelClass:SRGContentPage.class completionBlock:completionBlock];
+}
+
 - (SRGRequest *)contentSectionForVendor:(SRGVendor)vendor
                                     uid:(NSString *)uid
                               published:(BOOL)published

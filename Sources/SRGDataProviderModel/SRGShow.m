@@ -24,6 +24,7 @@
 @property (nonatomic) NSURL *posterImageURL;
 @property (nonatomic) NSURL *podcastImageURL;
 @property (nonatomic) NSNumber *numberOfEpisodes;
+@property (nonatomic) NSArray<SRGTopic *> *topics;
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *lead;
@@ -57,11 +58,12 @@
             @keypath(SRGShow.new, podcastDeezerURL) : @"podcastDeezerUrl",
             @keypath(SRGShow.new, podcastSpotifyURL) : @"podcastSpotifyUrl",
             @keypath(SRGShow.new, primaryChannelUid) : @"primaryChannelId",
-            @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
             @keypath(SRGShow.new, imageURL) : @"imageUrl",
             @keypath(SRGShow.new, bannerImageURL) : @"bannerImageUrl",
             @keypath(SRGShow.new, posterImageURL) : @"posterImageUrl",
             @keypath(SRGShow.new, podcastImageURL) : @"podcastImageUrl",
+            @keypath(SRGShow.new, numberOfEpisodes) : @"numberOfEpisodes",
+            @keypath(SRGShow.new, topics) : @"topicList",
             
             @keypath(SRGShow.new, title) : @"title",
             @keypath(SRGShow.new, lead) : @"lead",
@@ -152,6 +154,11 @@
 + (NSValueTransformer *)podcastImageURLJSONTransformer
 {
     return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)topicsJSONTransformer
+{
+    return [MTLJSONAdapter arrayTransformerWithModelClass:SRGTopic.class];
 }
 
 + (NSValueTransformer *)transmissionJSONTransformer

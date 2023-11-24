@@ -32,7 +32,7 @@
 "This media is not available anymore." = "Quest medium n'è betg pli disponibel.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
-"This media is not available due to legal restrictions." = "Quest medium n'è betg disponibel perquei ch'el è scadì.";
+"This media is not available due to legal restrictions." = "Quest medium n'è betg disponibel perquai ch'el è scadì.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "This media is not available outside Switzerland." = "Quest medium n'è betg disponibel ordaifer la Svizra.";
