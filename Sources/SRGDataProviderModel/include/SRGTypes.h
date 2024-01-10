@@ -825,8 +825,22 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGTimeAvailability) {
 };
 
 /**
- *  @name String service types.
+ *  Scheduled livestream event types
  */
+typedef NS_CLOSED_ENUM(NSInteger, SRGScheduledLivestreamEventType) {
+    /**
+     *  All types.
+     */
+    SRGScheduledLivestreamEventTypeAll = 0,
+    /**
+     *  News scheduled livestreams.
+     */
+    SRGScheduledLivestreamEventTypeNews,
+    /**
+     *  Sport scheduled livestreams.
+     */
+    SRGScheduledLivestreamEventTypeSport
+};
 
 /**
  *  @name Known products.
