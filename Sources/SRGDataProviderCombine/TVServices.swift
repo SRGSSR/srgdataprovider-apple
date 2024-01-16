@@ -79,7 +79,7 @@ public extension SRGDataProvider {
      *  - Parameter signLanguageOnly: Whether only livestreams with sign language must be returned.
      *  - Parameter eventType:        Specify which event type must be returned.
      */
-    func tvScheduledLivestreams(for vendor: SRGVendor, signLanguageOnly: Bool = false, eventType:SRGScheduledLivestreamEventType = .all, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
+    func tvScheduledLivestreams(for vendor: SRGVendor, signLanguageOnly: Bool = false, eventType: SRGScheduledLivestreamEventType = .all, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
         let request = requestTVScheduledLivestreams(for: vendor, signLanguageOnly: signLanguageOnly, eventType: eventType)
         return paginatedObjectsTriggeredPublisher(at: Page(request: request, size: pageSize), rootKey: "mediaList", type: SRGMedia.self, paginatedBy: signal)
     }
