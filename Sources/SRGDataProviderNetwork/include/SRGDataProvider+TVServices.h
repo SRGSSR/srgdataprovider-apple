@@ -77,9 +77,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  List of TV scheduled livestreams.
  *
  *  @param signLanguageOnly  Whether only livestreams with sign language must be returned.
+ *  @param eventType                  Specify which event type must be returned.
  */
 - (SRGFirstPageRequest *)tvScheduledLivestreamsForVendor:(SRGVendor)vendor
                                         signLanguageOnly:(BOOL)signLanguageOnly
+                                               eventType:(SRGScheduledLivestreamEventType)eventType
                                      withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 /**

@@ -64,9 +64,10 @@
 
 - (SRGFirstPageRequest *)tvScheduledLivestreamsForVendor:(SRGVendor)vendor
                                         signLanguageOnly:(BOOL)signLanguageOnly
+                                               eventType:(SRGScheduledLivestreamEventType)eventType
                                      withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock
 {
-    NSURLRequest *URLRequest = [self requestTVScheduledLivestreamsForVendor:vendor signLanguageOnly:signLanguageOnly];
+    NSURLRequest *URLRequest = [self requestTVScheduledLivestreamsForVendor:vendor signLanguageOnly:signLanguageOnly eventType:eventType];
     return [self listPaginatedObjectsWithURLRequest:URLRequest modelClass:SRGMedia.class rootKey:@"mediaList" completionBlock:^(NSArray * _Nullable objects, NSDictionary<NSString *,id> *metadata, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         completionBlock(objects, page, nextPage, HTTPResponse, error);
     }];
