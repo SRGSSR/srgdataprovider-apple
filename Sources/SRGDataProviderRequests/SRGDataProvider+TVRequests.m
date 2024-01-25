@@ -8,6 +8,19 @@
 
 #import "SRGDataProvider+RequestBuilders.h"
 
+static NSString *SRGScheduledLivestreamEventTypeParameter(SRGScheduledLivestreamEventType type)
+{
+    static dispatch_once_t s_onceToken;
+    static NSDictionary<NSNumber *, NSString *> *s_types;
+    dispatch_once(&s_onceToken, ^{
+        s_types = @{
+            @(SRGScheduledLivestreamEventTypeNews) : @"news",
+            @(SRGScheduledLivestreamEventTypeSport) : @"sport"
+        };
+    });
+    return s_types[@(type)];
+}
+
 @implementation SRGDataProvider (TVRequests)
 
 - (NSURLRequest *)requestTVChannelsForVendor:(SRGVendor)vendor
@@ -86,10 +99,19 @@
 
 - (NSURLRequest *)requestTVScheduledLivestreamsForVendor:(SRGVendor)vendor
                                         signLanguageOnly:(BOOL)signLanguageOnly
+                                               eventType:(SRGScheduledLivestreamEventType)eventType
 {
     NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/scheduledLivestreams", SRGPathComponentForVendor(vendor)];
-    NSArray<NSURLQueryItem *> *queryItems = signLanguageOnly ? @[ [NSURLQueryItem queryItemWithName:@"signLanguageOnly" value:@"true"] ] : nil;
-    return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems];
+    
+    NSMutableArray<NSURLQueryItem *> *queryItems = [NSMutableArray new];
+    if (signLanguageOnly) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"signLanguageOnly" value:@"true"]];
+    }
+    NSString *eventTypeValue = SRGScheduledLivestreamEventTypeParameter(eventType);
+    if (eventTypeValue) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"eventType" value:eventTypeValue]];
+    }
+    return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.count > 0 ? queryItems.copy : nil];
 }
 
 - (NSURLRequest *)requestTVEditorialMediasForVendor:(SRGVendor)vendor
