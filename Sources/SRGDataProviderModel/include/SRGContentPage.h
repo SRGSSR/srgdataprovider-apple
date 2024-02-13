@@ -31,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *title;
 
 /**
+ *  The page description.
+ */
+@property (nonatomic, readonly, copy, nullable) NSString *summary;
+
+/**
  *  `YES` iff the page has been published.
  */
 @property (nonatomic, readonly, getter=isPublished) BOOL published;
