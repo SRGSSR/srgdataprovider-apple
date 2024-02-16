@@ -101,6 +101,22 @@ NSValueTransformer *SRGContentSectionTypeJSONTransformer(void)
     return s_transformer;
 }
 
+NSValueTransformer *SRGContentPageTypeJSONTransformer(void)
+{
+    static NSValueTransformer *s_transformer;
+    static dispatch_once_t s_onceToken;
+    dispatch_once(&s_onceToken, ^{
+        s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"LANDING_PAGE" : @(SRGContentPageTypeLandingPage),
+                                                                                         @"TOPIC_PAGE" : @(SRGContentPageTypeTopicPage),
+                                                                                         @"SHOW_PAGE" : @(SRGContentPageTypeShowPage),
+                                                                                         @"DEFAULT_SHOW_PAGE" : @(SRGContentPageTypeDefaultShowPage),
+                                                                                         @"MICRO_PAGE": @(SRGContentPageTypeMicroPage) }
+                                                                         defaultValue:@(SRGContentPageTypeNone)
+                                                                  reverseDefaultValue:nil];
+    });
+    return s_transformer;
+}
+
 NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void)
 {
     static NSValueTransformer *s_transformer;
