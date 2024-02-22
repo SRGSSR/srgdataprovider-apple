@@ -177,28 +177,22 @@
 
 - (void)testContentPageForMicroPage
 {
-    XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
-    
-    [[self.dataProvider contentPageForVendor:SRGVendorRTS uid:@"56b3f3d2-10f0-49f7-b3f4-0892096cde30" published:YES atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+    [self contentPageForMicroPagePublished:YES];
+    [self contentPageForMicroPagePublished:NO];
+}
+
+-(void)contentPageForMicroPagePublished:(BOOL)published
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+
+    [[self.dataProvider contentPageForVendor:SRGVendorRTS uid:@"56b3f3d2-10f0-49f7-b3f4-0892096cde30" published:published atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(contentPage);
         XCTAssertEqual(contentPage.type, SRGContentPageTypeMicroPage);
         XCTAssertNotNil(contentPage.summary);
         XCTAssertNil(error);
-        [expectation1 fulfill];
+        [expectation fulfill];
     }] resume];
-    
-    [self waitForExpectationsWithTimeout:30. handler:nil];
-    
-    XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
-    
-    [[self.dataProvider contentPageForVendor:SRGVendorRTS uid:@"56b3f3d2-10f0-49f7-b3f4-0892096cde30" published:NO atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(contentPage);
-        XCTAssertEqual(contentPage.type, SRGContentPageTypeMicroPage);
-        XCTAssertNotNil(contentPage.summary);
-        XCTAssertNil(error);
-        [expectation2 fulfill];
-    }] resume];
-    
+
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
