@@ -181,10 +181,10 @@
     [self contentPageForMicroPagePublished:NO];
 }
 
--(void)contentPageForMicroPagePublished:(BOOL)published
+- (void)contentPageForMicroPagePublished:(BOOL)published
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
-
+    
     [[self.dataProvider contentPageForVendor:SRGVendorRTS uid:@"56b3f3d2-10f0-49f7-b3f4-0892096cde30" published:published atDate:nil withCompletionBlock:^(SRGContentPage * _Nullable contentPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(contentPage);
         XCTAssertEqual(contentPage.type, SRGContentPageTypeMicroPage);
@@ -192,7 +192,7 @@
         XCTAssertNil(error);
         [expectation fulfill];
     }] resume];
-
+    
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
