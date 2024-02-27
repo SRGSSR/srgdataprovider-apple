@@ -90,6 +90,36 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGBlockingReason) {
 };
 
 /**
+ *  Content page types.
+ */
+typedef NS_CLOSED_ENUM(NSInteger, SRGContentPageType) {
+    /**
+     *  Not specified.
+     */
+    SRGContentPageTypeNone = 0,
+    /**
+     *  Landing page.
+     */
+    SRGContentPageTypeLandingPage,
+    /**
+     *  Topic page.
+     */
+    SRGContentPageTypeTopicPage,
+    /**
+     *  Show page.
+     */
+    SRGContentPageTypeShowPage,
+    /**
+     *  Default show page.
+     */
+    SRGContentPageTypeDefaultShowPage,
+    /**
+     *  Micro page.
+     */
+    SRGContentPageTypeMicroPage
+};
+
+/**
  *  Content presentation types.
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {

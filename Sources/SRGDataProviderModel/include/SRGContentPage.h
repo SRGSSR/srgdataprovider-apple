@@ -26,9 +26,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) SRGVendor vendor;
 
 /**
+ *  The page type.
+ */
+@property (nonatomic, readonly) SRGContentPageType type;
+
+/**
  *  The page title.
  */
 @property (nonatomic, readonly, copy) NSString *title;
+
+/**
+ *  The page description.
+ */
+@property (nonatomic, readonly, copy, nullable) NSString *summary;
 
 /**
  *  `YES` iff the page has been published.

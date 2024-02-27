@@ -14,7 +14,9 @@
 
 @property (nonatomic, copy) NSString *uid;
 @property (nonatomic) SRGVendor vendor;
+@property (nonatomic) SRGContentPageType type;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *summary;
 @property (nonatomic, getter=isPublished) BOOL published;
 @property (nonatomic, copy) NSString *topicURN;
 @property (nonatomic) NSArray<SRGContentSection *> *sections;
@@ -33,7 +35,9 @@
         s_mapping = @{
             @keypath(SRGContentPage.new, uid) : @"id",
             @keypath(SRGContentPage.new, vendor) : @"vendor",
+            @keypath(SRGContentPage.new, type) : @"type",
             @keypath(SRGContentPage.new, title) : @"title",
+            @keypath(SRGContentPage.new, summary) : @"description",
             @keypath(SRGContentPage.new, published) : @"isPublished",
             @keypath(SRGContentPage.new, topicURN) : @"topicUrn",
             @keypath(SRGContentPage.new, sections) : @"sectionList"
@@ -47,6 +51,11 @@
 + (NSValueTransformer *)vendorJSONTransformer
 {
     return SRGVendorJSONTransformer();
+}
+
++ (NSValueTransformer *)typeJSONTransformer
+{
+    return SRGContentPageTypeJSONTransformer();
 }
 
 + (NSValueTransformer *)sectionsJSONTransformer
