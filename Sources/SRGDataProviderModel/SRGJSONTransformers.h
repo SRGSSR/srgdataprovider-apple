@@ -14,6 +14,7 @@ OBJC_EXPORT NSValueTransformer *SRGAudioCodecJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGBooleanInversionJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGBlockingReasonJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGContentSectionTypeJSONTransformer(void);
+OBJC_EXPORT NSValueTransformer *SRGContentPageTypeJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGContentTypeJSONTransformer(void);
 OBJC_EXPORT NSValueTransformer *SRGDRMTypeJSONTransformer(void);

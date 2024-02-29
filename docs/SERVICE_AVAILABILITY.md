@@ -90,7 +90,7 @@ Regional livestreams only exist for SRF, otherwise only main livestreams are ava
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Topics | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ | N/A |
+| Topics | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | N/A |
 
 ### Shows
 
