@@ -1174,14 +1174,14 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for RTS
 - (void)testShowWithTopics
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider showWithURN:kTVShowURN completionBlock:^(SRGShow * _Nullable show, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(show);
-        XCTAssertNil(show.topics);
+        XCTAssertNotNil(show.topics);
+        XCTAssertTrue(show.topics.count > 0);
         [expectation fulfill];
     }] resume];
     
