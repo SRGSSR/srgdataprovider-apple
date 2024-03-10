@@ -716,7 +716,8 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGImageSize) {
  */
 typedef NS_CLOSED_ENUM(NSInteger, SRGImageVariant) {
     SRGImageVariantDefault = 0,
-    SRGImageVariantPoster
+    SRGImageVariantPoster,
+    SRGImageVariantPodcast
 };
 
 /**
