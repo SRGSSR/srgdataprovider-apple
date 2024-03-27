@@ -32,13 +32,7 @@
         return imageURL;
     }
     
-    // See https://github.com/SRGSSR/srgdataprovider-apple/issues/47
-    if ([imageURL.host containsString:@"rts.ch"] && [imageURL.path containsString:@".image"]) {
-        return [self businessUnitScalingServiceURLForImageURL:imageURL width:width];
-    }
-    else {
-        return [self playsrgScalingServiceURLForImageURL:imageURL width:width];
-    }
+    return [self playsrgScalingServiceURLForImageURL:imageURL width:width];
 }
 
 - (NSURL *)requestURLForImageURL:(NSURL *)imageURL withSize:(SRGImageSize)size variant:(SRGImageVariant)variant
@@ -73,14 +67,6 @@
         [NSURLQueryItem queryItemWithName:@"width" value:@(width).stringValue]
     ];
     return URLComponents.URL;
-}
-
-#pragma mark Business Unit image scaling service
-
-- (NSURL *)businessUnitScalingServiceURLForImageURL:(NSURL *)imageURL width:(SRGImageWidth)width
-{
-    NSString *sizeComponent = [NSString stringWithFormat:@"scale/width/%@", @(width)];
-    return [imageURL URLByAppendingPathComponent:sizeComponent];
 }
 
 @end
