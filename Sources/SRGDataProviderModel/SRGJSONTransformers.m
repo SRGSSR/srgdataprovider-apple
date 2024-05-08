@@ -62,6 +62,7 @@ NSValueTransformer *SRGBlockingReasonJSONTransformer(void)
         s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"GEOBLOCK" : @(SRGBlockingReasonGeoblocking),
                                                                                          @"LEGAL" : @(SRGBlockingReasonLegal),
                                                                                          @"COMMERCIAL" : @(SRGBlockingReasonCommercial),
+                                                                                         @"JOURNALISTIC": @(SRGBlockingReasonJournalistic),
                                                                                          @"AGERATING18" : @(SRGBlockingReasonAgeRating18),
                                                                                          @"AGERATING12" : @(SRGBlockingReasonAgeRating12),
                                                                                          @"STARTDATE" : @(SRGBlockingReasonStartDate),
