@@ -5,6 +5,7 @@
 //
 
 #import "SRGModel.h"
+#import "SRGTypes.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The type of the target.
  */
-@property (nonatomic, readonly) NSString *targetType;
+@property (nonatomic, readonly) SRGContentLinkType type;
 
 /**
- *  The uid of the target.
+ *  The target, if any, related to the type.
  */
-@property (nonatomic, readonly, nullable) NSString *targetUid;
+@property (nonatomic, readonly, nullable) NSString *target;
 
 
 @end

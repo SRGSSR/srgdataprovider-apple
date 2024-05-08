@@ -6,12 +6,14 @@
 
 #import "SRGContentLink.h"
 
+#import "SRGJSONTransformers.h"
+
 @import libextobjc;
 
 @interface SRGContentLink ()
 
-@property (nonatomic, copy) NSString *targetType;
-@property (nonatomic, copy) NSString *targetUid;
+@property (nonatomic) SRGContentLinkType type;
+@property (nonatomic, copy) NSString *target;
 
 @end
 
@@ -25,13 +27,19 @@
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
         s_mapping = @{
-            @keypath(SRGContentLink.new, targetType) : @"targetType",
-            @keypath(SRGContentLink.new, targetUid) : @"target"
+            @keypath(SRGContentLink.new, type) : @"targetType",
+            @keypath(SRGContentLink.new, target) : @"target"
         };
     });
     return s_mapping;
 }
 
+#pragma mark Transformers
+
++ (NSValueTransformer *)typeJSONTransformer
+{
+    return SRGContentLinkTypeJSONTransformer();
+}
 
 #pragma mark Equality
 
@@ -42,11 +50,11 @@
     }
     
     SRGContentLink *otherContentLink = object;
-    return [self.targetType isEqualToString:otherContentLink.targetType] && [self.targetUid isEqualToString:otherContentLink.targetUid];
+    return (self.type == otherContentLink.type) && [self.target isEqualToString:otherContentLink.target];
 }
 
 - (NSUInteger)hash
 {
-    return [NSString stringWithFormat:@"%@,%@", self.targetType, self.targetUid].hash;
+    return [NSString stringWithFormat:@"%@,%@", @(self.type), self.target].hash;
 }
 @end
