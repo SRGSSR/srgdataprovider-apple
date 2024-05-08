@@ -13,6 +13,7 @@
 #import "SRGChannel.h"
 #import "SRGChannelIdentifierMetadata.h"
 #import "SRGChapter.h"
+#import "SRGContentLink.h"
 #import "SRGContentPage.h"
 #import "SRGContentPresentation.h"
 #import "SRGContentSection.h"
