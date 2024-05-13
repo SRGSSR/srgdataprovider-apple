@@ -57,4 +57,5 @@
 {
     return [NSString stringWithFormat:@"%@,%@", @(self.type), self.target].hash;
 }
+
 @end
