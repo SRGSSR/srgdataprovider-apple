@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL hasDetailPage;
 
 /**
- * The content link, if any
+ * The content link, if any.
  */
 @property (nonatomic, readonly, nullable) SRGContentLink *contentLink;
 
