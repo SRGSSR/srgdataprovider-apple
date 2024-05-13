@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  The target, if any, related to the type.
  */
-@property (nonatomic, readonly, nullable) NSString *target;
+@property (nonatomic, readonly, copy, nullable) NSString *target;
 
 
 @end
