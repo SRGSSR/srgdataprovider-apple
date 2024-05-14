@@ -872,6 +872,21 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGScheduledLivestreamEventType) {
     SRGScheduledLivestreamEventTypeSport
 };
 
+typedef NS_CLOSED_ENUM(NSInteger, SRGContentLinkType) {
+    /**
+     *  Not specified.
+     */
+    SRGContentLinkTypeNone = 0,
+    /**
+     *  Detail page.
+     */
+    SRGContentLinkTypeDetailPage,
+    /**
+     *  Micro page.
+     */
+    SRGContentLinkTypeMicroPage
+};
+
 /**
  *  @name Known products.
  */
