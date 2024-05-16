@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic) NSURL *imageURL;
 @property (nonatomic) BOOL hasDetailPage;
+@property (nonatomic) SRGContentLink *contentLink;
 @property (nonatomic, getter=isRandomized) BOOL randomized;
 
 @end
@@ -40,6 +41,7 @@
             @keypath(SRGContentPresentation.new, label) : @"properties.label",
             @keypath(SRGContentPresentation.new, imageURL) : @"properties.imageUrl",
             @keypath(SRGContentPresentation.new, hasDetailPage) : @"properties.hasDetailPage",
+            @keypath(SRGContentPresentation.new, contentLink) : @"properties.link",
             @keypath(SRGContentPresentation.new, randomized) : @"properties.pickRandomElement"
         };
     });

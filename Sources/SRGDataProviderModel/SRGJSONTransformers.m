@@ -86,16 +86,14 @@ NSValueTransformer *SRGBooleanInversionJSONTransformer(void)
     return s_transformer;
 }
 
-NSValueTransformer *SRGContentSectionTypeJSONTransformer(void)
+NSValueTransformer *SRGContentLinkTypeJSONTransformer(void)
 {
     static NSValueTransformer *s_transformer;
     static dispatch_once_t s_onceToken;
     dispatch_once(&s_onceToken, ^{
-        s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"MediaSection" : @(SRGContentSectionTypeMedias),
-                                                                                         @"MediaSectionWithShow" : @(SRGContentSectionTypeShowAndMedias),
-                                                                                         @"ShowSection" : @(SRGContentSectionTypeShows),
-                                                                                         @"SimpleSection" : @(SRGContentSectionTypePredefined) }
-                                                                         defaultValue:@(SRGContentSectionTypeNone)
+        s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"DETAIL_PAGE" : @(SRGContentLinkTypeDetailPage),
+                                                                                         @"MICRO_PAGE": @(SRGContentLinkTypeMicroPage) }
+                                                                         defaultValue:@(SRGContentLinkTypeNone)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;
@@ -140,6 +138,21 @@ NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void)
                                                                                          @"AvailableEpisodes" : @(SRGContentPresentationTypeAvailableEpisodes),
                                                                                          @"TrendingShowsByTopic" : @(SRGContentPresentationTypeTrendingShowsByTopic) }
                                                                          defaultValue:@(SRGContentPresentationTypeNone)
+                                                                  reverseDefaultValue:nil];
+    });
+    return s_transformer;
+}
+
+NSValueTransformer *SRGContentSectionTypeJSONTransformer(void)
+{
+    static NSValueTransformer *s_transformer;
+    static dispatch_once_t s_onceToken;
+    dispatch_once(&s_onceToken, ^{
+        s_transformer = [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{ @"MediaSection" : @(SRGContentSectionTypeMedias),
+                                                                                         @"MediaSectionWithShow" : @(SRGContentSectionTypeShowAndMedias),
+                                                                                         @"ShowSection" : @(SRGContentSectionTypeShows),
+                                                                                         @"SimpleSection" : @(SRGContentSectionTypePredefined) }
+                                                                         defaultValue:@(SRGContentSectionTypeNone)
                                                                   reverseDefaultValue:nil];
     });
     return s_transformer;

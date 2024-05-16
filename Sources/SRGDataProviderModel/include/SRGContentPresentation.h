@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+#import "SRGContentLink.h"
 #import "SRGFocalPoint.h"
 #import "SRGImage.h"
 #import "SRGModel.h"
@@ -50,6 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  `YES` iff a detail page should be made available for the content.
  */
 @property (nonatomic, readonly) BOOL hasDetailPage;
+
+/**
+ * The content link, if any.
+ */
+@property (nonatomic, readonly, nullable) SRGContentLink *contentLink;
 
 /**
  *  `YES` if the content is randomized.
