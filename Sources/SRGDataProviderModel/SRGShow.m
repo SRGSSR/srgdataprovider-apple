@@ -101,7 +101,7 @@
 
 - (SRGImage *)podcastImage
 {
-    return [SRGImage imageWithURL:self.podcastImageURL variant:SRGImageVariantDefault];
+    return [SRGImage imageWithURL:self.podcastImageURL variant:SRGImageVariantPodcast];
 }
 
 #pragma mark Transformers
