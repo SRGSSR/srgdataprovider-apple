@@ -3,7 +3,7 @@
 import PackageDescription
 
 struct ProjectSettings {
-    static let marketingVersion: String = "19.0.4"
+    static let marketingVersion: String = "19.0.5"
 }
 
 let package = Package(
