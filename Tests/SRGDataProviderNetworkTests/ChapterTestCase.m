@@ -32,8 +32,8 @@ static NSURL *ServiceTestURL(void)
         XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodHDS].count, 0);
         XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodDASH].count, 0);
         XCTAssertEqual(mainChapter.recommendedStreamingMethod, SRGStreamingMethodHLS);
-        XCTAssertEqual(mainChapter.recommendedSubtitleFormat, SRGSubtitleFormatNone); // APPPLAY or TVPLAY vectors don't return external files anymore.
-        XCTAssertEqual([mainChapter subtitlesWithFormat:mainChapter.recommendedSubtitleFormat].count, 0);
+        XCTAssertEqual(mainChapter.recommendedSubtitleFormat, SRGSubtitleFormatTTML);
+        XCTAssertEqual([mainChapter subtitlesWithFormat:mainChapter.recommendedSubtitleFormat].count, 1);
         
         [expectation1 fulfill];
     }] resume];
@@ -81,7 +81,7 @@ static NSURL *ServiceTestURL(void)
         XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodHDS].count, 0);
         XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodDASH].count, 0);
         XCTAssertEqual(mainChapter.recommendedStreamingMethod, SRGStreamingMethodHLS);
-        XCTAssertEqual(mainChapter.recommendedSubtitleFormat, SRGSubtitleFormatNone); // APPPLAY or TVPLAY vectors don't return external files anymore.
+        XCTAssertEqual(mainChapter.recommendedSubtitleFormat, SRGSubtitleFormatNone);
         XCTAssertEqual([mainChapter subtitlesWithFormat:mainChapter.recommendedSubtitleFormat].count, 0);
         
         SRGResource *resource = [mainChapter resourcesForStreamingMethod:mainChapter.recommendedStreamingMethod].firstObject;
