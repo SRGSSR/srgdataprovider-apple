@@ -29,6 +29,9 @@
 "This commercial media is not available." = "Questo contenuto commerciale non è disponibile.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
+"This content is temporarily unavailable for journalistic reasons." = "Questo contenuto è temporaneamente non disponibile per motivi editoriali.";
+
+/* A blocking reason message displayed to the user if the media can't be played. */
 "This media is not available anymore." = "Questo media non è più disponibile.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */

@@ -23,10 +23,13 @@
 "The content was skipped to protect children. Please try again between 10PM and 5AM." = "The content was skipped to protect children. Please try again between 10PM and 5AM.";
 
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
-"The content was skipped to protect children. Please try again between 8PM and 6AM." = "The content was skipped to protect children. Please try again between 8AM and 6AM.";
+"The content was skipped to protect children. Please try again between 8PM and 6AM." = "The content was skipped to protect children. Please try again between 8PM and 6AM.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "This commercial media is not available." = "This commercial media is not available.";
+
+/* A blocking reason message displayed to the user if the media can't be played. */
+"This content is temporarily unavailable for journalistic reasons." = "This content is temporarily unavailable for journalistic reasons.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
 "This media is not available anymore." = "This content is not available anymore.";
