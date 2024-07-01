@@ -16,7 +16,7 @@ static NSString * const kRadioChannelUid = @"rete-uno";
 static NSString * const kRadioLivestreamUid = @"livestream_ReteUno";
 static NSString * const kRadioShowSearchQuery = @"modem";
 
-static NSString * const kVideoURN = @"urn:rsi:video:9014650";
+static NSString * const kVideoURN = @"urn:rsi:video:1391801";
 
 static NSString * const kTVChannelUid = @"la1";
 static NSString * const kTVLivestreamUid = @"livestream_La1";
