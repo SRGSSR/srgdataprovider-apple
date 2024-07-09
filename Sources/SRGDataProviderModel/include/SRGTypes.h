@@ -194,6 +194,10 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      */
     SRGContentPresentationTypeContinueWatching,
     /**
+     *  Continue listening (resume playback).
+     */
+    SRGContentPresentationTypeContinueListening,
+    /**
      *  Watch later.
      */
     SRGContentPresentationTypeWatchLater,
