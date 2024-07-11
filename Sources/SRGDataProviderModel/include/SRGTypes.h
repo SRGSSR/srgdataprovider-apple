@@ -68,6 +68,10 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGBlockingReason) {
      */
     SRGBlockingReasonCommercial,
     /**
+     *  The content is temporarily not available for editorial reasons.
+     */
+    SRGBlockingReasonJournalistic,
+    /**
      *  The content is not suitable for people under 18.
      */
     SRGBlockingReasonAgeRating18,
@@ -189,6 +193,10 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentPresentationType) {
      *  Continue watching (resume playback).
      */
     SRGContentPresentationTypeContinueWatching,
+    /**
+     *  Continue listening (resume playback).
+     */
+    SRGContentPresentationTypeContinueListening,
     /**
      *  Watch later.
      */

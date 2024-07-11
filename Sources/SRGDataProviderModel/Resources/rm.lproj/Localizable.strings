@@ -29,6 +29,9 @@
 "This commercial media is not available." = "Quest medium commerzial n'è betg disponibel.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
+"This content is temporarily unavailable for journalistic reasons." = "Quest cuntegn na stat ad interim betg a disposiziun per motivs publicistics.";
+
+/* A blocking reason message displayed to the user if the media can't be played. */
 "This media is not available anymore." = "Quest medium n'è betg pli disponibel.";
 
 /* A blocking reason message displayed to the user if the media can't be played. */
