@@ -13,6 +13,7 @@
 + (NSCalendar *)srg_defaultCalendar
 {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    calendar.locale = NSLocale.currentLocale;
     calendar.timeZone = NSTimeZone.srg_defaultTimeZone;
     return calendar;
 }
