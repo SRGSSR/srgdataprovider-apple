@@ -10,7 +10,7 @@
 @import libextobjc;
 
 static NSString * const kAudioSearchQuery = @"tennis";
-static NSString * const kAudioURN = @"urn:rsi:audio:16016821";
+static NSString * const kAudioURN = @"urn:rsi:audio:2198491";
 
 static NSString * const kRadioChannelUid = @"rete-uno";
 static NSString * const kRadioLivestreamUid = @"livestream_ReteUno";
