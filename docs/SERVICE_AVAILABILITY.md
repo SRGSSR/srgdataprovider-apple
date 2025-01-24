@@ -54,7 +54,7 @@ Services are currently only available for SRG SSR vendors (SRF, RTS, RSI, RTR an
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | All shows | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Show search | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| Most popular shows for topic | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ | ❌ |
+| Most popular shows for topic | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 
 #### Remark
 
@@ -82,7 +82,7 @@ Regional livestreams only exist for SRF, otherwise only main livestreams are ava
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | Latest medias | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | Most popular medias | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
-| Latest episodes | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ |
+| Latest episodes | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | Episodes by date | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ |
 | Latest videos | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
 
@@ -118,12 +118,13 @@ Regional livestreams only exist for SRF, otherwise only main livestreams are ava
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | Media search | ✅ | ✅ | ✅ | ✅ | ✅ (1) | ✅ | ❌ |
 | Show search (2) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | N/A |
-| Most searched shows (2) | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | N/A |
-| Videos with tags | ✅ | ❌ | ❌ | ⚠️ (3) | ❌ | ✅ | ❌ |
+| Most searched shows (2, 3) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | N/A |
+| Videos with tags | ✅ | ✅ | ❌ | ⚠️ (4) | ❌ | ✅ | ❌ |
 
 (1) At the moment, SWI only supports a search term but no settings. If settings are applied the request will fail with an error.
 (2) Search can be optionally filtered by transmission. Only TV and radio are supported at the moment.
-(3) RTR only supports `fullLengthExcluded = NO`.
+(3) Deprecated service.
+(4) RTR only supports `fullLengthExcluded = NO`.
 
 ## Recommendation services
 
@@ -141,12 +142,12 @@ Modules are collection of medias related to a specific context (e.g. an event).
 
 ## Popularity services
 
-These services can be used to increase popularity indicators.
+Deprecated services: can be used to increase popularity indicators.
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Increase social count for a media URN | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | N/A |
-| Increase show view count from search results | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | N/A |
+| Increase social count for a media URN | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | N/A |
+| Increase show view count from search results | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | N/A |
 
 ## Content services
 
