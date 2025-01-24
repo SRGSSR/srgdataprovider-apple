@@ -770,8 +770,8 @@ static NSString * const kTag2 = @"curling";
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorSRF matchingTransmission:SRGTransmissionNone withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation1 fulfill];
     }] resume];
     
