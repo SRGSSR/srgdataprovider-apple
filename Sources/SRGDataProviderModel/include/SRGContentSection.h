@@ -55,6 +55,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) SRGContentPresentation *presentation;
 
+/**
+ *  The media type.
+ */
+@property (nonatomic, readonly) SRGContentSectionMediaType mediaType;
+
 @end
 
 NS_ASSUME_NONNULL_END
