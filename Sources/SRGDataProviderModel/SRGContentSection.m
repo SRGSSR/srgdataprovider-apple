@@ -40,7 +40,8 @@
             @keypath(SRGContentSection.new, personalized) : @"hasPersonalizedContent",
             @keypath(SRGContentSection.new, startDate) : @"start",
             @keypath(SRGContentSection.new, endDate) : @"end",
-            @keypath(SRGContentSection.new, presentation) : @"representation"
+            @keypath(SRGContentSection.new, presentation) : @"representation",
+            @keypath(SRGContentSection.new, mediaType) : @"mediaType"
         };
     });
     return s_mapping;
@@ -71,6 +72,11 @@
 + (NSValueTransformer *)presentationJSONTransformer
 {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:SRGContentPresentation.class];
+}
+
++ (NSValueTransformer *)mediaTypeJSONTransformer
+{
+    return SRGContentSectionMediaTypeJSONTransformer();
 }
 
 #pragma mark Equality
