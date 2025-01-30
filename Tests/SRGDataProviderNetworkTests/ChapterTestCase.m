@@ -152,9 +152,9 @@ static NSURL *ServiceTestURL(void)
     SRGDataProvider *dataProvider = [[SRGDataProvider alloc] initWithServiceURL:ServiceTestURL()];
     [[dataProvider mediaCompositionForURN:@"urn:rts:video:8841634" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         SRGChapter *mainChapter = mediaComposition.mainChapter;
-        XCTAssertEqual(mainChapter.resources.count, 1);
-        XCTAssertEqual(mainChapter.playableResources.count, 1);
-        XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodHLS].count, 1);
+        XCTAssertEqual(mainChapter.resources.count, 2);
+        XCTAssertEqual(mainChapter.playableResources.count, 2);
+        XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodHLS].count, 2);
         XCTAssertEqual([mainChapter resourcesForStreamingMethod:SRGStreamingMethodHDS].count, 0);
         XCTAssertEqual(mainChapter.recommendedStreamingMethod, SRGStreamingMethodHLS);
         XCTAssertEqual(mainChapter.recommendedSubtitleFormat, SRGSubtitleFormatNone);
