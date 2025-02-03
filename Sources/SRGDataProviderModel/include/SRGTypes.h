@@ -896,6 +896,21 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGContentLinkType) {
     SRGContentLinkTypeMicroPage
 };
 
+typedef NS_CLOSED_ENUM(NSInteger, SRGContentSectionMediaType) {
+    /**
+     *  Not specified.
+     */
+    SRGContentSectionMediaTypeNone = 0,
+    /**
+     *  AUDIO
+     */
+    SRGContentSectionMediaTypeAudio,
+    /**
+     * VIDEO
+     */
+    SRGContentSectionMediaTypeVideo
+};
+
 /**
  *  @name Known products.
  */

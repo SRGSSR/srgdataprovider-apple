@@ -764,13 +764,14 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+// Deprecated service
 - (void)testMostSearchedShows
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorSRF matchingTransmission:SRGTransmissionNone withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation1 fulfill];
     }] resume];
     
@@ -779,8 +780,8 @@ static NSString * const kTag2 = @"curling";
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorSRF matchingTransmission:SRGTransmissionTV withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation2 fulfill];
     }] resume];
     
@@ -789,8 +790,8 @@ static NSString * const kTag2 = @"curling";
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorSRF matchingTransmission:SRGTransmissionRadio withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation3 fulfill];
     }] resume];
     
@@ -874,6 +875,7 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+// Not supported anymore
 - (void)testIncreaseSocialCount
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
@@ -883,8 +885,8 @@ static NSString * const kTag2 = @"curling";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeSRGView URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation1 fulfill];
         }] resume];
     }] resume];
@@ -898,8 +900,8 @@ static NSString * const kTag2 = @"curling";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeSRGLike URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation2 fulfill];
         }] resume];
     }] resume];
@@ -913,8 +915,8 @@ static NSString * const kTag2 = @"curling";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeFacebookShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation3 fulfill];
         }] resume];
     }] resume];
@@ -928,8 +930,8 @@ static NSString * const kTag2 = @"curling";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeTwitterShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation4 fulfill];
         }] resume];
     }] resume];
@@ -943,8 +945,8 @@ static NSString * const kTag2 = @"curling";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeGooglePlusShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation5 fulfill];
         }] resume];
     }] resume];
@@ -958,8 +960,8 @@ static NSString * const kTag2 = @"curling";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeWhatsAppShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation6 fulfill];
         }] resume];
     }] resume];
@@ -967,6 +969,7 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+// Not supported anymore
 - (void)testIncreaseSearchResultsViewCountForShow
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
@@ -975,8 +978,8 @@ static NSString * const kTag2 = @"curling";
         XCTAssertNotNil(show);
         
         [[self.dataProvider increaseSearchResultsViewCountForShow:show withCompletionBlock:^(SRGShowStatisticsOverview * _Nullable showStatisticsOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(showStatisticsOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(showStatisticsOverview);
+            XCTAssertNotNil(error);
             [expectation1 fulfill];
         }] resume];
     }] resume];
@@ -989,8 +992,8 @@ static NSString * const kTag2 = @"curling";
         XCTAssertNotNil(show);
         
         [[self.dataProvider increaseSearchResultsViewCountForShow:show withCompletionBlock:^(SRGShowStatisticsOverview * _Nullable showStatisticsOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(showStatisticsOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(showStatisticsOverview);
+            XCTAssertNotNil(error);
             [expectation2 fulfill];
         }] resume];
     }] resume];

@@ -756,13 +756,14 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+// Deprecated service
 - (void)testMostSearchedShows
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorRTR matchingTransmission:SRGTransmissionNone withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation1 fulfill];
     }] resume];
     
@@ -771,8 +772,8 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorRTR matchingTransmission:SRGTransmissionTV withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation2 fulfill];
     }] resume];
     
@@ -781,8 +782,8 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mostSearchedShowsForVendor:SRGVendorRTR matchingTransmission:SRGTransmissionRadio withCompletionBlock:^(NSArray<SRGShow *> * _Nullable shows, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(shows);
-        XCTAssertNil(error);
+        XCTAssertNil(shows);
+        XCTAssertNotNil(error);
         [expectation3 fulfill];
     }] resume];
     
@@ -861,6 +862,7 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+// Not supported anymore
 - (void)testIncreaseSocialCount
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
@@ -870,8 +872,8 @@ static NSString * const kUserId = @"test_user_id";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeSRGView URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation1 fulfill];
         }] resume];
     }] resume];
@@ -885,8 +887,8 @@ static NSString * const kUserId = @"test_user_id";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeSRGLike URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation2 fulfill];
         }] resume];
     }] resume];
@@ -900,8 +902,8 @@ static NSString * const kUserId = @"test_user_id";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeFacebookShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation3 fulfill];
         }] resume];
     }] resume];
@@ -915,8 +917,8 @@ static NSString * const kUserId = @"test_user_id";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeTwitterShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation4 fulfill];
         }] resume];
     }] resume];
@@ -930,8 +932,8 @@ static NSString * const kUserId = @"test_user_id";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeGooglePlusShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation5 fulfill];
         }] resume];
     }] resume];
@@ -945,8 +947,8 @@ static NSString * const kUserId = @"test_user_id";
         
         SRGChapter *mainChapter = mediaComposition.mainChapter;
         [[self.dataProvider increaseSocialCountForType:SRGSocialCountTypeWhatsAppShare URN:mainChapter.URN event:mainChapter.event withCompletionBlock:^(SRGSocialCountOverview * _Nullable socialCountOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(socialCountOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(socialCountOverview);
+            XCTAssertNotNil(error);
             [expectation6 fulfill];
         }] resume];
     }] resume];
@@ -954,6 +956,7 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+// Not supported anymore
 - (void)testIncreaseSearchResultsViewCountForShow
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
@@ -962,8 +965,8 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(show);
         
         [[self.dataProvider increaseSearchResultsViewCountForShow:show withCompletionBlock:^(SRGShowStatisticsOverview * _Nullable showStatisticsOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(showStatisticsOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(showStatisticsOverview);
+            XCTAssertNotNil(error);
             [expectation1 fulfill];
         }] resume];
     }] resume];
@@ -976,8 +979,8 @@ static NSString * const kUserId = @"test_user_id";
         XCTAssertNotNil(show);
         
         [[self.dataProvider increaseSearchResultsViewCountForShow:show withCompletionBlock:^(SRGShowStatisticsOverview * _Nullable showStatisticsOverview, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-            XCTAssertNotNil(showStatisticsOverview);
-            XCTAssertNil(error);
+            XCTAssertNil(showStatisticsOverview);
+            XCTAssertNotNil(error);
             [expectation2 fulfill];
         }] resume];
     }] resume];
