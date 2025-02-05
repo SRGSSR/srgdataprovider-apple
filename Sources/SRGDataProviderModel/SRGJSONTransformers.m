@@ -134,8 +134,9 @@ NSValueTransformer *SRGContentPresentationTypeJSONTransformer(void)
                                                                                          @"TopicSelector" : @(SRGContentPresentationTypeTopicSelector),
                                                                                          @"ShowAccess" : @(SRGContentPresentationTypeShowAccess),
                                                                                          @"ContinueWatching" : @(SRGContentPresentationTypeContinueWatching),
-                                                                                         @"ContinueListening" : @(SRGContentPresentationTypeContinueListening),
+                                                                                         @"ContinueStreaming" : @(SRGContentPresentationTypeContinueStreaming),
                                                                                          @"WatchLater" : @(SRGContentPresentationTypeWatchLater),
+                                                                                         @"StreamLater" : @(SRGContentPresentationTypeStreamLater),
                                                                                          @"MyProgram" : @(SRGContentPresentationTypeMyProgram),
                                                                                          @"AvailableEpisodes" : @(SRGContentPresentationTypeAvailableEpisodes),
                                                                                          @"TrendingShowsByTopic" : @(SRGContentPresentationTypeTrendingShowsByTopic) }
