@@ -18,6 +18,8 @@
 @property (nonatomic) NSURL *imageURL;
 @property (nonatomic) NSArray<SRGMedia *> *medias;
 @property (nonatomic) SRGSocialCount *socialCount;
+@property (nonatomic) NSNumber *seasonNumber;
+@property (nonatomic) NSNumber *number;
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *lead;
@@ -44,6 +46,8 @@
             @keypath(SRGEpisode.new, fullLengthURN) : @"fullLengthUrn",
             @keypath(SRGEpisode.new, medias) : @"mediaList",
             @keypath(SRGEpisode.new, socialCount) : @"socialCount",
+            @keypath(SRGEpisode.new, seasonNumber) : @"seasonNumber",
+            @keypath(SRGEpisode.new, number) : @"number",
             
             @keypath(SRGEpisode.new, title) : @"title",
             @keypath(SRGEpisode.new, lead) : @"lead",
