@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * The number of the episode in the season
  */
-@property (nonatomic, readonly, nullable) NSNumber *number;
+@property (nonatomic, readonly, nullable) NSNumber *episodeNumber;
 
 @end
 
