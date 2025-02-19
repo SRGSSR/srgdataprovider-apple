@@ -87,12 +87,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Whether to use posterImage as a fallback URL
  */
-@property (nonatomic, readonly, getter=isPosterImageFallbackURL) BOOL posterImageFallbackURL;
+@property (nonatomic, readonly) BOOL shouldFallbackToPosterImage;
 
 /**
  *  Whether to use podcastImage as a fallback URL
  */
-@property (nonatomic, readonly, getter=isPodcastImageFallbackURL) BOOL podcastImageFallbackURL;
+@property (nonatomic, readonly) BOOL shouldFallbackToPodcastImage;
 
 
 @end
