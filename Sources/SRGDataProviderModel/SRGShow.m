@@ -38,6 +38,8 @@
 @property (nonatomic) SRGTransmission transmission;
 @property (nonatomic) SRGVendor vendor;
 @property (nonatomic) SRGBroadcastInformation *broadcastInformation;
+@property (nonatomic, getter=isPosterImageFallbackURL) BOOL posterImageFallbackURL;
+@property (nonatomic, getter=isPodcastImageFallbackURL) BOOL podcastImageFallbackURL;
 
 @end
 
@@ -76,7 +78,9 @@
             @keypath(SRGShow.new, URN) : @"urn",
             @keypath(SRGShow.new, transmission) : @"transmission",
             @keypath(SRGShow.new, vendor) : @"vendor",
-            @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation"
+            @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation",
+            @keypath(SRGShow.new, posterImageFallbackURL) : @"posterImageIsFallbackUrl",
+            @keypath(SRGShow.new, podcastImageFallbackURL) : @"podcastImageIsFallbackUrl"
         };
     });
     return s_mapping;

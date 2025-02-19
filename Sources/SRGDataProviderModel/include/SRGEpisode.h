@@ -50,6 +50,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly, nullable) SRGSocialCount *socialCount;
 
+/**
+ * The number of the season containing the episode
+ */
+@property (nonatomic, readonly, nullable) NSNumber *seasonNumber;
+
+/**
+ * The number of the episode in the season
+ */
+@property (nonatomic, readonly, nullable) NSNumber *number;
+
 @end
 
 NS_ASSUME_NONNULL_END
