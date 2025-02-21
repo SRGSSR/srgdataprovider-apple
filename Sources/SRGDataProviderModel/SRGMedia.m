@@ -17,6 +17,7 @@
 @property (nonatomic) SRGFocalPoint *imageFocalPoint;
 @property (nonatomic) NSArray<SRGVariant *> *audioVariants;
 @property (nonatomic) NSArray<SRGVariant *> *subtitleVariants;
+@property (nonatomic, copy) NSString *overrideTitle;
 
 @property (nonatomic) SRGChannel *channel;
 @property (nonatomic) SRGEpisode *episode;
@@ -66,7 +67,8 @@
             @keypath(SRGMedia.new, imageFocalPoint) : @"imageFocalPoint",
             @keypath(SRGMedia.new, audioVariants) : @"audioTrackList",
             @keypath(SRGMedia.new, subtitleVariants) : @"subtitleInformationList",
-            
+            @keypath(SRGMedia.new, overrideTitle) : @"overrideTitle",
+
             @keypath(SRGMedia.new, channel) : @"channel",
             @keypath(SRGMedia.new, episode) : @"episode",
             @keypath(SRGMedia.new, show) : @"show",

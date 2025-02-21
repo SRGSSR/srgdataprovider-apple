@@ -38,6 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly, nullable) NSArray<SRGVariant *> *subtitleVariants;
 
+/**
+ *  PAC overriden title, if applicable.
+ */
+@property (nonatomic, readonly, copy, nullable) NSString *overrideTitle;
+
 @end
 
 @interface SRGMedia (AudioVariants)
