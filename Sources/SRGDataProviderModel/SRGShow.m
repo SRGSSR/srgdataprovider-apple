@@ -38,6 +38,8 @@
 @property (nonatomic) SRGTransmission transmission;
 @property (nonatomic) SRGVendor vendor;
 @property (nonatomic) SRGBroadcastInformation *broadcastInformation;
+@property (nonatomic) NSNumber *shouldFallbackToPosterImage;
+@property (nonatomic) NSNumber *shouldFallbackToPodcastImage;
 
 @end
 
@@ -76,7 +78,9 @@
             @keypath(SRGShow.new, URN) : @"urn",
             @keypath(SRGShow.new, transmission) : @"transmission",
             @keypath(SRGShow.new, vendor) : @"vendor",
-            @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation"
+            @keypath(SRGShow.new, broadcastInformation) : @"broadcastInformation",
+            @keypath(SRGShow.new, shouldFallbackToPosterImage) : @"posterImageIsFallbackUrl",
+            @keypath(SRGShow.new, shouldFallbackToPodcastImage) : @"podcastImageIsFallbackUrl"
         };
     });
     return s_mapping;

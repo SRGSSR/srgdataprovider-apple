@@ -84,6 +84,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly, nullable) NSArray<SRGTopic *> *topics;
 
+/**
+ *  Whether to use posterImage as a fallback URL
+ */
+@property (nonatomic, readonly, nullable) NSNumber *shouldFallbackToPosterImage;
+
+/**
+ *  Whether to use podcastImage as a fallback URL
+ */
+@property (nonatomic, readonly, nullable) NSNumber *shouldFallbackToPodcastImage;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
