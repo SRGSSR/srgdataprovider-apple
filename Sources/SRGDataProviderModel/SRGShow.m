@@ -38,8 +38,8 @@
 @property (nonatomic) SRGTransmission transmission;
 @property (nonatomic) SRGVendor vendor;
 @property (nonatomic) SRGBroadcastInformation *broadcastInformation;
-@property (nonatomic) BOOL shouldFallbackToPosterImage;
-@property (nonatomic) BOOL shouldFallbackToPodcastImage;
+@property (nonatomic) NSNumber *shouldFallbackToPosterImage;
+@property (nonatomic) NSNumber *shouldFallbackToPodcastImage;
 
 @end
 
