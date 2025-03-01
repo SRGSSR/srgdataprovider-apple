@@ -692,7 +692,7 @@ static NSString * const kUserId = @"test_user_id";
     [[self.dataProvider mediasForVendor:SRGVendorRTS matchingQuery:@"fderer" withSettings:settings completionBlock:^(NSArray<NSString *> * _Nullable mediaURNs, NSNumber * _Nullable total, SRGMediaAggregations * _Nullable aggregations, NSArray<SRGSearchSuggestion *> * _Nullable suggestions, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(mediaURNs);
         XCTAssertNil(aggregations);
-        XCTAssertNotNil(suggestions);
+        XCTAssertNil(suggestions); // Not supported by the new search
         XCTAssertNil(error);
         [expectation2 fulfill];
     }] resume];
