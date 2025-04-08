@@ -6,7 +6,7 @@
 
 import Combine
 
-@_implementationOnly import SRGDataProviderRequests
+private import SRGDataProviderRequests
 
 /**
  *  Services for TV channels and livestreams.

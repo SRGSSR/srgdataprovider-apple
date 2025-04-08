@@ -6,7 +6,7 @@
 
 import SRGDataProvider
 
-@_implementationOnly import SRGDataProviderRequests
+private import SRGDataProviderRequests
 
 protocol NextLinkable {
     var request: URLRequest { get }
