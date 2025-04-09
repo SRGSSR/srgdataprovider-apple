@@ -22,6 +22,7 @@ NSString *SRGMessageForBlockedMediaWithBlockingReason(SRGBlockingReason blocking
             @(SRGBlockingReasonAgeRating12) : SRGDataProviderLocalizedString(@"To protect children, this media is only available between 8PM and 6AM.", @"A blocking reason message displayed to the user if the media can't be played."),
             @(SRGBlockingReasonStartDate) : SRGDataProviderLocalizedString(@"This media is not available yet. Please try again later.", @"A blocking reason message displayed to the user if the media can't be played."),
             @(SRGBlockingReasonEndDate) : SRGDataProviderLocalizedString(@"This media is not available anymore.", @"A blocking reason message displayed to the user if the media can't be played."),
+            @(SRGBlockingReasonVPNProxy) : SRGDataProviderLocalizedString(@"This content cannot be played while using a VPN or a proxy.", @"A blocking reason message displayed when the user is located behind a VPN or proxy."),
             @(SRGBlockingReasonUnknown) : SRGDataProviderLocalizedString(@"This media is not available.", @"A blocking reason message displayed to the user if the media can't be played.")
         };
     });
@@ -41,6 +42,7 @@ NSString *SRGMessageForSkippedSegmentWithBlockingReason(SRGBlockingReason blocki
             @(SRGBlockingReasonAgeRating18) : SRGDataProviderLocalizedString(@"The content was skipped to protect children. Please try again between 10PM and 5AM.", @"A blocking reason message displayed to the user during the playback if a segment was skipped."),
             @(SRGBlockingReasonAgeRating12) : SRGDataProviderLocalizedString(@"The content was skipped to protect children. Please try again between 8PM and 6AM.", @"A blocking reason message displayed to the user during the playback if a segment was skipped."),
             @(SRGBlockingReasonStartDate) : SRGDataProviderLocalizedString(@"The content was skipped because it is not available yet. Please try again later.", @"A blocking reason message displayed to the user during the playback if a segment was skipped."),
+            @(SRGBlockingReasonVPNProxy) : SRGDataProviderLocalizedString(@"This content cannot be played while using a VPN or a proxy.", @"A blocking reason message displayed when the user is located behind a VPN or proxy."),
             @(SRGBlockingReasonEndDate) : SRGDataProviderLocalizedString(@"The content was skipped because it is not available anymore.", @"A blocking reason message displayed to the user during the playback if a segment was skipped."),
             @(SRGBlockingReasonUnknown) : SRGDataProviderLocalizedString(@"The content was skipped because it is not available.", @"A blocking reason message displayed to the user during the playback if a segment was skipped.")
         };
