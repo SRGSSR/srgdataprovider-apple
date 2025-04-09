@@ -171,34 +171,3 @@
 }
 
 @end
-
-static NSArray<SRGProgram *> *SRGSanitizedProgramsAndSubprograms(NSArray<SRGProgram *> *programs, SRGProgram *nextParentProgram)
-{
-    if (! programs) {
-        return nil;
-    }
-    
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@keypath(SRGProgram.new, startDate) ascending:YES];
-    NSArray<SRGProgram *> *sortedPrograms = [programs sortedArrayUsingDescriptors:@[sortDescriptor]];
-    
-    NSMutableArray<SRGProgram *> *sanitizedPrograms = [NSMutableArray array];
-    NSUInteger numberOfPrograms = sortedPrograms.count;
-    for (NSUInteger i = 0; i < numberOfPrograms; ++i) {
-        SRGProgram *program = sortedPrograms[i].copy;
-        SRGProgram *nextProgram = (i < numberOfPrograms - 1) ? sortedPrograms[i + 1] : nil;
-        if (nextProgram) {
-            program.endDate = nextProgram.startDate;
-        }
-        else if (nextParentProgram) {
-            program.endDate = nextParentProgram.startDate;
-        }
-        program.subprograms = SRGSanitizedProgramsAndSubprograms(program.subprograms, nextProgram);
-        [sanitizedPrograms addObject:program];
-    }
-    return sanitizedPrograms.copy;
-}
-
-NSArray<SRGProgram *> *SRGSanitizedPrograms(NSArray<SRGProgram *> *programs)
-{
-    return SRGSanitizedProgramsAndSubprograms(programs, nil);
-}

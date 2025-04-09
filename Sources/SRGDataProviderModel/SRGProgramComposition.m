@@ -67,21 +67,7 @@ static void SRGProgramCompositionAssignUidToProgram(SRGProgram *program, SRGChan
 
 + (NSValueTransformer *)programsJSONTransformer
 {
-    static NSValueTransformer *s_transformer;
-    static dispatch_once_t s_onceToken;
-    dispatch_once(&s_onceToken, ^{
-        s_transformer = [MTLValueTransformer transformerUsingForwardBlock:^id(NSArray *JSONArray, BOOL *pSuccess, NSError *__autoreleasing *error) {
-            NSArray<SRGProgram *> *programs = [MTLJSONAdapter modelsOfClass:SRGProgram.class fromJSONArray:JSONArray error:error];
-            if (! programs) {
-                return nil;
-            }
-            
-            return SRGSanitizedPrograms(programs);
-        } reverseBlock:^id(NSArray *objects, BOOL *pSuccess, NSError *__autoreleasing *error) {
-            return [MTLJSONAdapter JSONArrayFromModels:objects error:error];
-        }];
-    });
-    return s_transformer;
+    return [MTLJSONAdapter arrayTransformerWithModelClass:SRGProgram.class];
 }
 
 #pragma mark Equality

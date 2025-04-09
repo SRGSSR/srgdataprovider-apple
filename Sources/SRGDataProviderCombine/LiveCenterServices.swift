@@ -6,7 +6,7 @@
 
 import Combine
 
-@_implementationOnly import SRGDataProviderRequests
+private import SRGDataProviderRequests
 
 /**
  *  Services offered by the SwissTXT Live Center.

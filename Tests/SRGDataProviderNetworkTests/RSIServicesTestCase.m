@@ -697,7 +697,7 @@ static NSString * const kUserId = @"test_user_id";
     [[self.dataProvider mediasForVendor:SRGVendorRSI matchingQuery:@"fderer" withSettings:settings completionBlock:^(NSArray<NSString *> * _Nullable mediaURNs, NSNumber * _Nullable total, SRGMediaAggregations * _Nullable aggregations, NSArray<SRGSearchSuggestion *> * _Nullable suggestions, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(mediaURNs);
         XCTAssertNil(aggregations);
-        XCTAssertNotNil(suggestions);
+        XCTAssertNil(suggestions); // Not supported by the new search
         XCTAssertNil(error);
         [expectation2 fulfill];
     }] resume];
@@ -794,13 +794,13 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for RSI
 - (void)testVideosWithTags
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorRSI withTags:@[kTag1] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(error);
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
         [expectation1 fulfill];
     }] resume];
     
@@ -809,7 +809,8 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorRSI withTags:@[kTag1] excludedTags:@[kTag1] fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(error);
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
         [expectation2 fulfill];
     }] resume];
     
@@ -818,7 +819,8 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorRSI withTags:@[kTag1, kTag2] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(error);
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
         [expectation3 fulfill];
     }] resume];
     
@@ -826,7 +828,6 @@ static NSString * const kUserId = @"test_user_id";
     
     XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
 
-    // Strangely supported for RSI
     [[self.dataProvider videosForVendor:SRGVendorRSI withTags:@[kTag1] excludedTags:nil fullLengthExcluded:NO completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
@@ -838,7 +839,8 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation5 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorRSI withTags:@[] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(error);
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
         [expectation5 fulfill];
     }] resume];
     
@@ -1033,8 +1035,8 @@ static NSString * const kUserId = @"test_user_id";
     // VOD clip
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:video:9016660" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"9016660");
+    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:video:2695109" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"2695109");
         [expectation3 fulfill];
     }] resume];
     
@@ -1053,8 +1055,8 @@ static NSString * const kUserId = @"test_user_id";
     // AOD clip
     XCTestExpectation *expectation5 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:audio:15844840" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"15844840");
+    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:audio:2704094" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"2704094");
         [expectation5 fulfill];
     }] resume];
     

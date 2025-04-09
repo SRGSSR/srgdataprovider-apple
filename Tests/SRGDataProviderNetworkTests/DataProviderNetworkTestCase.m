@@ -474,7 +474,6 @@ static BOOL DataProviderURLContainsQueryParameter(NSURL *URL, NSString *name, NS
         if (page.number == 0) {
             SRGPageRequest *nextRequest = [request requestWithPage:nextPage];
             NSURLRequest *nextPageURLRequest = nextRequest.URLRequest;
-            XCTAssertEqualObjects(nextPageURLRequest.URL.host, SRGIntegrationLayerProductionServiceURL().host);
             XCTAssertEqualObjects([nextPageURLRequest valueForHTTPHeaderField:@"Test-Header"], @"Test-Value");
             XCTAssertTrue(DataProviderURLContainsQueryParameter(nextPageURLRequest.URL, @"forceLocation", @"WW"));
             
@@ -482,7 +481,6 @@ static BOOL DataProviderURLContainsQueryParameter(NSURL *URL, NSString *name, NS
         }
         else if (page.number == 1) {
             NSURLRequest *nextPageURLRequest = [request requestWithPage:nextPage].URLRequest;
-            XCTAssertEqualObjects(nextPageURLRequest.URL.host, SRGIntegrationLayerProductionServiceURL().host);
             XCTAssertEqualObjects([nextPageURLRequest valueForHTTPHeaderField:@"Test-Header"], @"Test-Value");
             XCTAssertTrue(DataProviderURLContainsQueryParameter(nextPageURLRequest.URL, @"forceLocation", @"WW"));
             

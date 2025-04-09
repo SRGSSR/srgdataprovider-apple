@@ -6,7 +6,7 @@
 
 import Combine
 
-@_implementationOnly import SRGDataProviderRequests
+private import SRGDataProviderRequests
 
 /**
  *  List of URN-based services supported by the data provider. Such services do not need explicit knowledge of what
