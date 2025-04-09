@@ -4,6 +4,9 @@
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The commercial content was skipped." = "Il cuntegn commercial è vegnì eliminà.";
 
+/* A blocking reason message displayed when the user is located behind a VPN or proxy. */
+"This content cannot be played while using a VPN or a proxy." = "Quest cuntegn na po betg vegnir reproducì cun VPN ni proxy activà.";
+
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The content was skipped because it is not available anymore." = "Il cuntegn è vegnì eliminà perquai ch'el n'è betg pli disponibel.";
 
