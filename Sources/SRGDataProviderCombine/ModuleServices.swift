@@ -6,7 +6,7 @@
 
 import Combine
 
-@_implementationOnly import SRGDataProviderRequests
+private import SRGDataProviderRequests
 
 /**
  *  Module services (e.g. events) supported by the data provider.

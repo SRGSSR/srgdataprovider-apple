@@ -8,7 +8,7 @@ import Combine
 import SRGDataProvider
 import SRGDataProviderModel
 
-@_implementationOnly import Mantle
+private import Mantle
 
 public extension Calendar {
     /**

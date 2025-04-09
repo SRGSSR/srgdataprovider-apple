@@ -1035,8 +1035,8 @@ static NSString * const kUserId = @"test_user_id";
     // VOD clip
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:video:9016660" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"9016660");
+    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:video:2695109" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"2695109");
         [expectation3 fulfill];
     }] resume];
     
@@ -1055,8 +1055,8 @@ static NSString * const kUserId = @"test_user_id";
     // AOD clip
     XCTestExpectation *expectation5 = [self expectationWithDescription:@"Request succeeded"];
     
-    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:audio:15844840" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"15844840");
+    [[self.dataProvider mediaCompositionForURN:@"urn:rsi:audio:2704094" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"2704094");
         [expectation5 fulfill];
     }] resume];
     
