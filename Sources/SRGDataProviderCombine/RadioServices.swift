@@ -155,9 +155,9 @@ public extension SRGDataProvider {
     /**
      *  All radio shows alphabetically.
      */
-    func radioShows(for vendor: SRGVendor) -> AnyPublisher<[SRGShow], Error> {
+    func radioShows(for vendor: SRGVendor, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGShow], Error> {
         let request = requestAllRadioShows(for: vendor)
-        return objectsPublisher(for: request, rootKey: "showList", type: SRGShow.self)
+        return paginatedObjectsTriggeredPublisher(at: Page(request: request, size: pageSize), rootKey: "showList", type: SRGShow.self, paginatedBy: signal)
     }
     
     enum RadioShowsMatchingQuery {

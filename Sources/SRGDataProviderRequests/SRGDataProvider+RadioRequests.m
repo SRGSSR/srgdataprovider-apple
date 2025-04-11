@@ -162,7 +162,7 @@
 - (NSURLRequest *)requestAllRadioShowsForVendor:(SRGVendor)vendor
 {
     NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/showList/radio/alphabetical", SRGPathComponentForVendor(vendor)];
-    return [self URLRequestForResourcePath:resourcePath withQueryItems:@[ [NSURLQueryItem queryItemWithName:@"pageSize" value:@"unlimited"] ]];
+    return [self URLRequestForResourcePath:resourcePath withQueryItems:nil];
 }
 
 @end
