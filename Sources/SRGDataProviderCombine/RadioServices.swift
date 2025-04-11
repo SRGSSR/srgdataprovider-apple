@@ -155,7 +155,7 @@ public extension SRGDataProvider {
     /**
      *  All radio shows alphabetically.
      */
-    func allRadioShows(for vendor: SRGVendor) -> AnyPublisher<[SRGShow], Error> {
+    func radioShows(for vendor: SRGVendor) -> AnyPublisher<[SRGShow], Error> {
         let request = requestAllRadioShows(for: vendor)
         return objectsPublisher(for: request, rootKey: "showList", type: SRGShow.self)
     }
