@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
                                   channelUid:(NSString *)channelUid;
 - (NSURLRequest *)requestRadioCurrentSongForVendor:(SRGVendor)vendor
                                         channelUid:(NSString *)channelUid;
+- (NSURLRequest *)requestAllRadioShowsForVendor:(SRGVendor)vendor;
 
 @end
 
