@@ -129,6 +129,15 @@
 }
 
 - (SRGFirstPageRequest *)radioShowsForVendor:(SRGVendor)vendor
+                         withCompletionBlock:(SRGPaginatedShowListCompletionBlock)completionBlock
+{
+    NSURLRequest *URLRequest = [self requestAllRadioShowsForVendor:vendor];
+    return [self listPaginatedObjectsWithURLRequest:URLRequest modelClass:SRGShow.class rootKey:@"showList" completionBlock:^(NSArray * _Nullable objects, NSDictionary<NSString *,id> *metadata, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        completionBlock(objects, page, nextPage, HTTPResponse, error);
+    }];
+}
+
+- (SRGFirstPageRequest *)radioShowsForVendor:(SRGVendor)vendor
                                matchingQuery:(NSString *)query
                          withCompletionBlock:(SRGPaginatedShowSearchCompletionBlock)completionBlock
 {
