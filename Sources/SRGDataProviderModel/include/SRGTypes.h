@@ -90,7 +90,7 @@ typedef NS_CLOSED_ENUM(NSInteger, SRGBlockingReason) {
     /**
      *  The content is accessed through a VPN or proxy.
      */
-    SRGBlockingReasonVPNOrProxy,
+    SRGBlockingReasonVPNOrProxyDetected,
     /**
      *  The content is blocked for some unknown reason.
      */
