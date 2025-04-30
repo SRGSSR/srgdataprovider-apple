@@ -66,6 +66,7 @@ NSValueTransformer *SRGBlockingReasonJSONTransformer(void)
                                                                                          @"AGERATING18" : @(SRGBlockingReasonAgeRating18),
                                                                                          @"AGERATING12" : @(SRGBlockingReasonAgeRating12),
                                                                                          @"STARTDATE" : @(SRGBlockingReasonStartDate),
+                                                                                         @"VPNORPROXYDETECTED" : @(SRGBlockingReasonVPNOrProxyDetected),
                                                                                          @"ENDDATE" : @(SRGBlockingReasonEndDate),
                                                                                          @"UNKNOWN" : @(SRGBlockingReasonUnknown) }
                                                                          defaultValue:@(SRGBlockingReasonUnknown)

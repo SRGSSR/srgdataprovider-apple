@@ -4,6 +4,9 @@
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The commercial content was skipped." = "Il contenuto commerciale è stato ignorato.";
 
+/* A blocking reason message displayed when the user is located behind a VPN or proxy. */
+"This content cannot be played while using a VPN or a proxy." = "Questo contenuto non può essere riprodotto con VPN o proxy.";
+
 /* A blocking reason message displayed to the user during the playback if a segment was skipped. */
 "The content was skipped because it is not available anymore." = "Il contenuto è stato ignorato perché non è più disponibile.";
 
