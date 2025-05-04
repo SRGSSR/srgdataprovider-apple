@@ -43,7 +43,7 @@ platform :ios do
   end
 
   after_all do
-    reset_git_repo(skip_clean: true)
+    # reset_git_repo(skip_clean: true)
   end
 
   error do
