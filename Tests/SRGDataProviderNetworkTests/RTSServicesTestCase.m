@@ -29,7 +29,7 @@ static NSString * const kTVShowOtherURN = @"urn:rts:show:tv:105932";
 static NSString * const kRadioShowURN = @"urn:rts:show:radio:8272976";
 static NSString * const kRadioShowOtherURN = @"urn:rts:show:radio:8841537";
 static NSString * const kInvalidShowURN = @"urn:rts:show:tv:999999999999999";
-static NSString * const kInvalidShowOtherBusinessUnitURN = @"urn:srf:show:tv:999999999999999";
+static NSString * const kInvalidShowOtherBusinessUnitURN = @"urn:rsi:show:tv:999999999999999";
 
 static NSString * const kTag1 = @"sportapp";
 static NSString * const kTag2 = @"curling";

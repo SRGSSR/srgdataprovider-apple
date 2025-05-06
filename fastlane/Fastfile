@@ -26,9 +26,10 @@ platform :ios do
     clean_result_files
     clean_derived_data
 
-    iphone14 = Device.new('iOS', 'iPhone 15')
-    appletv = Device.new('tvOS', 'Apple TV')
-    devices = [iphone14, appletv]
+    iphone = Device.new('iOS', latest_simulator_name('iPhone'))
+    appletv = Device.new('tvOS', latest_simulator_name('Apple TV'))
+    devices = [iphone, appletv]
+    UI.command_output("Running tests on simulators: #{devices.map(&:name).join(' and ')}")
 
     scheme = swift_package_name
     swift_package_tests = TestBuild.new(scheme, '-Package', false)
@@ -149,10 +150,14 @@ end
 
 def override_junit_test_suite_name(file_name)
   platform = file_name.split('.').first.split('-').last
-  file = File.open(file_name, 'r')
-  xml = file.read.gsub('Tests" tests="', "-#{platform}\" tests=\"")
-  xml = xml.gsub('-tests" tests="', "-#{platform}\" tests=\"")
-  File.write(file_name, xml)
+  xml = File.read(file_name)
+  doc = REXML::Document.new(xml)
+
+  REXML::XPath.each(doc, '/testsuites/testsuite') do |suite|
+    suite.attributes['name'] = "#{suite.attributes['name']}-#{platform}"
+  end
+
+  File.open(file_name, 'w') { |f| doc.write(f, 2) }
 end
 
 def expose_junit_files
@@ -161,6 +166,16 @@ def expose_junit_files
     new_file_name = file_name.gsub(raw_extension, '.xml')
     File.rename(file_name, new_file_name) unless File.exist?(new_file_name)
   end
+end
+
+def latest_simulator_name(device_type)
+  devices = JSON.parse(`xcrun simctl list -j devices`)['devices'].values.flatten
+  candidates = devices.select do |device|
+    device['name'].start_with?(device_type) && device['isAvailable']
+  end
+  # Sort by runtime and device name (latest iOS/tvOS and latest model)
+  candidates.sort_by! { |device| [device['name'][/\d+/].to_i, device['name']] }
+  candidates.last['name']
 end
 
 # More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
