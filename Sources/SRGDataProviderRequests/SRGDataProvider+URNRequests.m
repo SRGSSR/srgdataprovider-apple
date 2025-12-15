@@ -123,24 +123,19 @@
     if (maximumPublicationDay) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"maxPublishedDate" value:maximumPublicationDay.string]];
     }
-    
-    NSMutableArray *types = [NSMutableArray array];
+
     switch (filter) {
         case SRGMediaFilterEpisodesOnly: {
-            [types addObject:@"episode"];
+            [queryItems addObject:[NSURLQueryItem queryItemWithName:@"types" value:@"episode"]];
             break;
         }
         case SRGMediaFilterEpisodesExcluded: {
-            [types addObjectsFromArray:@[@"clip", @"segment"]];
+            [queryItems addObject:[NSURLQueryItem queryItemWithName:@"types" value:@"clip,segment"]];
             break;
         }
         default: {
             break;
         }
-    }
-
-    if (types.count > 0) {
-        [queryItems addObject:[NSURLQueryItem queryItemWithName:@"types" value:[types componentsJoinedByString: @","]]];
     }
 
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];

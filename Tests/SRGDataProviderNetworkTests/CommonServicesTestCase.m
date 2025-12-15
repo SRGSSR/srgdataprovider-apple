@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+@import libextobjc;
 @import SRGDataProviderNetwork;
 @import XCTest;
 
@@ -413,24 +414,9 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
 - (void)testLatestMediasForShowsWithURNsReturnsOnlyEpisodes
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
-    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesOnly maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias,
-                                                                                                                                                                                                  SRGPage * _Nonnull page,
-                                                                                                                                                                                                  SRGPage * _Nullable nextPage,
-                                                                                                                                                                                                  NSHTTPURLResponse * _Nullable HTTPResponse,
-                                                                                                                                                                                                  NSError * _Nullable error) {
-        NSMutableArray *mediasWithEpisodeContentType = [NSMutableArray new];
-        [medias enumerateObjectsUsingBlock:^(SRGMedia * _Nonnull media, NSUInteger idx, BOOL * _Nonnull stop) {
-            switch (media.contentType) {
-                case SRGContentTypeEpisode:
-                    [mediasWithEpisodeContentType addObject:media];
-                    break;
-                default:
-                    break;
-            }
-        }];
-        XCTAssertNotNil(medias);
-        XCTAssertTrue(medias.count != 0);
-        XCTAssertEqual(mediasWithEpisodeContentType.count, medias.count);
+    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesOnly maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeEpisode)];
+        XCTAssertEqual([medias filteredArrayUsingPredicate:predicate].count, medias.count);
         XCTAssertNil(error);
         [expectation fulfill];
     }] resume];
@@ -441,24 +427,9 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
 - (void)testLatestMediasForShowsWithURNsReturnsOnlyClipsAndSegments
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
-    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesExcluded maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias,
-                                                                                                                                                                                                  SRGPage * _Nonnull page,
-                                                                                                                                                                                                  SRGPage * _Nullable nextPage,
-                                                                                                                                                                                                  NSHTTPURLResponse * _Nullable HTTPResponse,
-                                                                                                                                                                                                  NSError * _Nullable error) {
-        NSMutableArray *mediasWithClipAndSegmentContentType = [NSMutableArray new];
-        [medias enumerateObjectsUsingBlock:^(SRGMedia * _Nonnull media, NSUInteger idx, BOOL * _Nonnull stop) {
-            switch (media.contentType) {
-                case SRGContentTypeClip:
-                    [mediasWithClipAndSegmentContentType addObject:media];
-                    break;
-                default:
-                    break;
-            }
-        }];
-        XCTAssertNotNil(medias);
-        XCTAssertTrue(medias.count != 0);
-        XCTAssertEqual(mediasWithClipAndSegmentContentType.count, medias.count);
+    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesExcluded maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeClip)];
+        XCTAssertEqual([medias filteredArrayUsingPredicate:predicate].count, medias.count);
         XCTAssertNil(error);
         [expectation fulfill];
     }] resume];
