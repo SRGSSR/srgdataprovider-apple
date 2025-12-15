@@ -410,6 +410,34 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+- (void)testLatestMediasForShowsWithURNsReturnsOnlyEpisodes
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesOnly maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias,
+                                                                                                                                                                                                  SRGPage * _Nonnull page,
+                                                                                                                                                                                                  SRGPage * _Nullable nextPage,
+                                                                                                                                                                                                  NSHTTPURLResponse * _Nullable HTTPResponse,
+                                                                                                                                                                                                  NSError * _Nullable error) {
+        NSMutableArray *mediasWithEpisodeContentType = [NSMutableArray new];
+        [medias enumerateObjectsUsingBlock:^(SRGMedia * _Nonnull media, NSUInteger idx, BOOL * _Nonnull stop) {
+            switch (media.contentType) {
+                case SRGContentTypeEpisode:
+                    [mediasWithEpisodeContentType addObject:media];
+                    break;
+                default:
+                    break;
+            }
+        }];
+        XCTAssertNotNil(medias);
+        XCTAssertTrue(medias.count != 0);
+        XCTAssertEqual(mediasWithEpisodeContentType.count, medias.count);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }] resume];
+
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
 // Cannot test -latestMediasForModuleWithURN:completionBlock: yet due to missing reliable data
 
 - (void)testMediaWithSubtitleInformationAndAudioTracks
