@@ -123,23 +123,21 @@
     if (maximumPublicationDay) {
         [queryItems addObject:[NSURLQueryItem queryItemWithName:@"maxPublishedDate" value:maximumPublicationDay.string]];
     }
-    
+
     switch (filter) {
         case SRGMediaFilterEpisodesOnly: {
-            [queryItems addObject:[NSURLQueryItem queryItemWithName:@"onlyEpisodes" value:@"true"]];
+            [queryItems addObject:[NSURLQueryItem queryItemWithName:@"types" value:@"episode"]];
             break;
         }
-            
         case SRGMediaFilterEpisodesExcluded: {
-            [queryItems addObject:[NSURLQueryItem queryItemWithName:@"excludingEpisodes" value:@"true"]];
+            [queryItems addObject:[NSURLQueryItem queryItemWithName:@"types" value:@"clip,segment"]];
             break;
         }
-            
         default: {
             break;
         }
     }
-    
+
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }
 

@@ -4,6 +4,7 @@
 //  License information is available from the LICENSE file.
 //
 
+@import libextobjc;
 @import SRGDataProviderNetwork;
 @import XCTest;
 
@@ -410,6 +411,32 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
+- (void)testLatestMediasForShowsWithURNsReturnsOnlyEpisodes
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesOnly maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeEpisode)];
+        XCTAssertEqual([medias filteredArrayUsingPredicate:predicate].count, medias.count);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }] resume];
+
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testLatestMediasForShowsWithURNsReturnsOnlyClipsAndSegments
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+    [[self.dataProvider latestMediasForShowsWithURNs:@[ @"urn:srf:show:radio:88072903-e34f-4f51-a9b9-052562d049c2"] filter:SRGMediaFilterEpisodesExcluded maximumPublicationDay:nil completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", @keypath(SRGMedia.new, contentType), @(SRGContentTypeClip)];
+        XCTAssertEqual([medias filteredArrayUsingPredicate:predicate].count, medias.count);
+        XCTAssertNil(error);
+        [expectation fulfill];
+    }] resume];
+
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
 // Cannot test -latestMediasForModuleWithURN:completionBlock: yet due to missing reliable data
 
 - (void)testMediaWithSubtitleInformationAndAudioTracks
@@ -420,9 +447,9 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        XCTAssertEqual(media.subtitleVariants.count, 1);
+        XCTAssertEqual(media.subtitleVariants.count, 2);
         XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceHLS].count, 1);
-        XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceExternal].count, 0);
+        XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceExternal].count, 1);
         XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceDASH].count, 0);
         XCTAssertEqual(media.recommendedSubtitleVariantSource, SRGVariantSourceHLS);
         
