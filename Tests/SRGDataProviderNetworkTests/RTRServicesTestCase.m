@@ -240,9 +240,9 @@ static NSString * const kUserId = @"test_user_id";
 
 - (void)testTVSoonExpiringMedias
 {
+    XCTSkip("Not supported anymore for RTR");
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
-    
-    // Not supported for RTR
+
     [[self.dataProvider tvSoonExpiringMediasForVendor:SRGVendorRTR withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(error);
         [expectation fulfill];
@@ -277,9 +277,9 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for RTR
 - (void)testTVLatestWebFirstEpisodes
 {
+    XCTSkip("Not supported anymore for RTR");
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider tvLatestWebFirstEpisodesForVendor:SRGVendorRTR withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -530,9 +530,9 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for RTR
 - (void)testRadioLatestVideosForChannel
 {
+    XCTSkip("Not supported anymore for RTR");
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider radioLatestVideosForVendor:SRGVendorRTR channelUid:kRadioChannelUid withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -678,7 +678,7 @@ static NSString * const kUserId = @"test_user_id";
     [[self.dataProvider mediasForVendor:SRGVendorRTR matchingQuery:@"fderer" withSettings:settings completionBlock:^(NSArray<NSString *> * _Nullable mediaURNs, NSNumber * _Nullable total, SRGMediaAggregations * _Nullable aggregations, NSArray<SRGSearchSuggestion *> * _Nullable suggestions, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(mediaURNs);
         XCTAssertNotNil(aggregations);
-        XCTAssertNil(suggestions);
+        XCTAssertNil(suggestions); // Not supported by the new search
         XCTAssertNil(error);
         [expectation1 fulfill];
     }] resume];
@@ -693,7 +693,7 @@ static NSString * const kUserId = @"test_user_id";
     [[self.dataProvider mediasForVendor:SRGVendorRTR matchingQuery:@"fderer" withSettings:settings completionBlock:^(NSArray<NSString *> * _Nullable mediaURNs, NSNumber * _Nullable total, SRGMediaAggregations * _Nullable aggregations, NSArray<SRGSearchSuggestion *> * _Nullable suggestions, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(mediaURNs);
         XCTAssertNil(aggregations);
-        XCTAssertNotNil(suggestions);
+        XCTAssertNil(suggestions);
         XCTAssertNil(error);
         [expectation2 fulfill];
     }] resume];
@@ -793,6 +793,17 @@ static NSString * const kUserId = @"test_user_id";
 // Partial supported for RTR
 - (void)testVideosWithTags
 {
+    XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
+
+    [[self.dataProvider videosForVendor:SRGVendorRTR withTags:@[kTag1] excludedTags:nil fullLengthExcluded:NO completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertNotNil(medias);
+        XCTAssertNil(error);
+        [expectation4 fulfill];
+    }] resume];
+
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorRTR withTags:@[kTag1] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -819,17 +830,7 @@ static NSString * const kUserId = @"test_user_id";
     }] resume];
     
     [self waitForExpectationsWithTimeout:30. handler:nil];
-    
-    XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
-    
-    [[self.dataProvider videosForVendor:SRGVendorRTR withTags:@[kTag1] excludedTags:nil fullLengthExcluded:NO completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(medias);
-        XCTAssertNil(error);
-        [expectation4 fulfill];
-    }] resume];
-    
-    [self waitForExpectationsWithTimeout:30. handler:nil];
-    
+
     XCTestExpectation *expectation5 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorRTR withTags:@[] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -862,9 +863,9 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported anymore
 - (void)testIncreaseSocialCount
 {
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mediaCompositionForURN:kVideoURN standalone:YES withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -956,9 +957,9 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported anymore
 - (void)testIncreaseSearchResultsViewCountForShow
 {
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider showWithURN:kTVShowURN completionBlock:^(SRGShow * _Nullable show, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -1044,26 +1045,31 @@ static NSString * const kUserId = @"test_user_id";
     }] resume];
     
     [self waitForExpectationsWithTimeout:30. handler:nil];
-    
-    // AOD (are their own full-length for RTR)
-    XCTestExpectation *expectation6 = [self expectationWithDescription:@"Request succeeded"];
-    
-    [[self.dataProvider mediaCompositionForURN:@"urn:rtr:audio:1fc78a87-1ccb-4b8b-b103-980334d6ad94" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"1fc78a87-1ccb-4b8b-b103-980334d6ad94");
-        [expectation6 fulfill];
-    }] resume];
-    
-    [self waitForExpectationsWithTimeout:30. handler:nil];
-    
+
     // Audio livestream
-    XCTestExpectation *expectation7 = [self expectationWithDescription:@"Request succeeded"];
-    
+    XCTestExpectation *expectation6 = [self expectationWithDescription:@"Request succeeded"];
+
     [[self.dataProvider mediaCompositionForURN:@"urn:rtr:audio:a029e818-77a5-4c2e-ad70-d573bb865e31" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"a029e818-77a5-4c2e-ad70-d573bb865e31");
-        [expectation7 fulfill];
+        [expectation6 fulfill];
     }] resume];
-    
+
     [self waitForExpectationsWithTimeout:30. handler:nil];
+}
+
+- (void)testFullLengthForRTR
+{
+    XCTSkip("Not supported anymore");
+    // AOD (are their own full-length for RTR)
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
+
+    [[self.dataProvider mediaCompositionForURN:@"urn:rtr:audio:1fc78a87-1ccb-4b8b-b103-980334d6ad94" standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
+        XCTAssertEqualObjects(mediaComposition.fullLengthMedia.uid, @"1fc78a87-1ccb-4b8b-b103-980334d6ad94");
+        [expectation fulfill];
+    }] resume];
+
+    [self waitForExpectationsWithTimeout:30. handler:nil];
+
 }
 
 - (void)testShowsWithURNs

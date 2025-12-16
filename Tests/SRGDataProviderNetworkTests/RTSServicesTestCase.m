@@ -29,7 +29,7 @@ static NSString * const kTVShowOtherURN = @"urn:rts:show:tv:105932";
 static NSString * const kRadioShowURN = @"urn:rts:show:radio:8272976";
 static NSString * const kRadioShowOtherURN = @"urn:rts:show:radio:8841537";
 static NSString * const kInvalidShowURN = @"urn:rts:show:tv:999999999999999";
-static NSString * const kInvalidShowOtherBusinessUnitURN = @"urn:srf:show:tv:999999999999999";
+static NSString * const kInvalidShowOtherBusinessUnitURN = @"urn:rsi:show:tv:999999999999999";
 
 static NSString * const kTag1 = @"sportapp";
 static NSString * const kTag2 = @"curling";
@@ -864,9 +864,9 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported anymore
 - (void)testIncreaseSocialCount
 {
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mediaCompositionForURN:kVideoURN standalone:YES withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -958,9 +958,9 @@ static NSString * const kUserId = @"test_user_id";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported anymore
 - (void)testIncreaseSearchResultsViewCountForShow
 {
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider showWithURN:kTVShowURN completionBlock:^(SRGShow * _Nullable show, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {

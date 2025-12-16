@@ -284,9 +284,9 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for SRF
 - (void)testTVLatestWebFirstEpisodes
 {
+    XCTSkip("Not supported anymore for SRF");
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider tvLatestWebFirstEpisodesForVendor:SRGVendorSRF withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -537,9 +537,9 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported for SRF
 - (void)testRadioLatestVideosForChannel
 {
+    XCTSkip("Not supported anymore for SRF");
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider radioLatestVideosForVendor:SRGVendorSRF channelUid:kRadioChannelUid withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -686,7 +686,7 @@ static NSString * const kTag2 = @"curling";
     [[self.dataProvider mediasForVendor:SRGVendorSRF matchingQuery:@"fderer" withSettings:settings completionBlock:^(NSArray<NSString *> * _Nullable mediaURNs, NSNumber * _Nullable total, SRGMediaAggregations * _Nullable aggregations, NSArray<SRGSearchSuggestion *> * _Nullable suggestions, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(mediaURNs);
         XCTAssertNotNil(aggregations);
-        XCTAssertNil(suggestions);
+        XCTAssertNil(suggestions); // Not supported by the new search
         XCTAssertNil(error);
         [expectation1 fulfill];
     }] resume];
@@ -701,7 +701,7 @@ static NSString * const kTag2 = @"curling";
     [[self.dataProvider mediasForVendor:SRGVendorSRF matchingQuery:@"fderer" withSettings:settings completionBlock:^(NSArray<NSString *> * _Nullable mediaURNs, NSNumber * _Nullable total, SRGMediaAggregations * _Nullable aggregations, NSArray<SRGSearchSuggestion *> * _Nullable suggestions, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(mediaURNs);
         XCTAssertNil(aggregations);
-        XCTAssertNotNil(suggestions);
+        XCTAssertNil(suggestions);
         XCTAssertNil(error);
         [expectation2 fulfill];
     }] resume];
@@ -801,45 +801,49 @@ static NSString * const kTag2 = @"curling";
 - (void)testVideosWithTags
 {
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
-    
+
     [[self.dataProvider videosForVendor:SRGVendorSRF withTags:@[kTag1] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         [expectation1 fulfill];
     }] resume];
-    
+
     [self waitForExpectationsWithTimeout:30. handler:nil];
-    
+
     XCTestExpectation *expectation2 = [self expectationWithDescription:@"Request succeeded"];
-    
+
     [[self.dataProvider videosForVendor:SRGVendorSRF withTags:@[kTag1] excludedTags:@[kTag1] fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         [expectation2 fulfill];
     }] resume];
-    
+
     [self waitForExpectationsWithTimeout:30. handler:nil];
-    
+
     XCTestExpectation *expectation3 = [self expectationWithDescription:@"Request succeeded"];
-    
+
     [[self.dataProvider videosForVendor:SRGVendorSRF withTags:@[kTag1, kTag2] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         [expectation3 fulfill];
     }] resume];
-    
+
     [self waitForExpectationsWithTimeout:30. handler:nil];
-    
+
     XCTestExpectation *expectation4 = [self expectationWithDescription:@"Request succeeded"];
-    
+
     [[self.dataProvider videosForVendor:SRGVendorSRF withTags:@[kTag1] excludedTags:nil fullLengthExcluded:NO completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertNotNil(medias);
         XCTAssertNil(error);
         [expectation4 fulfill];
     }] resume];
-    
+
     [self waitForExpectationsWithTimeout:30. handler:nil];
-    
+}
+
+- (void)testVideosWithoutTags
+{
+    XCTSkip("Not supported anymore for SRF");
     XCTestExpectation *expectation5 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider videosForVendor:SRGVendorSRF withTags:@[] excludedTags:nil fullLengthExcluded:YES completionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage * _Nonnull page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -875,9 +879,9 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported anymore
 - (void)testIncreaseSocialCount
 {
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider mediaCompositionForURN:kVideoURN standalone:YES withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
@@ -969,9 +973,9 @@ static NSString * const kTag2 = @"curling";
     [self waitForExpectationsWithTimeout:30. handler:nil];
 }
 
-// Not supported anymore
 - (void)testIncreaseSearchResultsViewCountForShow
 {
+    XCTSkip("Not supported anymore");
     XCTestExpectation *expectation1 = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider showWithURN:kTVShowURN completionBlock:^(SRGShow * _Nullable show, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
