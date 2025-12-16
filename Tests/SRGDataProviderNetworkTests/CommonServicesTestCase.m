@@ -447,9 +447,9 @@ static NSString * const kInvalidShow3URN = @"urn:show:tv:999999999999999";
         XCTAssertNotNil(media);
         XCTAssertNil(error);
         
-        XCTAssertEqual(media.subtitleVariants.count, 1);
+        XCTAssertEqual(media.subtitleVariants.count, 2);
         XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceHLS].count, 1);
-        XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceExternal].count, 0);
+        XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceExternal].count, 1);
         XCTAssertEqual([media subtitleVariantsForSource:SRGVariantSourceDASH].count, 0);
         XCTAssertEqual(media.recommendedSubtitleVariantSource, SRGVariantSourceHLS);
         
