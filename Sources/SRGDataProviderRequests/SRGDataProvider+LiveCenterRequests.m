@@ -35,7 +35,7 @@ static NSString *SRGContentTypeFilterParameter(SRGContentTypeFilter contentTypeF
     }
     if (tags) {
         NSString *includesString = [tags componentsJoinedByString:@","];
-        NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"includes" value:includesString] ];
+        queryItems = [queryItems arrayByAddingObject:[NSURLQueryItem queryItemWithName:@"includes" value:includesString]];
     }
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }
