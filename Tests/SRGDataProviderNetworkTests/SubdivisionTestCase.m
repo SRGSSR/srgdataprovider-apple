@@ -53,7 +53,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     SRGDataProvider *dataProvider = [[SRGDataProvider alloc] initWithServiceURL:SRGIntegrationLayerProductionServiceURL()];
-    NSString *URN = @"urn:srf:video:2c685129-bad8-4ea0-93f5-0d6cff8cb156";
+    NSString *URN = @"urn:srf:video:7d848126-5a6a-4b05-8b66-9ce812ac6c3e";
     [[dataProvider mediaCompositionForURN:URN standalone:NO withCompletionBlock:^(SRGMediaComposition * _Nullable mediaComposition, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
         XCTAssertEqualObjects(mediaComposition.chapterURN, URN);
         XCTAssertNil(mediaComposition.segmentURN);
