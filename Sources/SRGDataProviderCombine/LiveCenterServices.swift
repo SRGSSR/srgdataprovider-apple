@@ -18,9 +18,10 @@ public extension SRGDataProvider {
      *
      *  - Parameter contentTypeFilter: The content type filter to apply.
      *  - Parameter eventsWithResultOnly: Whether only medias which are in the Live & Result Center (LRC) must be returned.
+     *  - Parameter tags: An optional list of included tags.
      */
-    func liveCenterVideos(for vendor: SRGVendor, contentTypeFilter: SRGContentTypeFilter = .none, eventsWithResultOnly: Bool = true, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
-        let request = requestLiveCenterVideos(for: vendor, contentTypeFilter: contentTypeFilter, eventsWithResultOnly: eventsWithResultOnly)
+    func liveCenterVideos(for vendor: SRGVendor, contentTypeFilter: SRGContentTypeFilter = .none, eventsWithResultOnly: Bool = true, tags: [String]? = nil, pageSize: UInt = SRGDataProviderDefaultPageSize, paginatedBy signal: Trigger.Signal? = nil) -> AnyPublisher<[SRGMedia], Error> {
+        let request = requestLiveCenterVideos(for: vendor, contentTypeFilter: contentTypeFilter, eventsWithResultOnly: eventsWithResultOnly, tags: tags)
         return paginatedObjectsTriggeredPublisher(at: Page(request: request, size: pageSize), rootKey: "mediaList", type: SRGMedia.self, paginatedBy: signal)
     }
 }

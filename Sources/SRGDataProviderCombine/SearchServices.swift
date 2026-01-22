@@ -82,7 +82,7 @@ public extension SRGDataProvider {
     /**
      *  List medias with specific tags.
      *
-     *  - Parameter tags: List of tags (at least one is required).
+     *  - Parameter tags: List of included tags (at least one is required).
      *  - Parameter excludedTags: An optional list of excluded tags.
      *  - Parameter fullLengthExcluded: Set to `YES` to exclude full length videos.
      */

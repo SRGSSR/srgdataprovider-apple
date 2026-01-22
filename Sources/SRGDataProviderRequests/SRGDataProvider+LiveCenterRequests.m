@@ -26,11 +26,16 @@ static NSString *SRGContentTypeFilterParameter(SRGContentTypeFilter contentTypeF
 - (NSURLRequest *)requestLiveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
                               eventsWithResultOnly:(BOOL)eventsWithResultOnly
+                                              tags:(NSArray<NSString *> *)tags
 {
     NSString *resourcePath = [NSString stringWithFormat:@"integrationlayer/2.0/%@/mediaList/video/scheduledLivestreams/livecenter", SRGPathComponentForVendor(vendor)];
     NSArray<NSURLQueryItem *> *queryItems = @[ [NSURLQueryItem queryItemWithName:@"onlyEventsWithResult" value:eventsWithResultOnly ? @"true" : @"false"] ];
     if (contentTypeFilter != SRGContentTypeFilterNone) {
         queryItems = [queryItems arrayByAddingObject:[NSURLQueryItem queryItemWithName:@"types" value:SRGContentTypeFilterParameter(contentTypeFilter)]];
+    }
+    if (tags) {
+        NSString *includesString = [tags componentsJoinedByString:@","];
+        queryItems = [queryItems arrayByAddingObject:[NSURLQueryItem queryItemWithName:@"includes" value:includesString]];
     }
     return [self URLRequestForResourcePath:resourcePath withQueryItems:queryItems.copy];
 }

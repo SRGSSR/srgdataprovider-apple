@@ -20,10 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param contentTypeFilter    The content type filter to apply.
  *  @param eventsWithResultOnly Whether only medias which are in the Live & Result Center (LRC) must be returned.
+ *  @param tags An optional list of included tags.
  */
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
                               eventsWithResultOnly:(BOOL)eventsWithResultOnly
+                                              tags:(nullable NSArray<NSString *> *)tags
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 @end
