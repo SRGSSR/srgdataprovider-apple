@@ -16,7 +16,7 @@
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
                               eventsWithResultOnly:(BOOL)eventsWithResultOnly
-                                          tags:(NSArray<NSString *> *)tags
+                                              tags:(NSArray<NSString *> *)tags
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock
 {
     NSURLRequest *URLRequest = [self requestLiveCenterVideosForVendor:vendor contentTypeFilter:contentTypeFilter eventsWithResultOnly:eventsWithResultOnly tags:tags];

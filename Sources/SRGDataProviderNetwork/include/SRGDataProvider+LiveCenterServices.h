@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (SRGFirstPageRequest *)liveCenterVideosForVendor:(SRGVendor)vendor
                                  contentTypeFilter:(SRGContentTypeFilter)contentTypeFilter
                               eventsWithResultOnly:(BOOL)eventsWithResultOnly
-                                          tags:(nullable NSArray<NSString *> *)tags
+                                              tags:(nullable NSArray<NSString *> *)tags
                                withCompletionBlock:(SRGPaginatedMediaListCompletionBlock)completionBlock;
 
 @end
