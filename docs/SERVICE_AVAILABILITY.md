@@ -12,7 +12,8 @@ Services are requested with an Integration Layer vector, which can deliver an ad
 
 #### Remark
 
-Services are currently only available for SRG SSR vendors (SRF, RTS, RSI, RTR and SWI), not for regional vendors (TVO, Canal Alpha).
+- Services are currently only available for SRG SSR vendors (SRF, RTS, RSI, RTR), not for regional vendors (TVO, Canal Alpha).
+- SWI services are still listed in this document but no data is delivered by them anymore.
 
 ## TV services
 
@@ -31,7 +32,7 @@ Services are currently only available for SRG SSR vendors (SRF, RTS, RSI, RTR an
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Editorial medias | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| Editorial medias | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
 | Hero stage medias | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | N/A |
 | Latest medias | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | Most popular medias | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
@@ -138,7 +139,7 @@ Modules are collection of medias related to a specific context (e.g. an event).
 
 | Request | SRF | RTS | RSI | RTR | SWI | Pagination | Unlimited page size |
 |:-- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Module list | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | N/A |
+| Module list | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | N/A |
 
 ## Popularity services
 
