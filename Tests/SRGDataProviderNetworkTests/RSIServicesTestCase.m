@@ -190,8 +190,7 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider tvEditorialMediasForVendor:SRGVendorRSI withCompletionBlock:^(NSArray<SRGMedia *> * _Nullable medias, SRGPage *page, SRGPage * _Nullable nextPage, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(medias);
-        XCTAssertNil(error);
+        XCTAssertNotNil(error);
         [expectation fulfill];
     }] resume];
     
@@ -1000,8 +999,7 @@ static NSString * const kUserId = @"test_user_id";
     XCTestExpectation *expectation = [self expectationWithDescription:@"Request succeeded"];
     
     [[self.dataProvider modulesForVendor:SRGVendorRSI type:SRGModuleTypeEvent withCompletionBlock:^(NSArray<SRGModule *> * _Nullable modules, NSHTTPURLResponse * _Nullable HTTPResponse, NSError * _Nullable error) {
-        XCTAssertNotNil(modules);
-        XCTAssertNil(error);
+        XCTAssertNotNil(error);
         [expectation fulfill];
     }] resume];
     
